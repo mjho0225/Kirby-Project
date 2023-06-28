@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+
+
     public float jumpPower = 5f;
     public float speed = 5f;
     float maxHeight = 5f; //현재 커비 위치에서 4.5배
@@ -109,7 +111,6 @@ public class PlayerMove : MonoBehaviour
                 jumpCnt++;
             }
   
-
         }
 
     }
