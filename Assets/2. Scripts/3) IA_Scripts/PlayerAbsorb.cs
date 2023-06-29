@@ -9,16 +9,23 @@ public class PlayerAbsorb : MonoBehaviour
     Transform playerPos;
     //enemy 흡입
     //[SerializeField]
-    public bool emptyState = false;
+    public bool emptyState;
     GameObject player;
     GameObject item;
     float currTime;
-    bool isEmpty = false;
-     
+    float rayLength = 20f;
+
+    bool attackState = false;
+
+    //int layer;
+    float power = 10f;
+
+    string absorbItemTag;
     // Start is called before the first frame update
     void Start()
     {
         
+        emptyState = true;
     }
 
     // Update is called once per frame
@@ -29,72 +36,126 @@ public class PlayerAbsorb : MonoBehaviour
 
     void CheckItem()
     {
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Vector3 pos = transform.position;
+        Ray ray = new Ray(pos, Vector3.forward);
+
+        //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Input.GetButton("Fire1") && emptyState)
         {
-            if (Input.GetButton("Fire1"))
-            {
-                currTime += Time.deltaTime;
-                print("hitInfo.collider" + hitInfo.collider);
-                item = hitInfo.collider.gameObject;
-                print("collider" + item);
-
-                if (hitInfo.collider.gameObject.layer == 6)
+                //float.MaxValue, layer => raycast 거리 제한 가능
+            if (Physics.Raycast(ray, out hitInfo))
                 {
-                    print(currTime);
-                    UpdateGetItem(item);
+                    currTime += Time.deltaTime;
+                    print("hitInfo.collider" + hitInfo.collider);
+                    item = hitInfo.collider.gameObject.transform.parent.gameObject;
+                if (hitInfo.collider.gameObject.layer == 8)
+                    {
+                        UpdateGetItem(item);
+                    }
                 }
+         }
+         
+        if(Input.GetButtonDown("Fire1"))
+        {
+            if (!(emptyState))
+            {
+                //마우스 포인터 keyMapping
+                
+                //커비가 아이템을 가지고 있다면
+                attackState = true;
+                absorbItemTag = null;
+                
+                print("발사" + absorbItemTag);
+
+                
+                //1. 로드 위치 임시
+                GameObject obj = Resources.Load<GameObject>("MonsterPos");
+
+                print("##########obj" + obj);
+                Vector3 posZ = transform.position;
+                posZ.z += 1;
+                GameObject go = Instantiate(obj, posZ, Quaternion.identity);
+
+                //2. 발사체 몬스터 따로 구현..?
+
+                Rigidbody rb = go.GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * power, ForceMode.Impulse);
+
+                emptyState = true;
             }
+            
         }
+
     }
 
     void UpdateGetItem(GameObject item)
 
     {
-        //switch (item.tag)
-        //{
-        //    case "e_fox":
-        //        print("e_fox 흡입");
-        //        break;
-        //    case "e_ranger":
-        //        break;
-        //}
-
-        print("item" + item);
+        print("Game" + item);
         //상태 체크
         if (currTime > 2f)
         {
-            float distance = Vector3.Distance(item.transform.position, playerPos.transform.position); //자석의 거리를 재는 코드.
-           
+            float distance = Vector3.Distance(item.transform.position, transform.position); //자석의 거리를 재는 코드.
+
             print("distance" + distance);
 
             if (distance <= 10.0f)
             {
-                item.transform.LookAt(playerPos.transform.position);
+                item.transform.LookAt(transform.position);
                 item.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                attackState = false;
             }
             else
             {
-               //파티클만 작동
-               //실제로 멀면 작동 안됨.
+                //파티클만 작동
+                //실제로 멀면 작동 안됨.
             }
             //item.transform.position = Vector3.MoveTowards(playerPos.position, item.transform.position, Time.deltaTime * speed);
-            //item.transform.position = Vector3.MoveTowards(item.transform.position, playerPos.position, Time.deltaTime* speed);
-            emptyState = true;
-            print("Particle");
-            //Destroy(other.gameObject, 5);
 
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("Item"))
+        {
+            //아이템 분류 후 획득
+            if(other.gameObject.tag == "item")
+            {
+             
+            }
+        }
+
+        //print("other check" + other.gameObject);
+        //print("layer check" + layer);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && emptyState && !(attackState))
+        {
+            emptyState = false;
+            absorbItemTag = other.gameObject.tag;
+            //게임 오브젝트 흡입 후 소멸
+            Destroy(other.gameObject, 0.2f);
+            currTime = 0;
+        }
     }
 
     //attack 사용 상태 체크
     //itemIventory();
     void Attack()
     {
-        
+
     }
-        
+
+    //switch (item.tag)
+    //{
+    //    case "e_fox":
+    //        print("e_fox 흡입");
+    //        break;
+    //    case "e_ranger":
+    //        break;
+    //}
+
 }
