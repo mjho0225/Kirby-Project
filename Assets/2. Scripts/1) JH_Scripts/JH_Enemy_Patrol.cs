@@ -26,37 +26,55 @@ public class JH_Enemy_Patrol : MonoBehaviour
 
     public GameObject targetPlayer; // 플레이어가 가까워지면(범위 안에 들어오면)
     float targetDist; // 플레이어 거리
+    Vector3 dirPlayer;
+    Vector3 playerPos;
 
     // Start is called before the first frame update
     void Start()
     {
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
+        targetPlayer = GameObject.Find("Player");
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 플레이어 거리
+        targetDist = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
+
+        dirPlayer = targetPlayer.transform.position - this.transform.position;
+        playerPos = new Vector3(dirPlayer.x, 0, dirPlayer.z);
+
         // 순찰 도중에 플레이어가 가까이 오면 플레이어한테 가고 플레이어아 거리에 없거나 멀어지면 기존 패트롤 이동
-
-
-
-        if (i <= listCount)
+        if (targetDist <= 4)
         {
-            //// 리스트(패트롤 위치)로 이동할때 회전하여 정면을 바라보게 하고싶다.
-            transform.LookAt(patrolPos[i]);
-            // 리스트로 이동하고싶다.
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, enemySpeed * Time.deltaTime);
+            transform.rotation = Quaternion.LookRotation(playerPos);
+            transform.Translate(-playerPos * 1f * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, enemySpeed * Time.deltaTime);
+        }
 
-            //// patrolPos[i] i가 바뀌어야 함
-            if (transform.position == patrolPos[i].position) // 만약, 현재 위치가 목적지 위치까지 오게되면
+        //거리가 멀어지면 기존 패트롤 이동
+        else if(targetDist > 4)
+        {
+            if (i <= listCount)
             {
-                i++; // i에 1을 더해주어 다음 목적지로 가도록 설정
-                if (i >= listCount) // 만약, 리스트 마지막에 도착하면 다시 첫번째로 이동
+                //// 리스트(패트롤 위치)로 이동할때 회전하여 정면을 바라보게 하고싶다.
+                transform.LookAt(patrolPos[i]);
+                // 리스트로 이동하고싶다.
+                transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, enemySpeed * Time.deltaTime);
+
+                //// patrolPos[i] i가 바뀌어야 함
+                if (transform.position == patrolPos[i].position) // 만약, 현재 위치가 목적지 위치까지 오게되면
                 {
-                    i = 0;
+                    i++; // i에 1을 더해주어 다음 목적지로 가도록 설정
+                    if (i >= listCount) // 만약, 리스트 마지막에 도착하면 다시 첫번째로 이동
+                    {
+                        i = 0;
+                    }
                 }
             }
         }
+
     }
 }
