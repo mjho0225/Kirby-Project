@@ -78,6 +78,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+
     void UpdateJump()
     {
         
@@ -129,5 +130,6 @@ public class PlayerMove : MonoBehaviour
             isGrounded = true;
             jumpCnt = 0;
         }
+
     }
 }
