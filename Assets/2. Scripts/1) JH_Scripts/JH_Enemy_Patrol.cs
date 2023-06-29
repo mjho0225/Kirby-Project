@@ -16,15 +16,16 @@ using UnityEngine;
 
 public class JH_Enemy_Patrol : MonoBehaviour
 {
-
     #region 리스트 관련
     public List<Transform> patrolPos; // 패트롤 위치가 몇개이냐에 따라 쉽게 늘릴수 있도록 퍼블릭으로
     int listCount; // 패트롤 리스트의 개수 파악
     public int i = 0;
     #endregion
 
-
     public float enemySpeed = 3f;  // 기획 팀에서 에너미 스피드 변경할 수 있도록 설정
+
+    public GameObject targetPlayer; // 플레이어가 가까워지면(범위 안에 들어오면)
+    float targetDist; // 플레이어 거리
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // 순찰 도중에 플레이어가 가까이 오면 플레이어한테 가고 플레이어아 거리에 없거나 멀어지면 기존 패트롤 이동
 
 
 
