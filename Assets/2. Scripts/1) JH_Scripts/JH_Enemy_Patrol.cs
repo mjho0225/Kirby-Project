@@ -26,12 +26,14 @@ public class JH_Enemy_Patrol : MonoBehaviour
 
     public GameObject targetPlayer; // 플레이어가 가까워지면(범위 안에 들어오면)
     float targetDist; // 플레이어 거리
+    Vector3 dirPlayer;
+    Vector3 playerPos;
 
     // Start is called before the first frame update
     void Start()
     {
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
-        targetPlayer = GameObject.Find("Test_Player");
+        targetPlayer = GameObject.Find("Player");
         
     }
 
@@ -41,10 +43,15 @@ public class JH_Enemy_Patrol : MonoBehaviour
         // 플레이어 거리
         targetDist = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
 
+        dirPlayer = targetPlayer.transform.position - this.transform.position;
+        playerPos = new Vector3(dirPlayer.x, 0, dirPlayer.z);
+
         // 순찰 도중에 플레이어가 가까이 오면 플레이어한테 가고 플레이어아 거리에 없거나 멀어지면 기존 패트롤 이동
-        if(targetDist <= 4)
+        if (targetDist <= 4)
         {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, enemySpeed * Time.deltaTime);
+            transform.rotation = Quaternion.LookRotation(playerPos);
+            transform.Translate(-playerPos * 1f * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, enemySpeed * Time.deltaTime);
         }
 
         //거리가 멀어지면 기존 패트롤 이동
