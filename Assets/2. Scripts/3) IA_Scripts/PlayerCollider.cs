@@ -19,12 +19,19 @@ public class PlayerCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("other.gameObject.layer" + other.gameObject.layer);
         //6: enemy
         //emptyState == true
-        if(other.gameObject.layer == 6)
+        if (other.gameObject.layer == 6)
         {
-            //GameObject.Find("PullCollider").GetComponent<PlayerPull>().emptyState;
-            Destroy(other.gameObject);
+            PlayerPull pk = GameObject.Find("PullCollider").GetComponent<PlayerPull>();
+            
+            if (pk.emptyState)
+            {
+                Destroy(other.gameObject);
+                pk.emptyState = false;
+            }
+           
         }
     }
 }
