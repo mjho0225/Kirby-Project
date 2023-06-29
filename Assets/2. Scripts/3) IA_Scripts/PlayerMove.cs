@@ -12,7 +12,11 @@ public class PlayerMove : MonoBehaviour
     int jumpCnt;
     int maxJumpCnt = 20;
     bool isGrounded = false;
-    
+
+    float rx;
+    float ry;
+    public float rotSpeed = 100;
+
     Rigidbody rb;
 
     void Start()
@@ -23,21 +27,27 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
-
+       
+        //차징샷 할때만 위 아래
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector3 dir = new Vector3(h, 0, v);
 
+
+
+
+
         dir.y = 0; //들리거나 아래로 떨어지는 오류 방지
         dir.Normalize();
         //결정된 y 속도를 dir의 y항목에 반영해야 한다.
         Vector3 velocity = dir * speed; //sp eed 값이 yvelocity에 곱해지지 않기 위해 따로 계산
-      //  velocity.y = yVelocity;
+   
         transform.position += velocity * Time.deltaTime;
         UpdateJump();
       
     }
+
 
     void CheckHeight()
     {
@@ -132,4 +142,21 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
+
+    void Rotate(float h, float v)
+    {
+        Vector3 dir = new Vector3(h, 0, v).normalized;
+        // 오일러 각을 이용해서 y축으로 회전할 각도를 구해서 회전시켜준다.
+        transform.eulerAngles = new Vector3(0, Mathf.Atan2(dir.x, dir.z) * Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg, 0);
+    }
+    
+    //float mx = Input.GetAxis("Mouse X");
+    //float my = Input.GetAxis("Mouse Y");
+
+    //rx += my* rotSpeed * Time.deltaTime;
+    //    ry += mx* rotSpeed * Time.deltaTime;
+
+    //    rx = Mathf.Clamp(rx, -75, 75);
+    //    //transform.rotation = Quaternion.Euler(new Vector3(-rx, ry, 0));
+    //    transform.LookAt(new Vector3(rx, ry, 0));
 }
