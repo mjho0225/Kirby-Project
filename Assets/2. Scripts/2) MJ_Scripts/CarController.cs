@@ -7,55 +7,42 @@ using UnityEngine;
 // 방향키 방향으로 앞 뒤로 움직이고 싶다.
 // 사용자가 왼쪽 오른쪽을 눌렀을 때 돌리고 싶다.
 // 플레이어가 벡터의 방향으로 이동시키고 싶다.
+// 점프를 구현하고 싶다.
 public class CarController : MonoBehaviour
 {
 
     // 리지드 바디가 필요
-    public Rigidbody rb;
-    // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력
-    public float forwardAccel = 8f, reverseAccel = 4f, maxSpeed = 50f, turnStrength = 180;
+    public Rigidbody mainRigidbody;
+    public Transform bodyTransform;
+    // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
+    public float forwardAccel = 8f, reverseAccel = 4f, maxSpeed = 50f, turnStrength = 180, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
-    // 속력, 돌아가는 입력값
-    private float speedInput, turnInput;
-
-    // 방향값
+    private float speedInput;
     private float hAxis, vAxis;
+    private bool isGrounded;
+
+    // 방향으로 가고싶다.
+    Vector3 carMoveVector;
 
     private void Update()
     {
         InitInput();
-
-        speedInput = 0;
-
-
-        // 0 보다 크면 앞으로 간다.
-        if (vAxis > 0)
-        {
-            // 속력 값을 만든다.
-            speedInput = vAxis * forwardAccel * 1000f;
-        }
-        else if (vAxis < 0)
-        {
-            // 0 보다 작으면 뒤로 간다.
-            speedInput = vAxis * reverseAccel * 1000f;
-
-        }
-
-        // 방향 값을 넣는다.
-        turnInput = hAxis;
-
-        // 회전각을 오릴러 각과 방향 값을 조정한다.
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime, 0f));
-
-        //플레이어 위치를 다른 물체의 위치로 만들고 싶다.
-        transform.position = rb.transform.position;
+        MoveNormal();
+        Jump();
     }
 
-    private void InitInput()
+    private void Jump()
     {
-        hAxis = Input.GetAxis("Horizontal");
-        vAxis = Input.GetAxis("Vertical");
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            mainRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isGrounded = false;
+        }
+        mainRigidbody.AddForce(Vector3.up * -gravity * 25);
+        // 드래그를 최소화
+        mainRigidbody.drag = 0.1f;
     }
+
 
     private void FixedUpdate()
     {
@@ -63,9 +50,56 @@ public class CarController : MonoBehaviour
         if (Mathf.Abs(speedInput) > 0)
         {
             // 앞 방향으로 힘을 주고싶다.
-            rb.AddForce(transform.forward * speedInput);
+            mainRigidbody.AddForce(carMoveVector * speedInput);
+            // 마찰 지정
+            mainRigidbody.drag = dragOnGround;
+        }
+
+
+    }
+
+    private void MoveNormal()
+    {
+        speedInput = 0;
+        // 0 보다 크면 앞으로 간다.
+        if (carMoveVector.magnitude > 0)
+        {
+
+            // 내가 이동하려는 방향과 현재 물체의 방향 각을 구한다.
+            float angle = Vector3.Angle(carMoveVector, bodyTransform.right);
+            if (angle < 90)
+            {
+                // 90도 보작 작다면 y축으로 오른쪽 회전한다.
+                bodyTransform.Rotate(0, 250 * Time.deltaTime, 0);
+            }
+            else
+            {
+                // 90보다 크면 y축으로 왼쪽 회전한다.
+                bodyTransform.Rotate(0, -250 * Time.deltaTime, 0);
+            }
+            // 속력 값을 만든다.
+            speedInput = forwardAccel * 1000f;
+        }
+
+        //플레이어 위치를 다른 물체의 위치로 만들고 싶다.
+        transform.position = mainRigidbody.transform.position;
+
+    }
+
+    private void InitInput()
+    {
+        hAxis = Input.GetAxis("Horizontal");
+        vAxis = Input.GetAxis("Vertical");
+        // 왼쪽 방향일 때 왼쪽으로, 앞, 뒤 방향키는 좌우로 간다.
+        carMoveVector = Vector3.left * vAxis + Vector3.forward * hAxis;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = true;
         }
     }
 
-   
 }
