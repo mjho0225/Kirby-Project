@@ -8,27 +8,49 @@ using UnityEngine;
 // 사용자가 왼쪽 오른쪽을 눌렀을 때 돌리고 싶다.
 // 플레이어가 벡터의 방향으로 이동시키고 싶다.
 // 점프를 구현하고 싶다.
+// shift키를 누르면 속력을 높이고 싶다.
 public class CarController : MonoBehaviour
 {
-
     // 리지드 바디가 필요
     public Rigidbody mainRigidbody;
     public Transform bodyTransform;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float forwardAccel = 8f, reverseAccel = 4f, maxSpeed = 50f, turnStrength = 180, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
+    public float forwardAccel = 8f, maxSpeed = 50f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
-    private float speedInput;
-    private float hAxis, vAxis;
+    private float speedInput, hAxis, vAxis;
     private bool isGrounded;
 
     // 방향으로 가고싶다.
     Vector3 carMoveVector;
 
+    // 파티클을 생성하고 싶다.
+    public ParticleSystem[] NormalParticle;
+    // 파티클 배열
+    public float maxEmission = 25;
+    // 최대 효과. 비율
+    private float emissionRate;
+    private float rotationVelocity;
+    public float rotationTime = 0.3f;
+
     private void Update()
     {
         InitInput();
-        MoveNormal();
         Jump();
+        MoveRotation();
+        MoveDash();
+
+    }
+
+    private void MoveDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            forwardAccel = 12f;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            forwardAccel = 8f;
+        }
     }
 
     private void Jump()
@@ -46,37 +68,54 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MoveNormal();
+        EmissionNormalMoveParticle();
+    }
+
+    private void MoveNormal()
+    {
+        // 처음 비율을 초기화 한다.
+        emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다.
         if (Mathf.Abs(speedInput) > 0)
         {
             // 앞 방향으로 힘을 주고싶다.
             mainRigidbody.AddForce(carMoveVector * speedInput);
+            // 최대 배출을 생성한다.
+            emissionRate = maxEmission;
             // 마찰 지정
             mainRigidbody.drag = dragOnGround;
         }
-
-
     }
 
-    private void MoveNormal()
+    private void EmissionNormalMoveParticle()
+    {
+
+        // 파티클에 각각 접근하여
+        foreach (ParticleSystem part in NormalParticle)
+        {
+            // 배출을 지정하고
+            var emissionModule = part.emission;
+            // 모듈을 시간을 생성한다.
+            emissionModule.rateOverTime = emissionRate;
+        }
+    }
+
+    private void MoveRotation()
     {
         speedInput = 0;
         // 0 보다 크면 앞으로 간다.
         if (carMoveVector.magnitude > 0)
         {
 
-            // 내가 이동하려는 방향과 현재 물체의 방향 각을 구한다.
-            float angle = Vector3.Angle(carMoveVector, bodyTransform.right);
-            if (angle < 90)
-            {
-                // 90도 보작 작다면 y축으로 오른쪽 회전한다.
-                bodyTransform.Rotate(0, 250 * Time.deltaTime, 0);
-            }
-            else
-            {
-                // 90보다 크면 y축으로 왼쪽 회전한다.
-                bodyTransform.Rotate(0, -250 * Time.deltaTime, 0);
-            }
+            // 내가 이동하려는 방향과 현재 물체의 방향 각 x,z Atan2를 이용하여 각을 구하고 도로 만든다.
+            float targetAngle = Mathf.Atan2(carMoveVector.x, carMoveVector.z) * Mathf.Rad2Deg;
+
+            // 부드러운 각도 회전을 이용한다.나의 y축에서 얼마 만큼의 속도로 타겟으로 돌아가는지 조정한다.
+            float smoothAngle = Mathf.SmoothDampAngle(bodyTransform.eulerAngles.y, targetAngle, ref rotationVelocity, rotationTime);
+
+            // 그만큼 각도를 회전한다.
+            bodyTransform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
             // 속력 값을 만든다.
             speedInput = forwardAccel * 1000f;
         }
