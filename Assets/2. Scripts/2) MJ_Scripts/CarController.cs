@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 // 차를 앞 방향으로 날리고 싶다.
 // 방향키 방향으로 앞 뒤로 움직이고 싶다.
@@ -9,6 +10,7 @@ using UnityEngine;
 // 플레이어가 벡터의 방향으로 이동시키고 싶다.
 // 점프를 구현하고 싶다.
 // shift키를 누르면 속력을 높이고 싶다.
+// 카메라를 쉐이킹하고 싶다.
 public class CarController : MonoBehaviour
 {
     // 리지드 바디가 필요
@@ -46,6 +48,7 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             forwardAccel = 12f;
+            CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
