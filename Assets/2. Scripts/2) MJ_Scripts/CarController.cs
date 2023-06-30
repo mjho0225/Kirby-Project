@@ -49,10 +49,14 @@ public class CarController : MonoBehaviour
         {
             forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
+            // 대쉬 파티클을 실행한다
+            NormalParticle[2].Play();
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             forwardAccel = 8f;
+            // 대쉬 파티클을 실행하지 않는다.
+            NormalParticle[2].Stop();
         }
     }
 
