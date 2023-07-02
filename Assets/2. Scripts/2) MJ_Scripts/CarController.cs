@@ -11,16 +11,19 @@ using EZCameraShake;
 // 점프를 구현하고 싶다.
 // shift키를 누르면 속력을 높이고 싶다.
 // 카메라를 쉐이킹하고 싶다.
+// 플레이어가 shift를 누르면 앞으로 이동하게 만들고 싶다.
+// 충돌시 플레이어의 회전을 멈추고 싶다.
+// 자동으로 대쉬를 하게 만들고 싶다.
 public class CarController : MonoBehaviour
 {
     // 리지드 바디가 필요
     public Rigidbody mainRigidbody;
     public Transform bodyTransform;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float forwardAccel = 8f, maxSpeed = 50f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
+    public float forwardAccel = 8f, maxSpeed = 25f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
     private float speedInput, hAxis, vAxis;
-    private bool isGrounded;
+    private bool isGrounded, autoDashing;
 
     // 방향으로 가고싶다.
     Vector3 carMoveVector;
@@ -45,16 +48,21 @@ public class CarController : MonoBehaviour
 
     private void MoveDash()
     {
+        // 만약에 앞으로 가는 벡터가 zero 일 때 앞으로 가는 방향에 힘을 준다.
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            forwardAccel = 12f;
+            // 자동 오토 실행
+            autoDashing = true;
+            forwardAccel = 9f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
             // 대쉬 파티클을 실행한다
             NormalParticle[2].Play();
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            forwardAccel = 8f;
+            // 자동 오토 정지
+            autoDashing = false;
+            forwardAccel = 7f;
             // 대쉬 파티클을 실행하지 않는다.
             NormalParticle[2].Stop();
         }
@@ -77,6 +85,23 @@ public class CarController : MonoBehaviour
     {
         MoveNormal();
         EmissionNormalMoveParticle();
+        FreezeRotation();
+        AutoDash();
+    }
+
+    private void AutoDash()
+    {
+        // 만약 대쉬를 했고, 최대 제한 속도 크기 보다 작을 때 힘을 준다.
+        if (autoDashing && mainRigidbody.velocity.magnitude < maxSpeed)
+        {
+            mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 1000f);
+        }
+    }
+
+    private void FreezeRotation()
+    {
+        //플레이어의 angluar 방향을 Zero 만들자
+        mainRigidbody.angularVelocity = Vector3.zero;
     }
 
     private void MoveNormal()
@@ -84,7 +109,7 @@ public class CarController : MonoBehaviour
         // 처음 비율을 초기화 한다.
         emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다.
-        if (Mathf.Abs(speedInput) > 0)
+        if (Mathf.Abs(speedInput) > 0 && !autoDashing)
         {
             // 앞 방향으로 힘을 주고싶다.
             mainRigidbody.AddForce(carMoveVector * speedInput);
@@ -111,7 +136,8 @@ public class CarController : MonoBehaviour
     private void MoveRotation()
     {
         speedInput = 0;
-        // 0 보다 크면 앞으로 간다.
+        // 크기가 0보다 크거나 // auto dashing 중에 했을 때
+        print(carMoveVector.magnitude);
         if (carMoveVector.magnitude > 0)
         {
 
@@ -127,6 +153,7 @@ public class CarController : MonoBehaviour
             speedInput = forwardAccel * 1000f;
         }
 
+
         //플레이어 위치를 다른 물체의 위치로 만들고 싶다.
         transform.position = mainRigidbody.transform.position;
 
@@ -137,7 +164,7 @@ public class CarController : MonoBehaviour
         hAxis = Input.GetAxis("Horizontal");
         vAxis = Input.GetAxis("Vertical");
         // 왼쪽 방향일 때 왼쪽으로, 앞, 뒤 방향키는 좌우로 간다.
-        carMoveVector = Vector3.left * vAxis + Vector3.forward * hAxis;
+        carMoveVector = Vector3.left * hAxis + Vector3.back * vAxis;
     }
 
     private void OnCollisionEnter(Collision collision)
