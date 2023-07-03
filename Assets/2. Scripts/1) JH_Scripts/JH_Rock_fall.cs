@@ -18,4 +18,13 @@ public class JH_Rock_fall : MonoBehaviour
         //rb.velocity = -Vector3.forward * 100f * Time.deltaTime;
         rb.AddForce(transform.forward * 100 * Time.deltaTime, ForceMode.Acceleration) ;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Finish")
+        {
+            print("???");
+            Destroy(gameObject);
+        }
+    }
 }
