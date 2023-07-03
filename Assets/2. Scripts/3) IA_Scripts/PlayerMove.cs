@@ -30,6 +30,7 @@ public class PlayerMove : MonoBehaviour
     Rigidbody rb;
     //임시
     GameObject tempDash;
+    bool isLadder = false;
 
     bool isRanger = true; 
     enum PlayerState
@@ -38,6 +39,7 @@ public class PlayerMove : MonoBehaviour
         GUARD,
         RANGER
     }
+
     PlayerState state;
 
     void Start()
@@ -52,7 +54,17 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         GetInput();
-        Move();
+        if (isLadder)
+        {
+            rb.useGravity = false;
+            MoveUp();
+        }
+        else
+        {
+            rb.useGravity = true;
+            Move();
+        }
+        
         if (state == PlayerState.BASIC)
         {
             Jump();
@@ -116,6 +128,30 @@ public class PlayerMove : MonoBehaviour
             //그렇지 않으면 왼쪽으로 회전
 
         }
+    }
+
+    void MoveUp()
+    {
+
+            print("MoveUP");
+          
+            bool upKey = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+            bool downKey = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+          
+            if (upKey)
+            {   
+                Vector3 dir = transform.position;
+                dir.y += 2;
+                print("dir.y" + dir.y);
+                transform.position = Vector3.Lerp(transform.position, dir, 1f); 
+                
+                //transform.position += velocity * Time.deltaTime;
+            }
+            else if (downKey)
+            {
+                //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
+            }
+    
     }
 
 
@@ -185,8 +221,22 @@ public class PlayerMove : MonoBehaviour
             isGrounded = true;
             jumpCnt = 0;
         }
+        else if (other.tag == "ladder")
+        {
+            print("사다리");
+            isLadder = true;
+        }
 
     }
+      
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "ladder")
+        {
+            isLadder = false;
+        }
+    }
+
 
     //공격받는 스크립트 따로 만들게 되면 위치 옮기기
     public void onDamaged()
@@ -333,5 +383,5 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    
+  
 }
