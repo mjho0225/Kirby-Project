@@ -9,7 +9,7 @@ public class PlayerAbsorb : MonoBehaviour
     Transform playerPos;
     //enemy 흡입
     //[SerializeField]
-    public bool emptyState;
+    public bool emptyState = true;
     GameObject player;
     GameObject item;
     float currTime;
@@ -19,7 +19,7 @@ public class PlayerAbsorb : MonoBehaviour
 
     //int layer;
     float power = 10f;
-
+    GameObject absorbItem;
     string absorbItemTag;
     // Start is called before the first frame update
     void Start()
@@ -37,9 +37,9 @@ public class PlayerAbsorb : MonoBehaviour
     void CheckItem()
     {
         Vector3 pos = transform.position;
-        Ray ray = new Ray(pos, Vector3.forward);
+        Ray ray = new Ray(pos, transform.forward);
 
-        //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
         RaycastHit hitInfo;
 
         if (Input.GetButton("Fire1") && emptyState)
@@ -48,12 +48,12 @@ public class PlayerAbsorb : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
                 {
                     currTime += Time.deltaTime;
-                    print("hitInfo.collider" + hitInfo.collider);
+                    //print("hitInfo.collider" + hitInfo.collider);
                     item = hitInfo.collider.gameObject.transform.parent.gameObject;
                 if (hitInfo.collider.gameObject.layer == 8)
                     {
                         UpdateGetItem(item);
-                    }
+                     }
                 }
          }
          
@@ -101,17 +101,19 @@ public class PlayerAbsorb : MonoBehaviour
 
             print("distance" + distance);
 
-            if (distance <= 10.0f)
-            {
+            //if (distance <= 10.0f)
+            //{
                 item.transform.LookAt(transform.position);
                 item.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                attackState = false;
-            }
-            else
-            {
-                //파티클만 작동
-                //실제로 멀면 작동 안됨.
-            }
+                absorbItem = item;
+
+
+            //}
+            //else
+            //{
+            //파티클만 작동
+            //실제로 멀면 작동 안됨.
+            //}
             //item.transform.position = Vector3.MoveTowards(playerPos.position, item.transform.position, Time.deltaTime * speed);
 
         }
@@ -132,13 +134,14 @@ public class PlayerAbsorb : MonoBehaviour
 
         //print("other check" + other.gameObject);
         //print("layer check" + layer);
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && emptyState && !(attackState))
+        // if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))//&& !emptyState
+        if (other.gameObject == absorbItem)
         {
-            emptyState = false;
             absorbItemTag = other.gameObject.tag;
             //게임 오브젝트 흡입 후 소멸
             Destroy(other.gameObject, 0.2f);
             currTime = 0;
+            emptyState = false;
         }
     }
 
