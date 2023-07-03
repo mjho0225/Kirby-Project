@@ -12,6 +12,8 @@ TagManager:
   - e_bomb
   - e_bird
   - e_gosum
+  - ladder
+  - bullet
   layers:
   - Default
   - TransparentFX
