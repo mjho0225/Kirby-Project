@@ -28,7 +28,7 @@ public class CarController : MonoBehaviour
     public Rigidbody mainRigidbody;
     public Transform bodyTransform;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float forwardAccel = 8f, maxSpeed = 25f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
+    public float forwardAccel = 8f, maxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
     private float speedInput, hAxis, vAxis;
     private bool isGrounded, autoDashing;
@@ -123,7 +123,7 @@ public class CarController : MonoBehaviour
         // 처음 비율을 초기화 한다.
         emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
-        if (Mathf.Abs(speedInput) > 0 && !autoDashing)
+        if (Mathf.Abs(speedInput) > 0 && !autoDashing && mainRigidbody.velocity.magnitude < normalMaxSpeed)
         {
             // 앞 방향으로 힘을 주고싶다.
             mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
@@ -157,7 +157,6 @@ public class CarController : MonoBehaviour
     {
         speedInput = 0;
         // 크기가 0보다 크거나 // auto dashing 중에 했을 때
-        print(carMoveVector.magnitude);
         if (carMoveVector.magnitude > 0)
         {
 
@@ -170,7 +169,7 @@ public class CarController : MonoBehaviour
             // 그만큼 각도를 회전한다.
             bodyTransform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
             // 속력 값을 만든다.
-            speedInput = forwardAccel * 500f;
+            speedInput = forwardAccel * 700f;
         }
 
 
