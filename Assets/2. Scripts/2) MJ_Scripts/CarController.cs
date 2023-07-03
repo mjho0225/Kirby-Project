@@ -16,6 +16,14 @@ using EZCameraShake;
 // 자동으로 대쉬를 하게 만들고 싶다.
 public class CarController : MonoBehaviour
 {
+    // 자동차의 상태를 제작하자
+    public enum CarState
+    {
+        Move,
+        Dash,
+    }
+    public CarState carState;
+
     // 리지드 바디가 필요
     public Rigidbody mainRigidbody;
     public Transform bodyTransform;
@@ -44,6 +52,12 @@ public class CarController : MonoBehaviour
         MoveRotation();
         MoveDash();
 
+        switch (carState)
+        {
+            case CarState.Move: MoveNormal(); break;
+            case CarState.Dash: AutoDash(); break;
+            default: break;
+        }
     }
 
     private void MoveDash()
@@ -53,16 +67,18 @@ public class CarController : MonoBehaviour
         {
             // 자동 오토 실행
             autoDashing = true;
-            forwardAccel = 9f;
+            forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
             // 대쉬 파티클을 실행한다
             NormalParticle[2].Play();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             // 자동 오토 정지
             autoDashing = false;
             forwardAccel = 7f;
+            // 일반 상태로 변경한다.
+            carState = CarState.Move;
             // 대쉬 파티클을 실행하지 않는다.
             NormalParticle[2].Stop();
         }
@@ -83,10 +99,8 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveNormal();
         EmissionNormalMoveParticle();
         FreezeRotation();
-        AutoDash();
     }
 
     private void AutoDash()
@@ -94,7 +108,7 @@ public class CarController : MonoBehaviour
         // 만약 대쉬를 했고, 최대 제한 속도 크기 보다 작을 때 힘을 준다.
         if (autoDashing && mainRigidbody.velocity.magnitude < maxSpeed)
         {
-            mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 1000f);
+            mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 500f);
         }
     }
 
@@ -108,16 +122,22 @@ public class CarController : MonoBehaviour
     {
         // 처음 비율을 초기화 한다.
         emissionRate = 0;
-        // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다.
+        // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
         if (Mathf.Abs(speedInput) > 0 && !autoDashing)
         {
             // 앞 방향으로 힘을 주고싶다.
-            mainRigidbody.AddForce(carMoveVector * speedInput);
+            mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
             // 최대 배출을 생성한다.
             emissionRate = maxEmission;
             // 마찰 지정
             mainRigidbody.drag = dragOnGround;
         }
+        // 만약 대쉬를 했다면 대쉬상태로 전이한다.
+        else if (autoDashing)
+        {
+            carState = CarState.Dash;
+        }
+
     }
 
     private void EmissionNormalMoveParticle()
@@ -150,7 +170,7 @@ public class CarController : MonoBehaviour
             // 그만큼 각도를 회전한다.
             bodyTransform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
             // 속력 값을 만든다.
-            speedInput = forwardAccel * 1000f;
+            speedInput = forwardAccel * 500f;
         }
 
 
