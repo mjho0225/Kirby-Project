@@ -45,7 +45,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Car
   - Ground
   m_SortingLayers:
   - name: Default
