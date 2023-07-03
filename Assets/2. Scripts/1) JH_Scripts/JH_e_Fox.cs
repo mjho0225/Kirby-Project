@@ -13,7 +13,6 @@ public class JH_e_Fox : MonoBehaviour
 
     
     float changeTime = 0; // 변신 초 계산
-    bool currentChage = false; // 현재 변신 상태 false = 변신하지 않은 상태 | true = 변신 상태
     bool matChange = false;
 
     Rigidbody rb;
@@ -51,21 +50,6 @@ public class JH_e_Fox : MonoBehaviour
 
         changeTime += Time.deltaTime;
 
-        //if (distPlayer <= 7)
-        //{
-        //    StartCoroutine("Jump");
-
-        //    transform.rotation = Quaternion.LookRotation(playerPos);
-        //    //transform.Translate(-playerPos * 0.5f * Time.deltaTime);
-        //    transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, 5f * Time.deltaTime);
-        //}
-
-
-        //if (changeTime >= 0.2f && matChange == true)
-        //{
-        //    transform.GetComponent<MeshRenderer>().material.color = Color.red;
-        //    matChange = false;
-        //}
     }
 
     public bool knockBack = false;

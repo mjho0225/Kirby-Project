@@ -2596,6 +2596,37 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &168660902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168660903}
+  m_Layer: 0
+  m_Name: BombFirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &168660903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168660902}
+  m_LocalRotation: {x: -0.4235693, y: -0, z: -0, w: 0.90586364}
+  m_LocalPosition: {x: 0, y: 0.67, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1044746257}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -50.12, y: 0, z: 0}
 --- !u!1 &172688303
 GameObject:
   m_ObjectHideFlags: 0
@@ -17266,8 +17297,9 @@ GameObject:
   - component: {fileID: 1044746260}
   - component: {fileID: 1044746259}
   - component: {fileID: 1044746258}
+  - component: {fileID: 1044746261}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Mons_Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17280,14 +17312,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044746256}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.419998, y: -4.2699986, z: 22.579987}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -4.419998, y: -4.2699986, z: 22.54}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 168660903}
   m_Father: {fileID: 981412055}
   m_RootOrder: 26
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &1044746258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17351,6 +17384,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044746256}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1044746261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044746256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55aafc94a448fb347af2a79177ca9b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPlayer: {fileID: 0}
+  attackRange: 5
+  bomb: {fileID: 4789484166082162950, guid: f40f10c2130443542a91b3aba2a4139d, type: 3}
+  firePos: {fileID: 168660902}
+  knockBack: 0
 --- !u!1 &1045520756
 GameObject:
   m_ObjectHideFlags: 0
@@ -37815,7 +37865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4900879976728453172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.86, y: 12.06, z: 272.23}
+  m_LocalPosition: {x: 79.7, y: 21.3, z: 319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
