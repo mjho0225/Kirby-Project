@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(LineRenderer))] 
 public class PlayerFire : MonoBehaviour
 {
     public GameObject bulletFactory;
     public Transform firePos;
     bool isCharge = false;
-    
+
     float currTime = 0;
-    public Image img;
+    public RawImage img;
+
+    LineRenderer lineRenderer;
+    float lineWidth = 0.1f;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        lineRenderer = GetComponent<LineRenderer>();
+
+        lineRenderer.enabled = false;
+        //lineRenderer.material.color = Color.blue;
+        lineRenderer.widthMultiplier = lineWidth;
     }
 
     // Update is called once per frame
@@ -25,14 +34,22 @@ public class PlayerFire : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            lineRenderer.enabled = true;
+            //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
 
-            Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
             if (Physics.Raycast(ray, out hit))
             {
-                
-                print("hitInfo" + hit.point);
-                //img.transform.position = hit.point;
+           
 
+                print("hitInfo" + hit.point);
+                Vector3 v3Pos = ray.GetPoint(hit.distance);
+
+                Transform playerPos = transform;
+                lineRenderer.SetPosition(0, playerPos.position);
+                lineRenderer.SetPosition(1, hit.point); // lineRenderer 1번째 target position 설정
+                //img.transform.localScale =new Vector3(0.5f, 0.5f, 0.5f);
+                img.transform.position = lineRenderer.GetPosition(1);
+                
 
 
             }// RayCast
@@ -64,8 +81,9 @@ public class PlayerFire : MonoBehaviour
                     Shot();
                 }
             currTime = 0;
-                              
-            }
+            lineRenderer.enabled = false;
+
+        }
 
     }
 
