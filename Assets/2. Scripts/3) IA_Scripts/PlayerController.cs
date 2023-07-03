@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     float h, v;
@@ -32,22 +32,31 @@ public class PlayerMove : MonoBehaviour
     GameObject tempDash;
     bool isLadder = false;
 
-    bool isRanger = true; 
+    bool isRanger = true;
     enum PlayerState
     {
         BASIC,
         GUARD,
         RANGER
     }
+    public enum AttackState
+    {
+        ABSORB,
+        RANGER
+    }
+
 
     PlayerState state;
-
+    public AttackState attackState = AttackState.ABSORB;
+    public GameObject gun;
+    public GameObject absorbCollider;
     void Start()
     {
-        playerHP= GetComponent<PlayerHP>();
+        playerHP = GetComponent<PlayerHP>();
         rb = GetComponent<Rigidbody>();
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
+
     }
 
     // Update is called once per frame 
@@ -64,7 +73,7 @@ public class PlayerMove : MonoBehaviour
             rb.useGravity = true;
             Move();
         }
-        
+
         if (state == PlayerState.BASIC)
         {
             Jump();
@@ -74,30 +83,36 @@ public class PlayerMove : MonoBehaviour
             Guard();
         }
 
- 
-        //if (isRanger)
-        //{
-        //    GetComponent<PlayerFire>().enabled = true;
-        //    GetComponent<PlayerAbsorb>().enabled = false;
-        //}
-        //else
-        //{
-        //    GetComponent<PlayerFire>().enabled = false;
-        //    GetComponent<PlayerAbsorb>().enabled = true;
-        //}
+        //매번 부르는 문제
+        if (attackState == AttackState.RANGER)
+        {
+            GetComponent<PlayerFire>().enabled = true;
+            GetComponent<PlayerAbsorb>().enabled = false;
+           // print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
+            gun.SetActive(true);
 
-      
+
+
+        }
+        else
+        {
+            GetComponent<PlayerFire>().enabled = false;
+            GetComponent<PlayerAbsorb>().enabled = true;
+            gun.SetActive(false);
+        }
+
+
     }
 
     void GetInput()
     {
-       h = Input.GetAxis("Horizontal");
-       v = Input.GetAxis("Vertical");
-       space = Input.GetButtonDown("Jump");
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+        space = Input.GetButtonDown("Jump");
         if (space) state = PlayerState.BASIC;
-       shift = Input.GetKey(KeyCode.LeftShift);
-       if (shift) state = PlayerState.GUARD;
-       shiftUP = Input.GetKeyUp(KeyCode.LeftShift);
+        shift = Input.GetKey(KeyCode.LeftShift);
+        if (shift) state = PlayerState.GUARD;
+        shiftUP = Input.GetKeyUp(KeyCode.LeftShift);
     }
 
     void Move()
@@ -119,11 +134,11 @@ public class PlayerMove : MonoBehaviour
             //만약 그 각도가 90보다 작다면 오른쪽으로 회전하자
             if (angle < 90)
             {
-                transform.Rotate(0, 400 * Time.deltaTime, 0); //현재각도에서 회전
+                transform.Rotate(0, 300 * Time.deltaTime, 0); //현재각도에서 회전
             }
             else
             {
-                transform.Rotate(0, -400 * Time.deltaTime, 0);
+                transform.Rotate(0, -300 * Time.deltaTime, 0);
             }
             //그렇지 않으면 왼쪽으로 회전
 
@@ -133,25 +148,25 @@ public class PlayerMove : MonoBehaviour
     void MoveUp()
     {
 
-            print("MoveUP");
-          
-            bool upKey = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-            bool downKey = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
-          
-            if (upKey)
-            {   
-                Vector3 dir = transform.position;
-                dir.y += 2;
-                print("dir.y" + dir.y);
-                transform.position = Vector3.Lerp(transform.position, dir, 1f); 
-                
-                //transform.position += velocity * Time.deltaTime;
-            }
-            else if (downKey)
-            {
-                //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
-            }
-    
+        print("MoveUP");
+
+        bool upKey = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+        bool downKey = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+
+        if (upKey)
+        {
+            Vector3 dir = transform.position;
+            dir.y += 2;
+            print("dir.y" + dir.y);
+            transform.position = Vector3.Lerp(transform.position, dir, 1f);
+
+            //transform.position += velocity * Time.deltaTime;
+        }
+        else if (downKey)
+        {
+            //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
+        }
+
     }
 
 
@@ -214,6 +229,8 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        bool isAbsorb = GetComponent<PlayerAbsorb>().isAbsorbing;
+        print("isAbsorb" + isAbsorb);
         if (other.tag == "Ground")
         {
             isJump = false;
@@ -225,10 +242,23 @@ public class PlayerMove : MonoBehaviour
         {
             print("사다리");
             isLadder = true;
+
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+           
+            //박치기 = 서로피격
+            print("damage 함수처리");
+            Vector3 dir = transform.position;
+            //넉백일 경우와 아닐경우 분리
+            //흡수할 경우 넉백이 일어나면 안됨
+            rb.AddForce(-dir * (50f * Time.deltaTime), ForceMode.Impulse);
+            //본인도 데미지
+            onDamaged();
         }
 
     }
-      
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "ladder")
@@ -243,13 +273,13 @@ public class PlayerMove : MonoBehaviour
     {
         //임시로 두번 맞으면 죽음
         //대쉬 상태일 때도 무적!!
-        if(!isGuard || isDash) playerHP.HP -= damage;
+        if (!isGuard || isDash) playerHP.HP -= damage;
     }
 
     void UpdateRanger()
     {
         print("ranger상태");
-        
+
     }
 
     void Guard()
@@ -258,7 +288,7 @@ public class PlayerMove : MonoBehaviour
         {
             UpdateRanger();
         }
-        
+
         //버튼 누르는 만큼
         //isGuard 면 데미지 함수 무력화
         if (shift)
@@ -293,7 +323,7 @@ public class PlayerMove : MonoBehaviour
                 if (isGuard) transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             }
         }
-        else if(shiftUP)
+        else if (shiftUP)
         {
             tempDash.GetComponent<Light>().enabled = false;
             //print("가드 애니메이션 비활성화");
@@ -304,10 +334,10 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
             state = PlayerState.BASIC;
             //}
-     
+
         }
 
-        
+
     }
 
 
@@ -329,36 +359,36 @@ public class PlayerMove : MonoBehaviour
     }
     IEnumerator Dash()
     {
-         print("대쉬");
-         rb.AddForce(transform.forward * 7, ForceMode.Impulse);
-         isDash = false;
-         dashCount++;
-         yield return new WaitForSeconds(2.5f);
-         isDash = true;
-       
-        
+        print("대쉬");
+        rb.AddForce(transform.forward * 7, ForceMode.Impulse);
+        isDash = false;
+        dashCount++;
+        yield return new WaitForSeconds(2.5f);
+        isDash = true;
+
+
         //dash는 연속으로 안됨 => 쿨타임
-      
+
     }
     //rb.velocity = transform.forward * 5;
     //transform.position += transform.forward * (speed * 150) * Time.deltaTime;
 
     void CheckHeight()
     {
-       //커비 position값 빼주기 ray값이 커비 오브젝트 가운데 있음.
-       float PosDiffer = transform.position.y - (transform.lossyScale.y/2);
-       print("belowPos" + PosDiffer);
-       Vector3 belowPos = transform.position;
-       belowPos.y = PosDiffer;
-       Ray ray = new Ray(belowPos, Vector3.down);
+        //커비 position값 빼주기 ray값이 커비 오브젝트 가운데 있음.
+        float PosDiffer = transform.position.y - (transform.lossyScale.y / 2);
+        print("belowPos" + PosDiffer);
+        Vector3 belowPos = transform.position;
+        belowPos.y = PosDiffer;
+        Ray ray = new Ray(belowPos, Vector3.down);
 
-       RaycastHit hitInfo;
-        
+        RaycastHit hitInfo;
+
         if (Physics.Raycast(ray, out hitInfo))
         {
             print("hitInfo" + hitInfo.transform.tag);
-            print("distance"+hitInfo.distance);
-            if(hitInfo.transform.tag == "Ground")
+            print("distance" + hitInfo.distance);
+            if (hitInfo.transform.tag == "Ground")
             {
                 // 바닥이 있다. 현재 내 위치에서 바닥까지의 거리가 천장높이보다 크다면
                 if (maxHeight < hitInfo.distance)
@@ -372,7 +402,7 @@ public class PlayerMove : MonoBehaviour
                     transform.position = pos;
                 }
             }
-           
+
         }
         else
         {
@@ -383,5 +413,5 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-  
+
 }
