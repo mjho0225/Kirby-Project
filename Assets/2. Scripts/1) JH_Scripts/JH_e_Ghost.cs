@@ -80,7 +80,8 @@ public class JH_e_Ghost : MonoBehaviour
     }
 
 
-    
+    #region ======몬스터 상태======
+
     private void UpdatePatrol()
     {
         transform.rotation = Quaternion.Euler(0, -playerPos.y, 0);
@@ -114,6 +115,9 @@ public class JH_e_Ghost : MonoBehaviour
         }
 
     }
+
+
+    
 
     public bool knockBack = false;
 
@@ -170,6 +174,8 @@ public class JH_e_Ghost : MonoBehaviour
             state = State.Attack;
         }
     }
+
+    #endregion
 
 
     private void OnTriggerEnter(Collider other)
