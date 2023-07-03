@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class JH_e_Fox : MonoBehaviour
 {
+    public int enemyHP = 100;
+
+
+
     public GameObject targetPlayer; // 감지할 플레이어 선택
     float distPlayer; // 플레이어와의 거리
     Vector3 dirPlayer; // 플레이어 바라보는 방향
@@ -51,6 +55,8 @@ public class JH_e_Fox : MonoBehaviour
         changeTime += Time.deltaTime;
 
     }
+
+    #region======몬스터 상태======
 
     public bool knockBack = false;
 
@@ -120,6 +126,7 @@ public class JH_e_Fox : MonoBehaviour
 
         rb.AddForce(transform.up * 5f * Time.deltaTime);
     }
+    #endregion
 
 
     private void OnTriggerEnter(Collider other)
@@ -127,6 +134,12 @@ public class JH_e_Fox : MonoBehaviour
         if (other.tag == "Player")
         {
             //HP감소
+            enemyHP -= 20;
+            if (enemyHP <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+
             state = State.KnockBack;
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
@@ -136,14 +149,27 @@ public class JH_e_Fox : MonoBehaviour
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
         }
-        //if (distPlayer <= 7)
-        //{
-        //    state = State.Attack;
-        //}
-
-        //else if (distPlayer > 7)
-        //{
-        //    state = State.Idle;
-        //}
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            OnDamage();
+        }
+    }
+
+
+    void OnDamage()
+    {
+        
+        enemyHP -= 50;
+
+        if (enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 }
