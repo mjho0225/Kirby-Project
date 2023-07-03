@@ -18,10 +18,13 @@ public class JH_e_Gosum : MonoBehaviour
     bool currentChage = false; // 현재 변신 상태 false = 변신하지 않은 상태 | true = 변신 상태
     bool matChange = false;
 
+    Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        targetPlayer = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class JH_e_Gosum : MonoBehaviour
 
         if (changeTime >= 0.2f && matChange == true)
         {
-            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
             matChange = false;
         }
 
@@ -57,9 +60,9 @@ public class JH_e_Gosum : MonoBehaviour
         if (distPlayer <= 4)
         {
             //transform.rotation = Quaternion.LookRotation(dirPlayer); //문제있음
-            transform.rotation = Quaternion.LookRotation(-playerPos); //문제 수정
+            transform.rotation = Quaternion.LookRotation(playerPos); //문제 수정
             //transform.Translate(dirPlayer * 0.2f * Time.deltaTime);
-            transform.Translate(playerPos * 0.2f * Time.deltaTime);
+            transform.Translate(-playerPos * 0.2f * Time.deltaTime);
             //transform.position = Vector3.MoveTowards(transform.position,targetPlayer.transform.position,3*Time.deltaTime);
         }
 
@@ -90,11 +93,12 @@ public class JH_e_Gosum : MonoBehaviour
         {
             //HP감소
 
-            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeTime = 0;
             matChange = true;
 
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), 10 * Time.deltaTime);
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), 10 * Time.deltaTime);
+            rb.AddForce(-dirPlayer * 250f * Time.deltaTime, ForceMode.Impulse);
         }
     }
 }

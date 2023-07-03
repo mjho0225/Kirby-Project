@@ -11,16 +11,27 @@ using EZCameraShake;
 // 점프를 구현하고 싶다.
 // shift키를 누르면 속력을 높이고 싶다.
 // 카메라를 쉐이킹하고 싶다.
+// 플레이어가 shift를 누르면 앞으로 이동하게 만들고 싶다.
+// 충돌시 플레이어의 회전을 멈추고 싶다.
+// 자동으로 대쉬를 하게 만들고 싶다.
 public class CarController : MonoBehaviour
 {
+    // 자동차의 상태를 제작하자
+    public enum CarState
+    {
+        Move,
+        Dash,
+    }
+    public CarState carState;
+
     // 리지드 바디가 필요
     public Rigidbody mainRigidbody;
     public Transform bodyTransform;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float forwardAccel = 8f, maxSpeed = 50f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
+    public float forwardAccel = 8f, maxSpeed = 25f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
     private float speedInput, hAxis, vAxis;
-    private bool isGrounded;
+    private bool isGrounded, autoDashing;
 
     // 방향으로 가고싶다.
     Vector3 carMoveVector;
@@ -41,20 +52,33 @@ public class CarController : MonoBehaviour
         MoveRotation();
         MoveDash();
 
+        switch (carState)
+        {
+            case CarState.Move: MoveNormal(); break;
+            case CarState.Dash: AutoDash(); break;
+            default: break;
+        }
     }
 
     private void MoveDash()
     {
+        // 만약에 앞으로 가는 벡터가 zero 일 때 앞으로 가는 방향에 힘을 준다.
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            // 자동 오토 실행
+            autoDashing = true;
             forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
             // 대쉬 파티클을 실행한다
             NormalParticle[2].Play();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            forwardAccel = 8f;
+            // 자동 오토 정지
+            autoDashing = false;
+            forwardAccel = 7f;
+            // 일반 상태로 변경한다.
+            carState = CarState.Move;
             // 대쉬 파티클을 실행하지 않는다.
             NormalParticle[2].Stop();
         }
@@ -75,24 +99,45 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveNormal();
         EmissionNormalMoveParticle();
+        FreezeRotation();
+    }
+
+    private void AutoDash()
+    {
+        // 만약 대쉬를 했고, 최대 제한 속도 크기 보다 작을 때 힘을 준다.
+        if (autoDashing && mainRigidbody.velocity.magnitude < maxSpeed)
+        {
+            mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 500f);
+        }
+    }
+
+    private void FreezeRotation()
+    {
+        //플레이어의 angluar 방향을 Zero 만들자
+        mainRigidbody.angularVelocity = Vector3.zero;
     }
 
     private void MoveNormal()
     {
         // 처음 비율을 초기화 한다.
         emissionRate = 0;
-        // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다.
-        if (Mathf.Abs(speedInput) > 0)
+        // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
+        if (Mathf.Abs(speedInput) > 0 && !autoDashing)
         {
             // 앞 방향으로 힘을 주고싶다.
-            mainRigidbody.AddForce(carMoveVector * speedInput);
+            mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
             // 최대 배출을 생성한다.
             emissionRate = maxEmission;
             // 마찰 지정
             mainRigidbody.drag = dragOnGround;
         }
+        // 만약 대쉬를 했다면 대쉬상태로 전이한다.
+        else if (autoDashing)
+        {
+            carState = CarState.Dash;
+        }
+
     }
 
     private void EmissionNormalMoveParticle()
@@ -111,7 +156,8 @@ public class CarController : MonoBehaviour
     private void MoveRotation()
     {
         speedInput = 0;
-        // 0 보다 크면 앞으로 간다.
+        // 크기가 0보다 크거나 // auto dashing 중에 했을 때
+        print(carMoveVector.magnitude);
         if (carMoveVector.magnitude > 0)
         {
 
@@ -124,8 +170,9 @@ public class CarController : MonoBehaviour
             // 그만큼 각도를 회전한다.
             bodyTransform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
             // 속력 값을 만든다.
-            speedInput = forwardAccel * 1000f;
+            speedInput = forwardAccel * 500f;
         }
+
 
         //플레이어 위치를 다른 물체의 위치로 만들고 싶다.
         transform.position = mainRigidbody.transform.position;
@@ -137,7 +184,7 @@ public class CarController : MonoBehaviour
         hAxis = Input.GetAxis("Horizontal");
         vAxis = Input.GetAxis("Vertical");
         // 왼쪽 방향일 때 왼쪽으로, 앞, 뒤 방향키는 좌우로 간다.
-        carMoveVector = Vector3.left * vAxis + Vector3.forward * hAxis;
+        carMoveVector = Vector3.left * hAxis + Vector3.back * vAxis;
     }
 
     private void OnCollisionEnter(Collision collision)
