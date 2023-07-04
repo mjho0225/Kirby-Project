@@ -137,9 +137,38 @@ public class JH_e_Fox : MonoBehaviour
     #endregion
 
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        //HP감소
+    //        enemyHP -= 20;
+    //        if (enemyHP <= 0)
+    //        {
+    //            state = State.Die;
+    //            Destroy(this.gameObject);
+    //        }
+
+    //        state = State.KnockBack;
+    //        knockBack = true;
+    //        transform.GetComponent<MeshRenderer>().material.color = Color.white;
+    //        changeTime = 0;
+    //        matChange = true;
+
+    //        //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
+    //        rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+    //    }
+    //}
+
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
+        if(collision.gameObject.tag == "bullet")
+        {
+            OnDamage();
+        }
+
+        if (collision.gameObject.tag == "Player")
         {
             //HP감소
             enemyHP -= 20;
@@ -158,15 +187,8 @@ public class JH_e_Fox : MonoBehaviour
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
         }
-    }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "bullet")
-        {
-            OnDamage();
-        }
     }
 
 
