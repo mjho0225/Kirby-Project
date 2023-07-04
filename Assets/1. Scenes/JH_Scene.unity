@@ -5105,6 +5105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iAm: 0
   scoreCount: 0
+  box: 0
 --- !u!1 &325876473
 GameObject:
   m_ObjectHideFlags: 0
@@ -13990,7 +13991,7 @@ GameObject:
   m_Layer: 0
   m_Name: InvWall1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14508,8 +14509,10 @@ GameObject:
   - component: {fileID: 922682828}
   - component: {fileID: 922682827}
   - component: {fileID: 922682826}
+  - component: {fileID: 922682830}
+  - component: {fileID: 922682829}
   m_Layer: 0
-  m_Name: MonsterPos (8)
+  m_Name: MonsTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14523,7 +14526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922682824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 99.13, y: 18.18, z: 86.25}
+  m_LocalPosition: {x: 99.13, y: 18.2, z: 86.25}
   m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14593,6 +14596,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922682824}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!111 &922682829
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922682824}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b8e6eed96a7aa2a4dba27a8f06822f67, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: b8e6eed96a7aa2a4dba27a8f06822f67, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 1
+  m_CullingType: 0
+--- !u!114 &922682830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922682824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be0a5ea31418414e99443c187e88543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925021972
 GameObject:
   m_ObjectHideFlags: 0
@@ -17337,8 +17368,9 @@ GameObject:
   - component: {fileID: 1051630637}
   - component: {fileID: 1051630636}
   - component: {fileID: 1051630635}
+  - component: {fileID: 1051630638}
   m_Layer: 0
-  m_Name: Box
+  m_Name: Box Wood1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17422,6 +17454,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051630633}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1051630638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051630633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &1059867542
 GameObject:
   m_ObjectHideFlags: 0
@@ -17856,7 +17903,7 @@ GameObject:
   m_Layer: 0
   m_Name: InvWall
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23284,6 +23331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iAm: 1
   scoreCount: 0
+  box: 0
 --- !u!54 &1341901795
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27714,7 +27762,7 @@ GameObject:
   m_Layer: 0
   m_Name: InvWall (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -29017,7 +29065,7 @@ GameObject:
   m_Layer: 0
   m_Name: DestroyZone
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -29053,7 +29101,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691713855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -31778,7 +31826,7 @@ GameObject:
   m_Layer: 0
   m_Name: InvWall1 (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

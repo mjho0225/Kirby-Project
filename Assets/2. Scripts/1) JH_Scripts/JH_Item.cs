@@ -11,6 +11,7 @@ public class JH_Item : MonoBehaviour
         item_Coin,
         item_Food,
         item_Waii,
+        item_Box,
 
     }
 
@@ -24,6 +25,17 @@ public class JH_Item : MonoBehaviour
         score10,
     }
     public CountScore scoreCount;
+
+    public enum Box
+    {
+        Star,
+        Wood1,
+        Wood2,
+        Iron1,
+        Iron2,
+
+    }
+    public Box box;
 
     private void Awake()
     {
@@ -51,6 +63,8 @@ public class JH_Item : MonoBehaviour
             case WHO.item_Waii:
                 //IAmWaii();
                 break;
+            case WHO.item_Box:
+                break;
         }
 
         switch (scoreCount)
@@ -63,7 +77,19 @@ public class JH_Item : MonoBehaviour
                 break;
         }
 
-
+        switch (box)
+        {
+            case Box.Star:
+                break;
+            case Box.Wood1:
+                break;
+            case Box.Wood2:
+                break;
+            case Box.Iron1:
+                break;
+            case Box.Iron2:
+                break;
+        }
 
     }
 
@@ -102,12 +128,37 @@ public class JH_Item : MonoBehaviour
         }
     }
 
+    private void IAmBox()
+    {
+        if(box == Box.Wood1)
+        {
+            // 1점 짜리 코인 드랍
+        }
+        if (box == Box.Wood2)
+        {
+            // 5점 짜리 코인 드랍
+        }
+        if (box == Box.Iron1)
+        {
+            // 5점 짜리 코인 드랍
+        }
+        if (box == Box.Iron2)
+        {
+            // 10점 짜리 코인 드랍
+        }
+        if (box == Box.Star)
+        {
+            // 빈박스
+        }
+    }
+
 
 
     //트리거 사용할지 or 콜리전 사용할지
 
     void OnTriggerEnter(Collider col)
     {
+
         if (me == "Waii")
         {
             iAm = WHO.item_Waii;
@@ -134,6 +185,30 @@ public class JH_Item : MonoBehaviour
                 scoreCount = CountScore.score10;
             }
         }
+        if (me == "Box")
+        {
+            iAm = WHO.item_Box;
+            if (this.gameObject.name.Contains("Wood1"))
+            {
+                box = Box.Wood1;
+            }
+            if (this.gameObject.name.Contains("Wood2"))
+            {
+                box = Box.Wood2;
+            }
+            if (this.gameObject.name.Contains("Iron1"))
+            {
+                box = Box.Iron1;
+            }
+            if (this.gameObject.name.Contains("Iron2"))
+            {
+                box = Box.Iron2;
+            }
+            if (this.gameObject.name.Contains("Star"))
+            {
+                box = Box.Star;
+            }
+        }
 
         // 플레이어가 부딪히면
         if (col.gameObject.tag == "Player")
@@ -156,6 +231,10 @@ public class JH_Item : MonoBehaviour
                 IAmFood();
             }
 
+            if(iAm == WHO.item_Box)
+            {
+                IAmBox();
+            }
         }
 
 
@@ -211,10 +290,10 @@ public class JH_Item : MonoBehaviour
     //        {
     //            IAmFood();
     //        }
-            
+
     //    }
 
-        
+
     //}
-   
+
 }
