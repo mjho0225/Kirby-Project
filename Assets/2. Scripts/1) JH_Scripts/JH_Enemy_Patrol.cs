@@ -50,7 +50,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
         if (targetDist <= 4)
         {
             transform.rotation = Quaternion.LookRotation(playerPos);
-            transform.Translate(-playerPos * 1f * Time.deltaTime);
+            transform.Translate(-playerPos * 2f * Time.deltaTime);
             //transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, enemySpeed * Time.deltaTime);
         }
 
@@ -62,12 +62,15 @@ public class JH_Enemy_Patrol : MonoBehaviour
                 //// 리스트(패트롤 위치)로 이동할때 회전하여 정면을 바라보게 하고싶다.
                 transform.LookAt(patrolPos[i]);
                 // 리스트로 이동하고싶다.
+                
                 transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, enemySpeed * Time.deltaTime);
 
                 //// patrolPos[i] i가 바뀌어야 함
                 if (transform.position == patrolPos[i].position) // 만약, 현재 위치가 목적지 위치까지 오게되면
                 {
                     i++; // i에 1을 더해주어 다음 목적지로 가도록 설정
+
+                    
                     if (i >= listCount) // 만약, 리스트 마지막에 도착하면 다시 첫번째로 이동
                     {
                         i = 0;

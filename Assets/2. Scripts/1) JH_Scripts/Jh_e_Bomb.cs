@@ -32,10 +32,9 @@ public class Jh_e_Bomb : MonoBehaviour
 
     float changeTime = 0;
     float attackTime = 0;
-
+    
     bool matChange = false;
 
-    public bool knockBack = false;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -63,6 +62,12 @@ public class Jh_e_Bomb : MonoBehaviour
 
         changeTime += Time.deltaTime;
         attackTime += Time.deltaTime;
+
+        if (changeTime > 1.5f && matChange ==true)
+        {
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            matChange = false;
+        }
 
     }
 
@@ -102,5 +107,20 @@ public class Jh_e_Bomb : MonoBehaviour
             attackTime = 0;
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            
+
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
+            rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
+        }
     }
 }

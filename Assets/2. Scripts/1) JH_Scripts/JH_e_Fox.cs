@@ -147,14 +147,14 @@ public class JH_e_Fox : MonoBehaviour
             matChange = true;
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
-            rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
+            rb.AddForce(-dirPlayer * 50f * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.tag == "bullet")
         {
             OnDamage();
         }
