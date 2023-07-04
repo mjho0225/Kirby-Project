@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
     PlayerState state;
     public AttackState attackState = AttackState.ABSORB;
     public GameObject gun;
-    public GameObject absorbCollider;
+
+    bool isAbsorb;
+
     void Start()
     {
         playerHP = GetComponent<PlayerHP>();
@@ -62,6 +64,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
+
         GetInput();
         if (isLadder)
         {
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
             Guard();
         }
 
+        isAbsorb = GetComponent<PlayerAbsorb>().isAbsorb;
+
         //매번 부르는 문제
         if (attackState == AttackState.RANGER)
         {
@@ -90,15 +95,14 @@ public class PlayerController : MonoBehaviour
             GetComponent<PlayerAbsorb>().enabled = false;
            // print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
             gun.SetActive(true);
-
-
-
         }
         else
         {
+          
             GetComponent<PlayerFire>().enabled = false;
             GetComponent<PlayerAbsorb>().enabled = true;
             gun.SetActive(false);
+           
         }
 
 
@@ -229,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        bool isAbsorb = GetComponent<PlayerAbsorb>().isAbsorbing;
+     
         print("isAbsorb" + isAbsorb);
         if (other.tag == "Ground")
         {
@@ -244,7 +248,7 @@ public class PlayerController : MonoBehaviour
             isLadder = true;
 
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")&&!(isAbsorb))
         {
            
             //박치기 = 서로피격
