@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
     public AttackState attackState = AttackState.ABSORB;
     public GameObject gun;
 
-    bool isAbsorb;
 
     void Start()
     {
@@ -60,6 +59,8 @@ public class PlayerController : MonoBehaviour
         tempDash = GameObject.Find("Temp");
 
     }
+
+
 
     // Update is called once per frame 
     void Update()
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
             Guard();
         }
 
-        isAbsorb = GetComponent<PlayerAbsorb>().isAbsorb;
+        //isAbsorb = GetComponent<PlayerAbsorb>().isAbsorb;
 
         //매번 부르는 문제
         if (attackState == AttackState.RANGER)
@@ -95,8 +96,10 @@ public class PlayerController : MonoBehaviour
             GetComponent<PlayerAbsorb>().enabled = false;
            // print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
             gun.SetActive(true);
+
+            //마우스 우클릭시 일반 커비로 변신 => 나중에 아이템 뱉기
         }
-        else
+        else if(attackState == AttackState.ABSORB)
         {
           
             GetComponent<PlayerFire>().enabled = false;
@@ -233,8 +236,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-     
-        print("isAbsorb" + isAbsorb);
         if (other.tag == "Ground")
         {
             isJump = false;
@@ -248,17 +249,17 @@ public class PlayerController : MonoBehaviour
             isLadder = true;
 
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")&&!(isAbsorb))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
            
             //박치기 = 서로피격
-            print("damage 함수처리");
+            //print("damage 함수처리");
             Vector3 dir = transform.position;
             //넉백일 경우와 아닐경우 분리
             //흡수할 경우 넉백이 일어나면 안됨
             rb.AddForce(-dir * (50f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
-            onDamaged();
+           // OnDamage();
         }
 
     }
@@ -272,12 +273,22 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    void Die()
+    {
+        print("DIE");
+        Destroy(gameObject, 2);
+    }
+
     //공격받는 스크립트 따로 만들게 되면 위치 옮기기
-    public void onDamaged()
+    public void OnDamage()
     {
         //임시로 두번 맞으면 죽음
         //대쉬 상태일 때도 무적!!
         if (!isGuard || isDash) playerHP.HP -= damage;
+        if(playerHP.HP < 0)
+        {
+            Die();
+        }
     }
 
     void UpdateRanger()

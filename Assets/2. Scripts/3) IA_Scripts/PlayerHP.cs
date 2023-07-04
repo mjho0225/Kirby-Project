@@ -9,6 +9,13 @@ public class PlayerHP : MonoBehaviour
     public int maxHP = 10;
     public Slider sliderHP;
 
+    // 싱글톤으로 만들어 보세요!
+    public static PlayerHP instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAbsorb : MonoBehaviour
-{
-
+{ 
     float speed = 10f;
     Transform playerPos;
     //enemy 흡입
@@ -15,209 +15,223 @@ public class PlayerAbsorb : MonoBehaviour
     float currTime;
     float rayLength = 20f;
 
-
+    bool isEmpty = true;
     //int layer;
     float power = 10f;
     [SerializeField] public GameObject absorbItem;
-    string absorbItemTag;
-    public bool isAbsorb = false;
+    string RName;
     //public bool isAbsorbing = false;
     GameObject absorbTrigger;
-    // Start is called before the first frame update
+    Rigidbody rb;
+    public string absorbItemTag;
+    public enum AbsorbState
+    {
+       Ready,
+       Absorbing,
+       Absorbed,
+    }
+
+    public AbsorbState state = AbsorbState.Ready;
+    
     void Start()
     {
-        print("흡수 동작");
-        emptyState = true;
         absorbTrigger = GameObject.Find("AbsorbTrigger");
-       
-        //print("absorbTrigger" + absorbTrigger.GetComponent<SphereCollider>());
-        //OnAbsorbCollider();
-
-        //gameObject.GetComponentInChildren<SphereCollider>().enabled = true;
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        CheckItem();
-    }
-
-    void CheckItem()
-    {
-        Vector3 pos = transform.position;
-        Ray ray = new Ray(pos, transform.forward);
-
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
-        RaycastHit hitInfo;
-
-        if (Input.GetButton("Fire1") && emptyState)
+        switch (state)
         {
-                //float.MaxValue, layer => raycast 거리 제한 가능
-            if (Physics.Raycast(ray, out hitInfo))
-                {
-                    currTime += Time.deltaTime;
-                    print("hitInfo.collider" + hitInfo.collider.gameObject.layer);
-                    item = hitInfo.collider.gameObject.transform.parent.gameObject;
-                if (hitInfo.collider.gameObject.layer == 6)
-                    {
-                        OnAbsorbCollider();
-                        UpdateGetItem(item);
-                     }
-                }
-      
+            case AbsorbState.Ready:
+                UpdateReady();
+                break;
+            case AbsorbState.Absorbing:
+                UpdateAbsorbing();
+                break;
+            case AbsorbState.Absorbed:
+                UpdateAbsorbed();
+                break;
+            default:
+                break;
         }
-         
-        if(Input.GetButtonDown("Fire1"))
+    }
+
+    private void UpdateReady()
+    {
+        //콜라이더 바꾸기
+        OffAbsorbCollider();
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hitInfo;
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
+        if (Input.GetButton("Fire1"))
         {
-            if (!(emptyState))
+            if (Physics.Raycast(ray, out hitInfo))
             {
-                //마우스 포인터 keyMapping
-           
+                currTime += Time.deltaTime;
               
-                
-                print("발사" + absorbItemTag);
+                if (currTime > 1.2f)
+                {
+                    absorbItem = hitInfo.collider.gameObject.gameObject.transform.parent.gameObject;
+                    absorbItemTag = absorbItem.tag;
+                    if (absorbItem.layer == 6)
+                    {
+                        print("흡입준비 => 흡입시작");
+                        state = AbsorbState.Absorbing;
+                    }
+                    
+                }
 
-                
-                //1. 로드 위치 임시
-                GameObject obj = Resources.Load<GameObject>(absorbItemTag);
+            }
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            print("흡입멈춤");
+            currTime = 0f;
+        }
+    }
+    private void UpdateAbsorbing()
+    {
 
-                print("##########obj" + obj);
+        //콜라이더 바꾸기
+        OnAbsorbCollider();
+        //거리가 5f이내면 강제로 흡입완료 아닐 경우 흡입 대기로 돌아간다.
+        float distance = Vector3.Distance(absorbItem.transform.position, transform.position);
+        print("distance" + distance);
+        if (distance < 8f)
+        {
+           
+            Vector3 dir = transform.position;
+            absorbItem.transform.LookAt(dir);
+            absorbItem.transform.position = Vector3.Lerp(absorbItem.transform.position, dir, 1f);
+            rb.isKinematic = true;
+            //print("state absorbing => absorbed"+ state);
+        }
+        else
+        {
+
+            //if (Input.GetButtonUp("Fire1"))
+            //{
+            //    state = AbsorbState.Ready;
+            //    currTime = 0f;
+            //}
+            
+            absorbItem.transform.LookAt(transform.position);
+            absorbItem.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            //print("state absorbing => ready" + state);
+
+        }
+    }
+
+    private void UpdateAbsorbed()
+    {
+        currTime = 0f;
+        rb.isKinematic = false;
+        bool isDestroy = GetComponentInChildren<AbsorbTrigger>().isDestroy;
+            //먹는 애니메이션 진행 후
+            switch (absorbItemTag)
+            {
+                case "e_ranger":
+                    RName = "Moving_Ranger";
+                    break;
+                case "e_fox":
+                    RName = "MonsterFox";
+                    break;
+                case "e_mush":
+                    RName = "Mush";
+                    break;
+                case "e_ghost":
+                    RName = "GhostPos";
+                    break;
+                case "e_bomb":
+                    RName = "Mons_Bomb";
+                    break;
+                case "e_bird":
+                    RName = ""; //새 몬스터는 아직 미정
+                    break;
+                case "e_gosum":
+                    RName = "Gosum";
+                    break;
+                default:
+                    //공격기 없는 기본 에너미들
+                    break;
+            }
+           
+            if (Input.GetButtonDown("Fire1") && isDestroy)
+            {
+
+               
+                print(absorbItemTag  + ": 먹은 에너미 발사");
+                GameObject obj = Resources.Load<GameObject>(RName);
                 Vector3 posZ = transform.position;
-                posZ.z += 1;
-                GameObject go = Instantiate(obj, posZ, Quaternion.identity);
+                posZ.z += 5;
 
-                //2. 발사체 몬스터 따로 구현..?
+                GameObject go = Instantiate(obj, posZ, Quaternion.identity);
 
                 Rigidbody rb = go.GetComponent<Rigidbody>();
                 rb.AddForce(transform.forward * power, ForceMode.Impulse);
 
-                emptyState = true;
+                //아이템 비우기
+                absorbItem = null;
                 absorbItemTag = null;
+                rb.isKinematic = false;
+            //state 변경
+                state = AbsorbState.Ready;
+                GetComponentInChildren<AbsorbTrigger>().isDestroy = false;
+                isEmpty = true;
+            //if (absorbItem.tag == "e_ranger")
+            //{
+            //    GetComponent<PlayerController>().attackState = PlayerController.AttackState.ABSORB;
+            //}
+            currTime = 0;
 
-            }   
-        }
-        if (Input.GetButtonUp("Fire1") && isAbsorb)
-        {
-            print("FIRE");
-       
-        }
-
-
+            }
+     
+        
     }
 
-    void UpdateGetItem(GameObject item)
 
-    {
-        isAbsorb = true;
-        absorbItem = item;
-        print("Game" + item);
-        //상태 체크
-        if (currTime > 1.5f)
-        {
-            float distance = Vector3.Distance(item.transform.position, transform.position); //자석의 거리를 재는 코드.
 
-            print("distance" + distance);
-                item.transform.LookAt(transform.position);
-                item.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-              
-        }
-
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    print("트리거 객체" + other.gameObject);
+    //}
 
     void OnAbsorbCollider()
     {
+        //print("켜짐&&&&&&&&&&&&&&");
+        rb.isKinematic = false;
         SphereCollider[] mesh_origin = GetComponents<SphereCollider>();
-        SphereCollider mesh_child = absorbTrigger.GetComponent<SphereCollider>();
-        for(int i = 0; i < mesh_origin.Length; i++)
+        absorbTrigger.GetComponent<AbsorbTrigger>().enabled = true;
+        SphereCollider[] mesh_child = absorbTrigger.GetComponents<SphereCollider>();
+     
+        for (int i = 0; i < mesh_origin.Length; i++)
         {
             mesh_origin[i].enabled = false;
         }
-        mesh_child.enabled = true;
+     
+        for (int i = 0; i < mesh_child.Length; i++)
+        {
+            mesh_child[i].enabled = true;
+        }
 
     }
     void OffAbsorbCollider()
     {
+        //print("꺼짐&&&&&&&&&&&&&&");
+        //rb.isKinematic = true;
         SphereCollider[] mesh_origin = GetComponents<SphereCollider>();
-        SphereCollider mesh_child = absorbTrigger.GetComponent<SphereCollider>();
+        SphereCollider[] mesh_child = absorbTrigger.GetComponents<SphereCollider>();
+        absorbTrigger.GetComponent<AbsorbTrigger>().enabled = false;
         for (int i = 0; i < mesh_origin.Length; i++)
         {
             mesh_origin[i].enabled = true;
         }
-        mesh_child.enabled = false;
-
-    }
-    
-    //attack 사용 상태 체크
-    //itemIventory();
-    public void IsAttackItem(string absorbItemTag)
-    {
-        currTime = 0;
-        emptyState = false;
-        OffAbsorbCollider();
-        switch (absorbItemTag)
+        for (int i = 0; i < mesh_child.Length; i++)
         {
-            case "e_ranger":
-                //PlayerFire 상태로 변경
-                absorbItemTag = "MonsterPos";
-                if (isAbsorb)
-                {
-                    isAbsorb = false;
-                    print("변신 애니메이션 + 시간 흐른 후 ranger로 변경 + 현재 총알 나가는 오류 있음");
-                    GetComponent<PlayerController>().attackState = PlayerController.AttackState.RANGER;
-                }
-                else
-                {
-                    GetComponent<PlayerController>().attackState = PlayerController.AttackState.ABSORB;
-                }
-                //매번해주기
-                OffAbsorbCollider();
-                break;
-
-            default:
-                //absorbCollider = GameObject.Find("AbsorbTrigger");
-                //absorbCollider.GetComponent<SphereCollider>().enabled = false;
-                //gameObject.GetComponent<SphereCollider>().enabled = true;
-                break;
+            mesh_child[i].enabled = false;
         }
+
     }
-
-    //switch (item.tag)
-    //{
-    //    case "e_fox":
-    //        print("e_fox 흡입");
-    //        break;
-    //    case "e_ranger":
-    //        break;
-    //}
-
 }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
- 
-    //    if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
-    //    {
-    //        //아이템 분류 후 획득
-    //        if(other.gameObject.tag == "item")
-    //        {
-             
-    //        }
-    //    }
-
-    //    //print("other check" + other.gameObject);
-    //    //print("layer check" + layer);
-
-    //    if (other.gameObject == absorbItem)
-    //    {
-          
-    //        absorbItemTag = other.gameObject.tag;
-            
-    //        //게임 오브젝트 흡입 후 소멸
-    //        Destroy(other.gameObject);
-    //        currTime = 0;
-    //        emptyState = false;
-            
-    //        IsAttackItem(absorbItemTag, isAbsorb);
-
-    //    }
-    //}
