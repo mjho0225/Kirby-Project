@@ -9,7 +9,8 @@ public class JH_Rock_fall : MonoBehaviour
     int listCount; // 패트롤 리스트의 개수 파악
     public int i = 0;
 
-    public float rockSpeed = 5;
+    float rockSpeed = 7f;
+    float fallSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +33,24 @@ public class JH_Rock_fall : MonoBehaviour
             // 리스트로 이동하고싶다.
             if(i>0 && i <= 1)
             {
-                rockSpeed = 10f;
+                rockSpeed = fallSpeed;
             }
             if (i >= 2)
             {
-                rockSpeed = 5f;
+                rockSpeed = 7f;
+            }
+
+            if (i>12 && i <= 13)
+            {
+                rockSpeed = fallSpeed;
+            }
+            if (i >= 14)
+            {
+                rockSpeed = 7f;
+            }
+            if (i >= 15)
+            {
+                rockSpeed = fallSpeed;
             }
             transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, rockSpeed * Time.deltaTime);
 

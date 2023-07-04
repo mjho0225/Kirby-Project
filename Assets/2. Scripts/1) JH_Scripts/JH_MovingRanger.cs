@@ -30,6 +30,8 @@ public class JH_MovingRanger : MonoBehaviour
     public GameObject firePos; // ÃÑ¾Ë ½î´Â À§Ä¡
     public GameObject bullet; // ÃÑ¾Ë
 
+    public int enemyHP = 100;
+    public int damageHP = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -129,6 +131,24 @@ public class JH_MovingRanger : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            OnDamage();
+        }
+    }
 
+
+    void OnDamage()
+    {
+
+        enemyHP -= damageHP;
+
+        if (enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
 }
