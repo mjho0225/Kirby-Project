@@ -41,6 +41,9 @@ public class JH_ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            COIN_SCORE = 0;
+        }
     }
 }
