@@ -40,6 +40,7 @@ public class JH_e_Ghost : MonoBehaviour
         Attack,
         KnockBack,
         Patrol,
+        Die,
     }
     public State state;
 
@@ -69,6 +70,9 @@ public class JH_e_Ghost : MonoBehaviour
             case State.Patrol:
                 UpdatePatrol();
                 break;
+            case State.Die:
+                UpdateDie();
+                break;
         }
 
         dirPlayer = targetPlayer.transform.position - transform.position;
@@ -78,6 +82,8 @@ public class JH_e_Ghost : MonoBehaviour
         changeTime += Time.deltaTime;
         ghostRot.transform.Rotate(Vector3.up * 200f * Time.deltaTime);
     }
+
+
 
 
     #region ======몬스터 상태======
@@ -173,6 +179,11 @@ public class JH_e_Ghost : MonoBehaviour
         {
             state = State.Attack;
         }
+    }
+
+    private void UpdateDie()
+    {
+        //사망
     }
 
     #endregion

@@ -26,6 +26,7 @@ public class JH_e_Fox : MonoBehaviour
         Idle,
         Attack,
         KnockBack,
+        Die,
     }
     public State state;
 
@@ -46,6 +47,8 @@ public class JH_e_Fox : MonoBehaviour
                 break;
             case State.KnockBack: UpdateKnockBack();
                 break;
+            case State.Die: UpdateDie();
+                break;
         }
 
         dirPlayer = targetPlayer.transform.position - transform.position;
@@ -59,6 +62,11 @@ public class JH_e_Fox : MonoBehaviour
     #region======몬스터 상태======
 
     public bool knockBack = false;
+
+    void UpdateDie()
+    {
+        // 사망
+    }
 
     private void UpdateKnockBack()
     {
@@ -137,6 +145,7 @@ public class JH_e_Fox : MonoBehaviour
             enemyHP -= 20;
             if (enemyHP <= 0)
             {
+                state = State.Die;
                 Destroy(this.gameObject);
             }
 
@@ -147,7 +156,7 @@ public class JH_e_Fox : MonoBehaviour
             matChange = true;
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
-            rb.AddForce(-dirPlayer * 50f * Time.deltaTime, ForceMode.Impulse);
+            rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
