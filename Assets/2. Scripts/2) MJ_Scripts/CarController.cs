@@ -16,7 +16,6 @@ using EZCameraShake;
 // 자동으로 대쉬를 하게 만들고 싶다.
 public class CarController : MonoBehaviour
 {
-    // 자동차의 상태를 제작하자
     public enum CarState
     {
         Move,
@@ -45,9 +44,11 @@ public class CarController : MonoBehaviour
     private float rotationVelocity;
     public float rotationTime = 0.3f;
 
+
     private void Update()
     {
         InitInput();
+        MoveCameraDir();
         Jump();
         MoveRotation();
         MoveDash();
@@ -182,8 +183,18 @@ public class CarController : MonoBehaviour
     {
         hAxis = Input.GetAxis("Horizontal");
         vAxis = Input.GetAxis("Vertical");
+    }
+
+    private void MoveCameraDir()
+    {
         // 왼쪽 방향일 때 왼쪽으로, 앞, 뒤 방향키는 좌우로 간다.
-        carMoveVector = Vector3.left * hAxis + Vector3.back * vAxis;
+        Vector3 dir = Vector3.right * hAxis + Vector3.forward * vAxis;
+        // 플레이어의 움직임 방향을 월드 기준으로 한다.
+        dir = Camera.main.transform.TransformDirection(dir);
+        // y축은 포함하지 않는다.
+        dir.y = 0;
+        dir.Normalize();
+        carMoveVector = dir;
     }
 
     private void OnCollisionEnter(Collision collision)
