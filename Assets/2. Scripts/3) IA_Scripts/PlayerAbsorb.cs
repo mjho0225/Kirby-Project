@@ -13,14 +13,12 @@ public class PlayerAbsorb : MonoBehaviour
     GameObject player;
     GameObject item;
     float currTime;
-    float rayLength = 20f;
 
     bool isEmpty = true;
     //int layer;
     float power = 10f;
     [SerializeField] public GameObject absorbItem;
     string RName;
-    //public bool isAbsorbing = false;
     GameObject absorbTrigger;
     Rigidbody rb;
     public string absorbItemTag;
@@ -31,12 +29,26 @@ public class PlayerAbsorb : MonoBehaviour
        Absorbed,
     }
 
+    float currTime2; 
     public AbsorbState state = AbsorbState.Ready;
-    
+    bool getRanger = false;
     void Start()
     {
         absorbTrigger = GameObject.Find("AbsorbTrigger");
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
+    }
+
+    public void Reset()
+    {
+        //아이템 비우기
+        absorbItem = null;
+        absorbItemTag = null;
+        rb.isKinematic = false;
+
+        state = AbsorbState.Ready;
+        isEmpty = true;
+        currTime = 0;
+        currTime2 = 0;
     }
 
     private void Update()
@@ -55,6 +67,20 @@ public class PlayerAbsorb : MonoBehaviour
             default:
                 break;
         }
+
+        if (getRanger)
+        {
+            print(currTime2);
+            currTime2 += Time.deltaTime;
+            if (currTime2 > 1f)
+            {
+                getRanger = false;
+                GetComponentInParent<PlayerController>().ChangeRanger();
+                currTime2 = 0;
+            }
+        }
+       
+       
     }
 
     private void UpdateReady()
@@ -73,13 +99,19 @@ public class PlayerAbsorb : MonoBehaviour
               
                 if (currTime > 1.2f)
                 {
-                    absorbItem = hitInfo.collider.gameObject.gameObject.transform.parent.gameObject;
+                    absorbItem = hitInfo.collider.gameObject.transform.parent.gameObject;
                     absorbItemTag = absorbItem.tag;
                     if (absorbItem.layer == 6)
                     {
                         print("흡입준비 => 흡입시작");
                         state = AbsorbState.Absorbing;
                     }
+                    //else if(hitInfo.collider.gameObject.layer == 9)
+                    //{
+                    //    print("hitInfo.collider.gameObject.layer == 9");
+                    //    absorbItem = hitInfo.collider.gameObject;
+                    //    absorbItemTag = absorbItem.tag;
+                    //}
                     
                 }
 
@@ -110,12 +142,6 @@ public class PlayerAbsorb : MonoBehaviour
         }
         else
         {
-
-            //if (Input.GetButtonUp("Fire1"))
-            //{
-            //    state = AbsorbState.Ready;
-            //    currTime = 0f;
-            //}
             
             absorbItem.transform.LookAt(transform.position);
             absorbItem.transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -123,12 +149,12 @@ public class PlayerAbsorb : MonoBehaviour
 
         }
     }
-
+ 
     private void UpdateAbsorbed()
     {
-        currTime = 0f;
+        OffAbsorbCollider();
+     
         rb.isKinematic = false;
-        bool isDestroy = GetComponentInChildren<AbsorbTrigger>().isDestroy;
             //먹는 애니메이션 진행 후
             switch (absorbItemTag)
             {
@@ -158,80 +184,116 @@ public class PlayerAbsorb : MonoBehaviour
                     break;
             }
            
-            if (Input.GetButtonDown("Fire1") && isDestroy)
+            if (Input.GetButtonDown("Fire1") && !(getRanger))
             {
 
                
                 print(absorbItemTag  + ": 먹은 에너미 발사");
                 GameObject obj = Resources.Load<GameObject>(RName);
                 Vector3 posZ = transform.position;
-                posZ.z += 5;
+                posZ.z += 2;
 
                 GameObject go = Instantiate(obj, posZ, Quaternion.identity);
-
                 Rigidbody rb = go.GetComponent<Rigidbody>();
                 rb.AddForce(transform.forward * power, ForceMode.Impulse);
 
                 //아이템 비우기
-                absorbItem = null;
-                absorbItemTag = null;
-                rb.isKinematic = false;
-            //state 변경
-                state = AbsorbState.Ready;
-                GetComponentInChildren<AbsorbTrigger>().isDestroy = false;
-                isEmpty = true;
-            //if (absorbItem.tag == "e_ranger")
-            //{
-            //    GetComponent<PlayerController>().attackState = PlayerController.AttackState.ABSORB;
-            //}
-            currTime = 0;
+                Reset();
 
             }
      
         
     }
+    private void OnTriggerStay(Collider other)
+    {
+       
+        if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
+        {
+            //아이템 분류 후 획득
+            if (other.gameObject.tag == "item")
+            {
 
+            }
+        }
 
+        //print("other check" + other.gameObject);
+        //print("layer check" + layer);
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    print("트리거 객체" + other.gameObject);
-    //}
+        if (other.gameObject == absorbItem)
+        {
+         
+            float distance = Vector3.Distance(absorbItem.transform.position, transform.position);
+            //변신 애니메이션 시간 체크 필요
+            if (distance < 0.5f)
+            {
+                print("destroy" + absorbItemTag);
+                Destroy(other.gameObject);
+                state = PlayerAbsorb.AbsorbState.Absorbed;
+           
+                if (absorbItemTag == "e_ranger")
+                {
+                    getRanger = true;
+                 
+                }
+            }
+        }
+    }
 
     void OnAbsorbCollider()
     {
-        //print("켜짐&&&&&&&&&&&&&&");
+        ////print("켜짐&&&&&&&&&&&&&&");
         rb.isKinematic = false;
-        SphereCollider[] mesh_origin = GetComponents<SphereCollider>();
-        absorbTrigger.GetComponent<AbsorbTrigger>().enabled = true;
-        SphereCollider[] mesh_child = absorbTrigger.GetComponents<SphereCollider>();
-     
+        SphereCollider[] mesh_origin = GetComponentsInParent<SphereCollider>();
         for (int i = 0; i < mesh_origin.Length; i++)
         {
             mesh_origin[i].enabled = false;
         }
-     
+        SphereCollider[] mesh_child = GetComponents<SphereCollider>();
         for (int i = 0; i < mesh_child.Length; i++)
         {
             mesh_child[i].enabled = true;
         }
+        //SphereCollider[] mesh_origin = GetComponents<SphereCollider>();
+        //absorbTrigger.GetComponent<AbsorbTrigger>().enabled = true;
+        //SphereCollider[] mesh_child = absorbTrigger.GetComponents<SphereCollider>();
+
+        //for (int i = 0; i < mesh_origin.Length; i++)
+        //{
+        //    mesh_origin[i].enabled = false;
+        //}
+
+        //for (int i = 0; i < mesh_child.Length; i++)
+        //{
+        //    mesh_child[i].enabled = true;
+        //}
 
     }
     void OffAbsorbCollider()
     {
-        //print("꺼짐&&&&&&&&&&&&&&");
-        //rb.isKinematic = true;
-        SphereCollider[] mesh_origin = GetComponents<SphereCollider>();
-        SphereCollider[] mesh_child = absorbTrigger.GetComponents<SphereCollider>();
-        absorbTrigger.GetComponent<AbsorbTrigger>().enabled = false;
+        SphereCollider[] mesh_origin = GetComponentsInParent<SphereCollider>();
         for (int i = 0; i < mesh_origin.Length; i++)
         {
             mesh_origin[i].enabled = true;
         }
+
+        SphereCollider[] mesh_child = GetComponents<SphereCollider>();
         for (int i = 0; i < mesh_child.Length; i++)
         {
             mesh_child[i].enabled = false;
         }
+        ////print("꺼짐&&&&&&&&&&&&&&");
+        ////rb.isKinematic = true;
+        //SphereCollider[] mesh_origin = GetComponents<SphereCollider>();
+        //SphereCollider[] mesh_child = absorbTrigger.GetComponents<SphereCollider>();
+        //absorbTrigger.GetComponent<AbsorbTrigger>().enabled = false;
+        //for (int i = 0; i < mesh_origin.Length; i++)
+        //{
+        //    mesh_origin[i].enabled = true;
+        //}
+        //for (int i = 0; i < mesh_child.Length; i++)
+        //{
+        //    mesh_child[i].enabled = false;
+        //}
 
     }
 }

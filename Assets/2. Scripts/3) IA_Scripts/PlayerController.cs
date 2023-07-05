@@ -33,11 +33,14 @@ public class PlayerController : MonoBehaviour
     bool isLadder = false;
 
     bool isRanger = true;
+    bool Fire2 = false;
+
+    public GameObject absorbObj;
+    public GameObject rangerObj;
     enum PlayerState
     {
         BASIC,
-        GUARD,
-        RANGER
+        GUARD
     }
     public enum AttackState
     {
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
-
+       
     }
 
 
@@ -89,26 +92,49 @@ public class PlayerController : MonoBehaviour
 
         //isAbsorb = GetComponent<PlayerAbsorb>().isAbsorb;
 
-        //매번 부르는 문제
-        if (attackState == AttackState.RANGER)
-        {
-            GetComponent<PlayerFire>().enabled = true;
-            GetComponent<PlayerAbsorb>().enabled = false;
-           // print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
-            gun.SetActive(true);
 
-            //마우스 우클릭시 일반 커비로 변신 => 나중에 아이템 뱉기
-        }
-        else if(attackState == AttackState.ABSORB)
-        {
-          
-            GetComponent<PlayerFire>().enabled = false;
-            GetComponent<PlayerAbsorb>().enabled = true;
-            gun.SetActive(false);
-           
-        }
+        //if(attackState == AttackState.RANGER && Fire2)
+        //{
+        //    Vector3 posZ = transform.position;
+        //    posZ.z += 3;
+        //    GameObject go = Instantiate(bubleGun, posZ, Quaternion.identity);
+        //    Rigidbody rb = go.GetComponent<Rigidbody>();
+        //    rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+
+        //    ChangeAbsorb();
+        //}
 
 
+    }
+
+    public void ChangeRanger()
+    {
+        attackState = AttackState.RANGER;
+        //GetComponent<PlayerFire>().enabled = true;
+        //GetComponent<PlayerAbsorb>().enabled = false;
+        //// print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
+        //gun.SetActive(true);
+       
+        print(rangerObj);
+        //Destroy(absorbObj); 
+        //GameObject obj = Resources.Load<GameObject>("Player_Ranger");
+        //Instantiate(obj, transform.position, transform.rotation);
+        rangerObj.SetActive(true);
+        absorbObj.SetActive(false);
+        PlayerAbsorb newAbsorb = absorbObj.GetComponent<PlayerAbsorb>();
+        newAbsorb.Reset();
+
+    }
+
+    public void ChangeAbsorb()
+    {
+
+        attackState = AttackState.ABSORB;
+        rangerObj.SetActive(false);
+        absorbObj.SetActive(true);
+        //GetComponent<PlayerFire>().enabled = false;
+        //GetComponent<PlayerAbsorb>().enabled = true;
+        //gun.SetActive(false);
     }
 
     void GetInput()
@@ -120,6 +146,7 @@ public class PlayerController : MonoBehaviour
         shift = Input.GetKey(KeyCode.LeftShift);
         if (shift) state = PlayerState.GUARD;
         shiftUP = Input.GetKeyUp(KeyCode.LeftShift);
+        Fire2 = Input.GetButtonDown("Fire2");
     }
 
     void Move()
@@ -257,9 +284,11 @@ public class PlayerController : MonoBehaviour
             Vector3 dir = transform.position;
             //넉백일 경우와 아닐경우 분리
             //흡수할 경우 넉백이 일어나면 안됨
-            rb.AddForce(-dir * (50f * Time.deltaTime), ForceMode.Impulse);
+            rb.AddForce(-dir * (100f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
-           // OnDamage();
+            //other.gameObject.GetComponent<JH_e_Fox>().OnDamage();
+            other.gameObject.GetComponent<Enemy02Test>().OnDamage();
+            // OnDamage();
         }
 
     }

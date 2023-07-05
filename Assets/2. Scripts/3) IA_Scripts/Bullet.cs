@@ -20,10 +20,12 @@ public class Bullet : MonoBehaviour
     //벽과 Ground 설정하기
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject, 4);
-        //if(collision.gameObject.tag == "Ground")
-        //{
-        //    Destroy(gameObject, 3);
-        //}
+        //파티클
+        // GameObject bullet02 = Instantiate(bulletFactory02, firePos02.point, Quaternion.LookRotation(firePos02.normal));
+        //Destroy(gameObject, 4);
+        if (collision.gameObject.tag == "Ground")
+        {
+            Destroy(gameObject);
+        }
     }
 }

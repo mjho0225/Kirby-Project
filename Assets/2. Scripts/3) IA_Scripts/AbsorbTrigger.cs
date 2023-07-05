@@ -50,7 +50,7 @@ public class AbsorbTrigger : MonoBehaviour
                 currTime += Time.deltaTime;
                 if (absorbItemTag == "e_ranger")
                 {
-                    GetComponentInParent<PlayerController>().attackState = PlayerController.AttackState.RANGER;
+                    GetComponentInParent<PlayerController>().ChangeRanger();
                     currTime = 0;    
                 }
             }
