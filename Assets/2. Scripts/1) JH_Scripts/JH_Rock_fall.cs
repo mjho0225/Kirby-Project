@@ -70,6 +70,6 @@ public class JH_Rock_fall : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        // 플레이어 HP감소
     }
 }

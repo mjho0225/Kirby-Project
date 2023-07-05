@@ -55,6 +55,8 @@ public class JH_MovingRanger : MonoBehaviour
         playerPosY = new Vector3(dirPlayer.x, dirPlayer.y, dirPlayer.z) ;
 
         MovingShoot();
+        changeTime += Time.deltaTime;
+        UpdateKnockBack();
         
         //if (hideTime > 5 && hideTime < 5.1f)
         //{
@@ -166,14 +168,6 @@ public class JH_MovingRanger : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            OnDamage();
-        }
-    }
-
 
     void OnDamage()
     {
@@ -184,6 +178,22 @@ public class JH_MovingRanger : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void UpdateKnockBack()
+    {
+        if (changeTime >= 0.2f && matChange == true)
+        {
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            if (changeTime > 1.5f)
+            {
+                matChange = false;
+
+                knockBack = false;
+            }
+        }
+
+
     }
 
 }

@@ -42,7 +42,7 @@ public class JH_Ranger : MonoBehaviour
         playerPosY = new Vector3(dirPlayer.x, dirPlayer.y, dirPlayer.z);
 
 
-        if(distPlayer > 5)
+        if(distPlayer < 5)
         {
             shootingTime += Time.deltaTime;
             transform.rotation = Quaternion.LookRotation(playerPos);
@@ -57,7 +57,10 @@ public class JH_Ranger : MonoBehaviour
                 shootingTime = 0;
             }
         }
-        
+        changeTime += Time.deltaTime;
+        UpdateKnockBack();
+
+
 
     }
 
@@ -78,7 +81,7 @@ public class JH_Ranger : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet")
         {
-            OnDamage();
+            //OnDamage();
         }
 
         if (collision.gameObject.tag == "Player")
@@ -100,6 +103,22 @@ public class JH_Ranger : MonoBehaviour
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+
+    }
+
+    private void UpdateKnockBack()
+    {
+        if (changeTime >= 0.2f && matChange == true)
+        {
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            if (changeTime > 1.5f)
+            {
+                matChange = false;
+
+                knockBack = false;
+            }
         }
 
 
