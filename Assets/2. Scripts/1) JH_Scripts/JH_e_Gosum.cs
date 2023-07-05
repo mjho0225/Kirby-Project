@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JH_e_Gosum : MonoBehaviour
 {
+    int enemyHP = 100;
+
     public GameObject targetPlayer;
     public GameObject bullet;
     float distPlayer;
@@ -19,6 +21,8 @@ public class JH_e_Gosum : MonoBehaviour
     bool matChange = false;
 
     Rigidbody rb;
+    public bool knockBack = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +70,8 @@ public class JH_e_Gosum : MonoBehaviour
             //transform.position = Vector3.MoveTowards(transform.position,targetPlayer.transform.position,3*Time.deltaTime);
         }
 
+        UpdateKnockBack();
+
     }
 
 
@@ -100,5 +106,45 @@ public class JH_e_Gosum : MonoBehaviour
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), 10 * Time.deltaTime);
             rb.AddForce(-dirPlayer * 250f * Time.deltaTime, ForceMode.Impulse);
         }
+        
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            enemyHP -= 20;
+            if (enemyHP <= 0)
+            {
+                
+                Destroy(this.gameObject);
+
+            }
+
+            
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
+            rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+        }
+    }
+
+    void UpdateKnockBack()
+    {
+        if (changeTime >= 0.2f && matChange == true)
+        {
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            if (changeTime > 1.5f)
+            {
+                matChange = false;
+
+                knockBack = false;
+            }
+        }
+
+
     }
 }
