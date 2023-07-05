@@ -7,7 +7,7 @@ public class JH_e_Fox : MonoBehaviour
 {
     public int enemyHP = 100;
 
-
+    public JH_w_Spawn mySpawner;
 
     public GameObject targetPlayer; // 감지할 플레이어 선택
     float distPlayer; // 플레이어와의 거리
@@ -34,6 +34,7 @@ public class JH_e_Fox : MonoBehaviour
     {
         targetPlayer = GameObject.Find("Player");
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -136,30 +137,7 @@ public class JH_e_Fox : MonoBehaviour
     }
     #endregion
 
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        //HP감소
-    //        enemyHP -= 20;
-    //        if (enemyHP <= 0)
-    //        {
-    //            state = State.Die;
-    //            Destroy(this.gameObject);
-    //        }
-
-    //        state = State.KnockBack;
-    //        knockBack = true;
-    //        transform.GetComponent<MeshRenderer>().material.color = Color.white;
-    //        changeTime = 0;
-    //        matChange = true;
-
-    //        //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
-    //        rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
-    //    }
-    //}
-
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -176,6 +154,7 @@ public class JH_e_Fox : MonoBehaviour
             {
                 state = State.Die;
                 Destroy(this.gameObject);
+                
             }
 
             state = State.KnockBack;
@@ -199,8 +178,15 @@ public class JH_e_Fox : MonoBehaviour
 
         if (enemyHP <= 0)
         {
-            Destroy(this.gameObject);
+            
+            Destroy(this);
         }
     }
+
+    private void OnDestroy()
+    {
+        mySpawner.DestroyedFox(this);
+    }
+    
 
 }

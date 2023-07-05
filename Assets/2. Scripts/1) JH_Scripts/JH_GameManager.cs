@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 스테이지 이동 ( 개발자 모드 ) 만들어 놓기
+
+
 public class JH_GameManager : MonoBehaviour
 {
 
@@ -53,5 +56,31 @@ public class JH_GameManager : MonoBehaviour
             savePanel_On = false;
         }
 
+    }
+
+
+    void GM_Mode()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            //페이드 인/아웃
+            //플레이어 위치 변경
+
+            // 주의 : 카메라 위치 따라가야함
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            //페이드 인/아웃
+            //플레이어 위치 변경
+
+            // 주의 : 카메라 위치 따라가야함
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            //페이드 인/아웃
+            //플레이어 위치 변경
+
+            // 주의 : 카메라 위치 따라가야함
+        }
     }
 }
