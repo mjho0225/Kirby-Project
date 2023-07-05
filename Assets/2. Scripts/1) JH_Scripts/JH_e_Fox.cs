@@ -16,7 +16,7 @@ public class JH_e_Fox : MonoBehaviour
     // Start is called before the first frame update
 
     
-    float changeTime = 0; // 변신 초 계산
+    float changeTime = 0; 
     bool matChange = false;
 
     Rigidbody rb;

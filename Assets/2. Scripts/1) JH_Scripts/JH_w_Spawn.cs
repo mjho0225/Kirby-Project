@@ -9,6 +9,7 @@ public class JH_w_Spawn : MonoBehaviour
 
     //리소스에서 로드 ( null 이 되면 일정 시간 후 생성 )
     public GameObject e_Fox;
+    
 
     public List<GameObject> foxCount;
 
@@ -52,6 +53,8 @@ public class JH_w_Spawn : MonoBehaviour
         }
         
     }
+
+
 
     internal void DestroyedFox(JH_e_Fox fox)
     {

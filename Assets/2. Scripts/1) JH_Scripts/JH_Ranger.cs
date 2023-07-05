@@ -20,10 +20,17 @@ public class JH_Ranger : MonoBehaviour
     public int enemyHP = 100;
     public int damageHP = 50;
 
+    public bool knockBack = false;
+    float changeTime = 0;
+    bool matChange = false;
+
+    Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
         targetPlayer = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -55,14 +62,6 @@ public class JH_Ranger : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            OnDamage();
-        }
-    }
-
 
     void OnDamage()
     {
@@ -73,5 +72,36 @@ public class JH_Ranger : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            OnDamage();
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //HP°¨¼Ò
+            enemyHP -= 20;
+            if (enemyHP <= 0)
+            {
+                
+                Destroy(this.gameObject);
+
+            }
+
+            
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
+            rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+
     }
 }

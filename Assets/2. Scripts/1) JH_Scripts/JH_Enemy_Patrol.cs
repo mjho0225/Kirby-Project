@@ -16,6 +16,12 @@ using UnityEngine;
 
 public class JH_Enemy_Patrol : MonoBehaviour
 {
+
+    public int enemyHP = 100;
+
+    public bool knockBack = false;
+    Rigidbody rb;
+
     #region 리스트 관련
     public List<Transform> patrolPos; // 패트롤 위치가 몇개이냐에 따라 쉽게 늘릴수 있도록 퍼블릭으로
     int listCount; // 패트롤 리스트의 개수 파악
@@ -29,11 +35,15 @@ public class JH_Enemy_Patrol : MonoBehaviour
     Vector3 dirPlayer;
     Vector3 playerPos;
 
+    float changeTime = 0;
+    bool matChange = false;
+
     // Start is called before the first frame update
     void Start()
     {
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
         targetPlayer = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody>();
         
     }
 
@@ -45,6 +55,8 @@ public class JH_Enemy_Patrol : MonoBehaviour
 
         dirPlayer = targetPlayer.transform.position - this.transform.position;
         playerPos = new Vector3(dirPlayer.x, 0, dirPlayer.z);
+
+        changeTime += Time.deltaTime;
 
         // 순찰 도중에 플레이어가 가까이 오면 플레이어한테 가고 플레이어아 거리에 없거나 멀어지면 기존 패트롤 이동
         if (targetDist <= 4)
@@ -79,5 +91,71 @@ public class JH_Enemy_Patrol : MonoBehaviour
             }
         }
 
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            OnDamage();
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //HP감소
+            enemyHP -= 20;
+            if (enemyHP <= 0)
+            {
+                Destroy(this.gameObject);
+
+            }
+
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
+            rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+
+    }
+    private void UpdateKnockBack()
+    {
+        if (changeTime >= 0.2f && matChange == true)
+        {
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            if (changeTime > 1.5f)
+            {
+                matChange = false;
+
+                knockBack = false;
+            }
+        }
+
+        if (targetDist <= 4 && knockBack == false)
+        {
+            //공격
+        }
+
+        if (targetDist > 4)
+        {
+            knockBack = false;
+            
+        }
+    }
+
+    void OnDamage()
+    {
+
+        enemyHP -= 50;
+
+        if (enemyHP <= 0)
+        {
+
+            Destroy(this);
+        }
     }
 }
