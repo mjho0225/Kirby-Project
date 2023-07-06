@@ -8,6 +8,8 @@ public class JH_e_Target : MonoBehaviour
 
     public List<GameObject> guideWay;
 
+    public bool hit = false;
+
     enum TargetStage
     {
         targetS1,
@@ -19,7 +21,7 @@ public class JH_e_Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -32,6 +34,13 @@ public class JH_e_Target : MonoBehaviour
             case TargetStage.targetS2:
                 break;
         }
+
+
+        if (hit == true)
+        {
+            //WayGuide();
+            Destroy(this.transform.gameObject);
+        }
     }
 
 
@@ -39,27 +48,49 @@ public class JH_e_Target : MonoBehaviour
     {
         if(collision.gameObject.tag == "bullet")
         {
-            // Destroy(this);
-            StartCoroutine("wayGuide");
+            hit = true;
+             Destroy(this);
+            //StartCoroutine("WayGuide");
         }
     }
 
     private void OnDestroy()
     {
-        Destroy(hideWall, guideWay.Count * 0.2f);
+        if (hit == true)
+        {
+
+            Destroy(hideWall, guideWay.Count * 0.5f);
+        }
     }
 
+    float currentTime = 0;
 
-    IEnumerator wayGuide()
+    void  WayGuide()
     {
-        for(int i = 0; i <= guideWay.Count; i++)
+        currentTime += Time.deltaTime;
+        for (int i = 0; i <= guideWay.Count; i++)
         {
-            guideWay[i].gameObject.SetActive(true);
 
-            yield return new WaitForSeconds(0.2f);
 
-            guideWay[i].gameObject.SetActive(false);
-            i++;
+
+            if (currentTime > 0.5f)
+            {
+                guideWay[i].gameObject.SetActive(true);
+                
+                if (i >= guideWay.Count)
+                {
+                    Destroy(this);
+                }
+
+                if (i >= guideWay.Count)
+                {
+                    //guideWay[i].gameObject.SetActive(false);
+                    //Destroy(guideWay[i], 0.1f);
+                    currentTime = 0;
+                    hit = false;
+
+                }
+            }
 
         }
         

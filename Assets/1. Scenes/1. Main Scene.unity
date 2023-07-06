@@ -16167,6 +16167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideWall: {fileID: 1469869754}
+  guideWay:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hit: 0
 --- !u!111 &6849970208682140698
 Animation:
   m_ObjectHideFlags: 0
