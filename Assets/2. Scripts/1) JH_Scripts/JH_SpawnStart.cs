@@ -16,9 +16,28 @@ public class JH_SpawnStart : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Player")
+    //    {
+    //        if (this.gameObject.name.Contains("BigRock"))
+    //        {
+    //            JH_Rock_Spawn.instance.bigRock = true;
+    //        }
+    //        if (this.gameObject.name.Contains("Area4Rock"))
+    //        {
+    //            JH_Rock_Spawn.instance.area4Start = true;
+    //        }
+    //        if (this.gameObject.name.Contains("FinishRock"))
+    //        {
+    //            JH_Rock_Spawn.instance.finishRock = true;
+    //        }
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             if (this.gameObject.name.Contains("BigRock"))
             {

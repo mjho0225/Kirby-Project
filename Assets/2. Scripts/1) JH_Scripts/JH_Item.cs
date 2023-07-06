@@ -340,10 +340,12 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Waii)
             {
                 IAmWaii();
+                Destroy(gameObject);
             }
             if (iAm == WHO.item_Food)
             {
                 IAmFood();
+                Destroy(gameObject);
             }
 
             if (iAm == WHO.item_Box)
