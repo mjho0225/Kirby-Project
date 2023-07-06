@@ -58,6 +58,10 @@ public class JH_e_Fox : MonoBehaviour
 
         changeTime += Time.deltaTime;
 
+        if(enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     #region======몬스터 상태======
@@ -143,7 +147,7 @@ public class JH_e_Fox : MonoBehaviour
     {
         if(collision.gameObject.tag == "bullet")
         {
-            OnDamage();
+            //OnDamage();
             enemyHP -= 50;
         }
 
@@ -170,6 +174,7 @@ public class JH_e_Fox : MonoBehaviour
 
 
     }
+
 
 
     void OnDamage()

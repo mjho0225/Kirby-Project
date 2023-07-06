@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
         //ÆÄÆ¼Å¬
         // GameObject bullet02 = Instantiate(bulletFactory02, firePos02.point, Quaternion.LookRotation(firePos02.normal));
         //Destroy(gameObject, 4);
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
         }
