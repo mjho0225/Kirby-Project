@@ -8,17 +8,21 @@ using UnityEngine;
 
 public class JH_Rock_Spawn : MonoBehaviour
 {
+    public static JH_Rock_Spawn instance;
 
-
-    
     public float currentTime1 = 0;
     float currentTime2 = 0;
-    bool bigRock = false;
     float currentTime3 = 0;
-    bool finishRock = false;
+
+    public bool area1Start = false;
+    public bool bigRock = false;
+    public bool area4Start = false;
+    public bool finishRock = false;
+    
 
     public List<GameObject> RockArea1;
     public List<GameObject> RockArea2;
+    
     public GameObject RockArea3;
     public List<GameObject> RockArea4;
     //public List<GameObject> RockArea5;
@@ -30,49 +34,70 @@ public class JH_Rock_Spawn : MonoBehaviour
     public List<GameObject> area5Rock;
 
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        bigRock = true;
-        finishRock = true;
+        area1Start = true;
+        //bigRock = true;
+        //area4Start = true;
+        //finishRock = true;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
-        currentTime1 += Time.deltaTime;
-        if(currentTime1 > 2)
+        // 첫번째 사다리에 도착하면 스폰 시작
+        if(area1Start == true)
         {
-            
-            Invoke("Area1RockSpawn1", 2);
-            Invoke("Area1RockSpawn2", 3);
-            currentTime1 = 0;
-        }
+            currentTime1 += Time.deltaTime;
+            if (currentTime1 > 2)
+            {
 
-        currentTime2 += Time.deltaTime;
-        if(currentTime2 > 4) 
-        {
-            Invoke("Area2RockSpawn1", 2);
-            Invoke("Area2RockSpawn2", 4);
-            Invoke("Area2RockSpawn3", 3);
-            currentTime2 = 0;
-        }
+                Invoke("Area1RockSpawn1", 1);
+                Invoke("Area1RockSpawn2", 2);
+                currentTime1 = 0;
+            }
 
+            currentTime2 += Time.deltaTime;
+            if (currentTime2 > 4)
+            {
+                Invoke("Area2RockSpawn1", 2);
+                Invoke("Area2RockSpawn2", 4);
+                Invoke("Area2RockSpawn3", 3);
+                currentTime2 = 0;
+            }
+        }
+        
+
+
+        // 해당 지점에 도착하면 큰 돌 떨어지기 시작 (bigRock)
         if (bigRock == true)
         {
             Instantiate(area3Rock, RockArea3.transform.position, Quaternion.identity);
+            area1Start = false;
             bigRock = false;
         }
 
-        currentTime3 += Time.deltaTime;
-        if(currentTime3 > 2.5f)
+
+        // area4 
+        if(area4Start == true)
         {
-            Invoke("Area4RockSpawn1", 2);
-            Invoke("Area4RockSpawn2", 3);
-            currentTime3 = 0;
+            currentTime3 += Time.deltaTime;
+            if (currentTime3 > 2.5f)
+            {
+                Invoke("Area4RockSpawn1", 2);
+                Invoke("Area4RockSpawn2", 3);
+                
+                currentTime3 = 0;
+            }
         }
+        
 
         if(finishRock == true)
         {
@@ -82,23 +107,9 @@ public class JH_Rock_Spawn : MonoBehaviour
             area5Rock[0].GetComponent<Rigidbody>().useGravity = true;
             area5Rock[1].GetComponent<Rigidbody>().useGravity = true;
             area5Rock[2].GetComponent<Rigidbody>().useGravity = true;
+            area4Start = false;
             finishRock = false;
         }
-
-    }
-
-    void RockSpawn1()
-    {
-
-            Invoke("Area2RockSpawn1",2);
-            Invoke("Area2RockSpawn2",4);
-            Invoke("Area2RockSpawn3",3);
- 
-
-            //Instantiate(RockArea3[0]);
-            //RockArea3.transform.position = transform.position;
-            //currentTime = 0;
- 
 
     }
 
