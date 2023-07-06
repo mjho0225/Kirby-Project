@@ -29,7 +29,7 @@ public class JH_e_Mushroom : MonoBehaviour
 
     void Start()
     {
-        targetPlayer = GameObject.Find("Player");
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
 
     }

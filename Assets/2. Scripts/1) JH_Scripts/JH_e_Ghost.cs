@@ -47,7 +47,7 @@ public class JH_e_Ghost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetPlayer = GameObject.Find("Player");
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
 
         listCount = patrol_ghostPos.Count;

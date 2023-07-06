@@ -27,7 +27,7 @@ public class JH_e_Gosum : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetPlayer = GameObject.Find("Player");
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
     }
 

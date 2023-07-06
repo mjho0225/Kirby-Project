@@ -32,7 +32,7 @@ public class JH_e_Fox : MonoBehaviour
 
     void Start()
     {
-        targetPlayer = GameObject.Find("Player");
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
         
     }
