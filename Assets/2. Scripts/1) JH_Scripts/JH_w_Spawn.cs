@@ -24,7 +24,7 @@ public class JH_w_Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        distPlayer = GameObject.Find("Player");
+        distPlayer = GameObject.FindGameObjectWithTag("Player");
 
         //快急 贸澜 积己 秦淋
         e_Fox = Resources.Load<GameObject>("MonsterFox");

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class JH_e_Target : MonoBehaviour
 {
+    public GameObject hideWall;
+
+    public List<GameObject> guideWay;
+
     enum TargetStage
     {
         targetS1,
@@ -31,6 +35,34 @@ public class JH_e_Target : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "bullet")
+        {
+            // Destroy(this);
+            StartCoroutine("wayGuide");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(hideWall, guideWay.Count * 0.2f);
+    }
 
 
+    IEnumerator wayGuide()
+    {
+        for(int i = 0; i <= guideWay.Count; i++)
+        {
+            guideWay[i].gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(0.2f);
+
+            guideWay[i].gameObject.SetActive(false);
+            i++;
+
+        }
+        
+
+    }
 }

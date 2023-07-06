@@ -42,7 +42,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
     void Start()
     {
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
-        targetPlayer = GameObject.Find("Player");
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
         
     }
