@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class Jh_e_Bomb : MonoBehaviour
 {
-
+    public int enemyHP;
     enum State
     {
         Idle,
@@ -69,6 +69,11 @@ public class Jh_e_Bomb : MonoBehaviour
             matChange = false;
         }
 
+        if (enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
 
@@ -121,6 +126,40 @@ public class Jh_e_Bomb : MonoBehaviour
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
+            rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bullet")
+        {
+            //OnDamage();
+            enemyHP -= 50;
+            //state = State.KnockBack;
+            //knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
         }
     }
 }

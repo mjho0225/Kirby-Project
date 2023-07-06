@@ -59,6 +59,11 @@ public class JH_e_Mushroom : MonoBehaviour
 
         changeTime += Time.deltaTime;
 
+        if (enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
     #region======몬스터 상태======
@@ -142,10 +147,6 @@ public class JH_e_Mushroom : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "bullet")
-        {
-            OnDamage();
-        }
 
         if (collision.gameObject.tag == "Player" || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
@@ -168,7 +169,24 @@ public class JH_e_Mushroom : MonoBehaviour
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
         }
 
+        if (collision.gameObject.tag == "bullet")
+        {
+            //OnDamage();
+            enemyHP -= 50;
+            //state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
 
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
+        }
     }
 
 

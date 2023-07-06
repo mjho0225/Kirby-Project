@@ -57,13 +57,11 @@ public class JH_MovingRanger : MonoBehaviour
         MovingShoot();
         changeTime += Time.deltaTime;
         UpdateKnockBack();
-        
-        //if (hideTime > 5 && hideTime < 5.1f)
-        //{
-        //    Instantiate(bullet);
-        //    bullet.transform.position = firePos.transform.position;
-        //    bullet.transform.forward = firePos.transform.forward;
-        //}
+        if (enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
 
@@ -162,6 +160,25 @@ public class JH_MovingRanger : MonoBehaviour
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bullet")
+        {
+            //OnDamage();
+            enemyHP -= 50;
+            //state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
         }
 
 

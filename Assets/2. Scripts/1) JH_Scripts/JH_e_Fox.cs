@@ -149,9 +149,22 @@ public class JH_e_Fox : MonoBehaviour
         {
             //OnDamage();
             enemyHP -= 50;
+            state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+            
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
 
-        if (collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
+        }
+
+        else if (collision.gameObject.tag == "Player")
         {
             //HP°¨¼Ò
             enemyHP -= 20;
@@ -177,17 +190,17 @@ public class JH_e_Fox : MonoBehaviour
 
 
 
-    void OnDamage()
-    {
+    //void OnDamage()
+    //{
         
-        enemyHP -= 50;
+    //    enemyHP -= 50;
 
-        if (enemyHP <= 0)
-        {
+    //    if (enemyHP <= 0)
+    //    {
             
-            Destroy(this.gameObject);
-        }
-    }
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 
     private void OnDestroy()
     {

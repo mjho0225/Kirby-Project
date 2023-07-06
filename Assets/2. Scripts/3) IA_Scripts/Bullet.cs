@@ -23,9 +23,10 @@ public class Bullet : MonoBehaviour
         //ÆÄÆ¼Å¬
         // GameObject bullet02 = Instantiate(bulletFactory02, firePos02.point, Quaternion.LookRotation(firePos02.normal));
         //Destroy(gameObject, 4);
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            Destroy(gameObject);
-        }
+        //if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        //{
+        //    Destroy(gameObject);
+        //}
+        Destroy(gameObject);
     }
 }
