@@ -359,7 +359,7 @@ public class JH_Item : MonoBehaviour
             }
         }
 
-        if(col.gameObject.tag == "bullet" || (col.gameObject.layer == LayerMask.NameToLayer("Car")))
+        if(col.gameObject.tag == "bullet" || ((col.gameObject.layer == LayerMask.NameToLayer("Car")) && CarController.instance.carState == CarController.CarState.Dash))
         {
             if (iAm == WHO.item_Box )
             {
