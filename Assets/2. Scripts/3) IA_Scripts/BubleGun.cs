@@ -21,7 +21,7 @@ public class BubleGun : MonoBehaviour
         //print("ff" + collision.gameObject);
         if (collision.gameObject.tag == "Ground")
         {
-            rb.AddForce(Vector3.up * 5f, ForceMode.Acceleration);
+            rb.AddForce(Vector3.up * 4f, ForceMode.Acceleration);
         }
     }
 
