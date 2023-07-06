@@ -12,7 +12,7 @@ public class JH_Item : MonoBehaviour
         item_Food,
         item_Waii,
         item_Box,
-
+        item_Flower,
     }
 
     public WHO iAm;
@@ -65,6 +65,8 @@ public class JH_Item : MonoBehaviour
                 break;
             case WHO.item_Box:
                 break;
+            case WHO.item_Flower:
+                break;
         }
 
         switch (scoreCount)
@@ -92,6 +94,12 @@ public class JH_Item : MonoBehaviour
         }
 
     }
+    void IAmFlower()
+    {
+
+
+    }
+
 
     private void IAmWaii()
     {
@@ -105,7 +113,7 @@ public class JH_Item : MonoBehaviour
     private void IAmFood()
     {
 
-
+        JH_ScoreManager.instance.COIN_SCORE++;
 
     }
 
@@ -133,10 +141,16 @@ public class JH_Item : MonoBehaviour
         if(box == Box.Wood1)
         {
             // 1점 짜리 코인 드랍
+
+            //테스트
+            JH_ScoreManager.instance.COIN_SCORE++;
         }
         if (box == Box.Wood2)
         {
             // 5점 짜리 코인 드랍
+
+            //테스트
+            JH_ScoreManager.instance.COIN_SCORE += 5;
         }
         if (box == Box.Iron1)
         {
@@ -156,7 +170,97 @@ public class JH_Item : MonoBehaviour
 
     //트리거 사용할지 or 콜리전 사용할지
 
-    void OnTriggerEnter(Collider col)
+    //void OnTriggerEnter(Collider col)
+    //{
+
+    //    if (me == "Waii")
+    //    {
+    //        iAm = WHO.item_Waii;
+    //    }
+
+    //    if (me == "Food")
+    //    {
+    //        iAm = WHO.item_Food;
+    //    }
+
+    //    if (me == "Coin")
+    //    {
+    //        iAm = WHO.item_Coin;
+    //        if (this.gameObject.name.Contains("Coin1"))
+    //        {
+    //            scoreCount = CountScore.score1;
+    //        }
+    //        if (this.gameObject.name.Contains("Coin5"))
+    //        {
+    //            scoreCount = CountScore.score5;
+    //        }
+    //        if (this.gameObject.name.Contains("Coin10"))
+    //        {
+    //            scoreCount = CountScore.score10;
+    //        }
+    //    }
+    //    if (me == "Box")
+    //    {
+    //        iAm = WHO.item_Box;
+    //        if (this.gameObject.name.Contains("Wood1"))
+    //        {
+    //            box = Box.Wood1;
+    //        }
+    //        if (this.gameObject.name.Contains("Wood2"))
+    //        {
+    //            box = Box.Wood2;
+    //        }
+    //        if (this.gameObject.name.Contains("Iron1"))
+    //        {
+    //            box = Box.Iron1;
+    //        }
+    //        if (this.gameObject.name.Contains("Iron2"))
+    //        {
+    //            box = Box.Iron2;
+    //        }
+    //        if (this.gameObject.name.Contains("Star"))
+    //        {
+    //            box = Box.Star;
+    //        }
+            
+    //    }
+    //    if (me == "Flower")
+    //    { 
+
+    //    }
+
+    //        // 플레이어가 부딪히면
+    //        if (col.gameObject.tag == "Player")
+    //    {
+
+    //        if (iAm == WHO.item_Coin)
+    //        {
+    //            IAmCoin();
+
+    //            //동전 획득 애니메이션
+    //            Destroy(gameObject);
+    //        }
+
+    //        if (iAm == WHO.item_Waii)
+    //        {
+    //            IAmWaii();
+    //        }
+    //        if (iAm == WHO.item_Food)
+    //        {
+    //            IAmFood();
+    //        }
+
+    //        if(iAm == WHO.item_Box)
+    //        {
+    //            IAmBox();
+    //        }
+    //    }
+
+
+    //}
+
+
+    private void OnCollisionEnter(Collision col)
     {
 
         if (me == "Waii")
@@ -208,6 +312,12 @@ public class JH_Item : MonoBehaviour
             {
                 box = Box.Star;
             }
+
+        }
+        if (me == "Flower")
+        {
+            iAm = WHO.item_Flower;
+
         }
 
         // 플레이어가 부딪히면
@@ -231,69 +341,17 @@ public class JH_Item : MonoBehaviour
                 IAmFood();
             }
 
-            if(iAm == WHO.item_Box)
+            if (iAm == WHO.item_Box)
             {
                 IAmBox();
             }
+
+            if (iAm == WHO.item_Flower)
+            {
+                IAmFlower();
+            }
         }
 
-
     }
-
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (me == "Waii")
-    //    {
-    //        iAm = WHO.item_Waii;
-    //    }
-
-    //    if (me == "Food")
-    //    {
-    //        iAm = WHO.item_Food;
-    //    }
-
-    //    if (me == "Coin")
-    //    {
-    //        iAm = WHO.item_Coin;
-    //        if (this.gameObject.name.Contains("Coin1"))
-    //        {
-    //            scoreCount = CountScore.score1;
-    //        }
-    //        if (this.gameObject.name.Contains("Coin5"))
-    //        {
-    //            scoreCount = CountScore.score5;
-    //        }
-    //        if (this.gameObject.name.Contains("Coin10"))
-    //        {
-    //            scoreCount = CountScore.score10;
-    //        }
-    //    }
-
-    //    // 플레이어가 부딪히면
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-
-    //        if (iAm == WHO.item_Coin)
-    //        {
-    //            //동전 획득 애니메이션
-    //            Destroy(gameObject);
-
-    //            IAmCoin();
-    //        }
-
-    //        if (iAm == WHO.item_Waii)
-    //        {
-    //            IAmWaii();
-    //        }
-    //        if (iAm == WHO.item_Food)
-    //        {
-    //            IAmFood();
-    //        }
-
-    //    }
-
-
-    //}
 
 }
