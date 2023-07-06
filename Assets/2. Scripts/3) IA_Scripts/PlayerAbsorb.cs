@@ -96,12 +96,12 @@ public class PlayerAbsorb : MonoBehaviour
         //wall layer만 제외하기
       
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
-        int layerMask = (1 << LayerMask.NameToLayer("Wall"));
-        layerMask = ~layerMask;
-        print(layerMask);
+        //int layerMask = (1 << LayerMask.NameToLayer("Wall"));
+        //layerMask = ~layerMask;
+        //print(layerMask);
         if (Input.GetButton("Fire1"))
         {
-            if (Physics.Raycast(ray, out hitInfo, 200f, layerMask))
+            if (Physics.Raycast(ray, out hitInfo, 200f))
             {
                 currTime += Time.deltaTime;
               
