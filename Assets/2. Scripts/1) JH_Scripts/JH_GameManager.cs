@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class JH_GameManager : MonoBehaviour
 {
-
+    
     public static JH_GameManager instance;
 
 
@@ -15,6 +15,8 @@ public class JH_GameManager : MonoBehaviour
 
     public float sceneTime = 0;
     public bool savePanel_On = false;
+
+    float degree = 0;
     // Start is called before the first frame update
 
     private void Awake()
@@ -24,8 +26,8 @@ public class JH_GameManager : MonoBehaviour
 
     void Start()
     {
+        degree = 0;
         
-
         SavePanel.SetActive(false);
 
     }
@@ -33,6 +35,15 @@ public class JH_GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        degree += Time.deltaTime;
+        if (degree >= 360)
+        {
+            degree = 0;
+        }
+
+        RenderSettings.skybox.SetFloat("_Rotation", degree);
+
+
         if(savePanel_On == true)
         {
             sceneTime += Time.unscaledDeltaTime;

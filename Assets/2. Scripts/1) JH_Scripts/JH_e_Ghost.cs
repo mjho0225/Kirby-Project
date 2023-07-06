@@ -189,9 +189,9 @@ public class JH_e_Ghost : MonoBehaviour
     #endregion
 
 
-    private void OnCollisionEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.tag == "Player" || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
+        if (collision.gameObject.tag == "Player" || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             state = State.KnockBack;
             knockBack = true;
@@ -203,5 +203,6 @@ public class JH_e_Ghost : MonoBehaviour
             rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
         }
     }
+
 
 }
