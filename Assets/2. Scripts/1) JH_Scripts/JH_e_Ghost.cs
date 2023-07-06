@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class JH_e_Ghost : MonoBehaviour
 {
+    public int enemyHP = 100;
 
     public List<Transform> patrol_ghostPos;
 
@@ -81,6 +82,11 @@ public class JH_e_Ghost : MonoBehaviour
 
         changeTime += Time.deltaTime;
         ghostRot.transform.Rotate(Vector3.up * 200f * Time.deltaTime);
+
+        if (enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 
@@ -201,6 +207,26 @@ public class JH_e_Ghost : MonoBehaviour
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 500f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+
+        if (collision.gameObject.tag == "bullet")
+        {
+            //OnDamage();
+            enemyHP -= 50;
+            state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
         }
     }
 

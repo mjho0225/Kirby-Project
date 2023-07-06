@@ -7,7 +7,7 @@ public class JH_e_Gosum : MonoBehaviour
 {
     NavMeshAgent agent;
 
-    int enemyHP = 100;
+    public int enemyHP = 100;
 
     public GameObject targetPlayer;
     public GameObject bullet;
@@ -75,6 +75,11 @@ public class JH_e_Gosum : MonoBehaviour
             //transform.position = Vector3.MoveTowards(transform.position,targetPlayer.transform.position,3*Time.deltaTime);
         }
 
+        if(enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         UpdateKnockBack();
 
     }
@@ -99,22 +104,7 @@ public class JH_e_Gosum : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Bullet" && currentChage == false)
-        {
-            //HP°¨¼Ò
 
-            transform.GetComponent<MeshRenderer>().material.color = Color.white;
-            changeTime = 0;
-            matChange = true;
-
-            //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), 10 * Time.deltaTime);
-            rb.AddForce(-dirPlayer * 250f * Time.deltaTime, ForceMode.Impulse);
-        }
-        
-        
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")
@@ -136,6 +126,26 @@ public class JH_e_Gosum : MonoBehaviour
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
         }
+
+        if (collision.gameObject.tag == "bullet")
+        {
+            //OnDamage();
+            enemyHP -= 20;
+            //state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
+        }
+
     }
 
     void UpdateKnockBack()

@@ -313,7 +313,7 @@ public class JH_Item : MonoBehaviour
             {
                 box = Box.Iron2;
             }
-            if (this.gameObject.name.Contains("Star"))
+            else if (this.gameObject.name.Contains("Star"))
             {
                 box = Box.Star;
             }
@@ -355,15 +355,16 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Flower)
             {
                 IAmFlower();
+                Destroy(this.gameObject);
             }
         }
 
-        if(col.gameObject.tag == "bullet" || col.gameObject.layer == LayerMask.NameToLayer("Car"))
+        if(col.gameObject.tag == "bullet" || (col.gameObject.layer == LayerMask.NameToLayer("Car")))
         {
             if (iAm == WHO.item_Box )
             {
                 IAmBox();
-                Destroy(gameObject);
+                Destroy(this.gameObject);
             }
         }
 

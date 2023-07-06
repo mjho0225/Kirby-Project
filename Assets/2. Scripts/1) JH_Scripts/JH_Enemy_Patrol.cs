@@ -92,6 +92,10 @@ public class JH_Enemy_Patrol : MonoBehaviour
         }
         UpdateKnockBack();
 
+        if(enemyHP <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 
@@ -99,7 +103,21 @@ public class JH_Enemy_Patrol : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet")
         {
-            OnDamage();
+            //OnDamage();
+            enemyHP -= 50;
+            //state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
         }
 
         if (collision.gameObject.tag == "Player")
