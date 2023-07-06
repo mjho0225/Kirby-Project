@@ -286,9 +286,8 @@ public class PlayerController : MonoBehaviour
             //흡수할 경우 넉백이 일어나면 안됨
             rb.AddForce(-dir * (100f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
-            //other.gameObject.GetComponent<JH_e_Fox>().OnDamage();
-            other.gameObject.GetComponent<Enemy02Test>().OnDamage();
-            // OnDamage();
+            
+            OnDamage();
         }
 
     }

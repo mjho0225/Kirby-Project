@@ -99,9 +99,18 @@ public class PlayerAbsorb : MonoBehaviour
               
                 if (currTime > 1.2f)
                 {
-                    absorbItem = hitInfo.collider.gameObject.transform.parent.gameObject;
-                    absorbItemTag = absorbItem.tag;
-                    if (absorbItem.layer == 6)
+                    if(hitInfo.collider.gameObject.layer == 9)
+                    {
+                        absorbItem = hitInfo.collider.gameObject;
+                        absorbItemTag = absorbItem.tag;
+                    }
+                    else
+                    {
+                        absorbItem = hitInfo.collider.gameObject.transform.parent.gameObject;
+                        absorbItemTag = absorbItem.tag;
+                    }
+                
+                    if (absorbItem.layer == 6 || absorbItem.layer == 9)
                     {
                         print("흡입준비 => 흡입시작");
                         state = AbsorbState.Absorbing;
@@ -130,7 +139,7 @@ public class PlayerAbsorb : MonoBehaviour
         OnAbsorbCollider();
         //거리가 5f이내면 강제로 흡입완료 아닐 경우 흡입 대기로 돌아간다.
         float distance = Vector3.Distance(absorbItem.transform.position, transform.position);
-        print("distance" + distance);
+        //print("distance" + distance);
         if (distance < 8f)
         {
            
@@ -216,15 +225,15 @@ public class PlayerAbsorb : MonoBehaviour
             }
         }
 
-        //print("other check" + other.gameObject);
-        //print("layer check" + layer);
+        print("other check" + other.gameObject);
+        print("layer check" + absorbItemTag);
 
         if (other.gameObject == absorbItem)
         {
          
             float distance = Vector3.Distance(absorbItem.transform.position, transform.position);
             //변신 애니메이션 시간 체크 필요
-            if (distance < 0.5f)
+            if (distance < 3f)
             {
                 print("destroy" + absorbItemTag);
                 Destroy(other.gameObject);
