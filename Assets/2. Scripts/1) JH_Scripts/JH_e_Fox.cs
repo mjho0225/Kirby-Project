@@ -144,6 +144,7 @@ public class JH_e_Fox : MonoBehaviour
         if(collision.gameObject.tag == "bullet")
         {
             OnDamage();
+            enemyHP -= 50;
         }
 
         if (collision.gameObject.tag == "Player")
@@ -179,7 +180,7 @@ public class JH_e_Fox : MonoBehaviour
         if (enemyHP <= 0)
         {
             
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
