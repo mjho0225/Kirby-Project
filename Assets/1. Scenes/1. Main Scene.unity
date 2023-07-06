@@ -7409,7 +7409,7 @@ GameObject:
   - component: {fileID: 6849970208090221965}
   - component: {fileID: 6849970208090221966}
   m_Layer: 0
-  m_Name: Cube (17)
+  m_Name: Wood1
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15661,8 +15661,8 @@ GameObject:
   - component: {fileID: 6849970208568924673}
   - component: {fileID: 6849970208568924674}
   m_Layer: 0
-  m_Name: Cube (26)
-  m_TagString: Untagged
+  m_Name: Wood2
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19474,8 +19474,8 @@ GameObject:
   - component: {fileID: 6849970208768316892}
   - component: {fileID: 6849970208768316893}
   m_Layer: 0
-  m_Name: Cube (22)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28268,8 +28268,8 @@ GameObject:
   - component: {fileID: 6849970209134899819}
   - component: {fileID: 6849970209134899820}
   m_Layer: 0
-  m_Name: Cube (24)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31473,8 +31473,8 @@ GameObject:
   - component: {fileID: 6849970209319813702}
   - component: {fileID: 6849970209319813703}
   m_Layer: 0
-  m_Name: Cube (21)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40101,7 +40101,7 @@ GameObject:
   - component: {fileID: 6849970209743567561}
   - component: {fileID: 6849970209743567562}
   m_Layer: 0
-  m_Name: Cube (18)
+  m_Name: Wood1
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43886,8 +43886,8 @@ GameObject:
   - component: {fileID: 6849970209941130014}
   - component: {fileID: 6849970209941130015}
   m_Layer: 0
-  m_Name: Cube (23)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
