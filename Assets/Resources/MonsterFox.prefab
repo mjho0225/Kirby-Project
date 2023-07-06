@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3747815449178201350}
   m_Layer: 8
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: e_fox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 6712429737814638544}
   - component: {fileID: 6712429737814638381}
   - component: {fileID: 6712429737814638380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MonsterFox
-  m_TagString: Untagged
+  m_TagString: e_fox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
