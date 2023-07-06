@@ -90,6 +90,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
                 }
             }
         }
+        UpdateKnockBack();
 
     }
 

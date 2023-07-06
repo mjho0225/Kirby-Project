@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class JH_e_Gosum : MonoBehaviour
 {
+    NavMeshAgent agent;
+
     int enemyHP = 100;
 
     public GameObject targetPlayer;
@@ -27,6 +30,8 @@ public class JH_e_Gosum : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
     }
@@ -61,7 +66,7 @@ public class JH_e_Gosum : MonoBehaviour
         distPlayer = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
 
         //ry = dirPlayer.y;
-        if (distPlayer <= 4)
+        if (distPlayer <= 7)
         {
             //transform.rotation = Quaternion.LookRotation(dirPlayer); //문제있음
             transform.rotation = Quaternion.LookRotation(playerPos); //문제 수정
@@ -83,6 +88,7 @@ public class JH_e_Gosum : MonoBehaviour
         //scaleTime += Time.deltaTime;
         transform.localScale = new Vector3(4, 4, 4);
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //transform.Translate(0, 2, 0);
 
     }
 

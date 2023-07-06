@@ -189,9 +189,9 @@ public class JH_e_Ghost : MonoBehaviour
     #endregion
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collider collision)
     {
-        if (other.tag == "Player")
+        if (collision.tag == "Player" || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             state = State.KnockBack;
             knockBack = true;

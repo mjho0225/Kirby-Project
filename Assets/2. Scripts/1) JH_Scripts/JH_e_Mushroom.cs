@@ -147,7 +147,7 @@ public class JH_e_Mushroom : MonoBehaviour
             OnDamage();
         }
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             //HP°¨¼Ò
             enemyHP -= 20;
