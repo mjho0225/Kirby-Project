@@ -115,7 +115,7 @@ public class JH_Item : MonoBehaviour
     {
 
         // 플레이어 HP 회복
-        PlayerHP.instance.HP += 20;
+        PlayerHP.instance.HP += 2;
 
     }
 
@@ -161,10 +161,13 @@ public class JH_Item : MonoBehaviour
         if (box == Box.Iron2)
         {
             // 10점 짜리 코인 드랍
+
+
         }
         if (box == Box.Star)
         {
             // 빈박스
+
         }
     }
 
@@ -345,12 +348,22 @@ public class JH_Item : MonoBehaviour
 
             if (iAm == WHO.item_Box)
             {
-                IAmBox();
+                //IAmBox();
+
             }
 
             if (iAm == WHO.item_Flower)
             {
                 IAmFlower();
+            }
+        }
+
+        if(col.gameObject.tag == "bullet" || col.gameObject.layer == LayerMask.NameToLayer("Car"))
+        {
+            if (iAm == WHO.item_Box )
+            {
+                IAmBox();
+                Destroy(gameObject);
             }
         }
 

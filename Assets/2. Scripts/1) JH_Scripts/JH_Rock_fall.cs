@@ -71,5 +71,9 @@ public class JH_Rock_fall : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // 플레이어 HP감소
+        if(collision.gameObject.tag == "Player")
+        {
+            PlayerHP.instance.HP -= 5;
+        }
     }
 }
