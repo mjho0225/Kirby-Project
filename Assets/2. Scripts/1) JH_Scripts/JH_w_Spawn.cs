@@ -43,12 +43,13 @@ public class JH_w_Spawn : MonoBehaviour
         if (foxCount.Count == 0)
         {
             currentTime += Time.deltaTime;
+            currentTime = 0;
             if (currentTime >= spawnTime)
             {
                 GameObject fox = Instantiate(e_Fox, this.transform.position, Quaternion.identity);
                 fox.GetComponent<JH_e_Fox>().mySpawner = this;
                 foxCount.Add(fox);
-                currentTime = 0;
+                
             }
         }
         

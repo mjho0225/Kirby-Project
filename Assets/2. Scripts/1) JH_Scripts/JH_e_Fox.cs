@@ -103,7 +103,7 @@ public class JH_e_Fox : MonoBehaviour
 
             transform.rotation = Quaternion.LookRotation(playerPos);
             //transform.Translate(-playerPos * 0.5f * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, 2f * Time.deltaTime);
         }
         else if(distPlayer > 7 && knockBack == false)
         {
@@ -186,6 +186,7 @@ public class JH_e_Fox : MonoBehaviour
     private void OnDestroy()
     {
         mySpawner.DestroyedFox(this);
+        
     }
     
 
