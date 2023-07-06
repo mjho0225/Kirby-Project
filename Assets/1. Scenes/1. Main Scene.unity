@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 1795298909}
   m_Layer: 0
   m_Name: Flower (3)
-  m_TagString: Untagged
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1292,8 +1292,8 @@ GameObject:
   - component: {fileID: 6849970207852455990}
   - component: {fileID: 6849970207852455991}
   m_Layer: 0
-  m_Name: Box (8)
-  m_TagString: Untagged
+  m_Name: Star (1)
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1700,7 +1700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalScale.y
@@ -1708,19 +1708,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65
+      value: 68.4
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 23.2
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.01
+      value: 113.04
       objectReference: {fileID: 0}
     - target: {fileID: 4932845703815896, guid: ab143f35dec115740bdcd10ea7a9e32c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3110,6 +3110,10 @@ PrefabInstance:
     - target: {fileID: 1849076724188928, guid: 1aef4c0aaa73f7d4f9c0ef7e20fa1ce9, type: 3}
       propertyPath: m_Name
       value: Wood2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849076724188928, guid: 1aef4c0aaa73f7d4f9c0ef7e20fa1ce9, type: 3}
+      propertyPath: m_TagString
+      value: Box
       objectReference: {fileID: 0}
     - target: {fileID: 4624339851645502, guid: 1aef4c0aaa73f7d4f9c0ef7e20fa1ce9, type: 3}
       propertyPath: m_RootOrder
@@ -6913,7 +6917,7 @@ GameObject:
   - component: {fileID: 6849970208189105674}
   m_Layer: 0
   m_Name: Flower (2)
-  m_TagString: Untagged
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7331,7 +7335,7 @@ GameObject:
   - component: {fileID: 6849970208212820575}
   m_Layer: 0
   m_Name: ItemPos (4)
-  m_TagString: Untagged
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7343,7 +7347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6849970208212820564}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
@@ -11549,7 +11553,7 @@ GameObject:
   - component: {fileID: 6849970208437320716}
   m_Layer: 0
   m_Name: Food (1)
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13129,7 +13133,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!33 &6849970208563126648
 MeshFilter:
@@ -13220,15 +13224,31 @@ GameObject:
   - component: {fileID: 6849970208563126651}
   - component: {fileID: 6849970208563126648}
   - component: {fileID: 6849970208563126649}
+  - component: {fileID: 6849970208563126653}
   - component: {fileID: 6849970208563126650}
   - component: {fileID: 6849970208563126631}
   m_Layer: 0
-  m_Name: ItemPos (6)
-  m_TagString: Untagged
+  m_Name: Coin5 (2)
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6849970208563126653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849970208563126652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!33 &6849970208563565313
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16270,14 +16290,30 @@ GameObject:
   - component: {fileID: 6849970208701613950}
   - component: {fileID: 6849970208701613947}
   - component: {fileID: 6849970208701613948}
+  - component: {fileID: 6849970208701613952}
   - component: {fileID: 6849970208701613949}
   m_Layer: 0
-  m_Name: ItemPos (3)
-  m_TagString: Untagged
+  m_Name: Food (2)
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6849970208701613952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849970208701613951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!4 &6849970208702526392
 Transform:
   m_ObjectHideFlags: 0
@@ -19435,8 +19471,8 @@ GameObject:
   - component: {fileID: 6849970208854475824}
   - component: {fileID: 6849970208854475825}
   m_Layer: 0
-  m_Name: Box (5)
-  m_TagString: Untagged
+  m_Name: Wood1 (5)
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23627,7 +23663,7 @@ GameObject:
   - component: {fileID: 6849970209039409012}
   - component: {fileID: 6849970209039409013}
   m_Layer: 0
-  m_Name: Box (7)
+  m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24500,8 +24536,8 @@ GameObject:
   - component: {fileID: 6849970209062153448}
   - component: {fileID: 6849970209062153449}
   m_Layer: 0
-  m_Name: Box (3)
-  m_TagString: Untagged
+  m_Name: Wood1 (4)
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31971,7 +32007,7 @@ GameObject:
   - component: {fileID: 6849970209438785499}
   m_Layer: 0
   m_Name: Flower (1)
-  m_TagString: Untagged
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34001,8 +34037,8 @@ GameObject:
   - component: {fileID: 6849970209545416720}
   - component: {fileID: 6849970209545416721}
   m_Layer: 0
-  m_Name: Box (9)
-  m_TagString: Untagged
+  m_Name: Star (2)
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36515,14 +36551,47 @@ GameObject:
   - component: {fileID: 6849970209672744440}
   - component: {fileID: 6849970209672744421}
   - component: {fileID: 6849970209672744422}
+  - component: {fileID: 6849970209672744443}
   - component: {fileID: 6849970209672744423}
+  - component: {fileID: 6849970209672744442}
   m_Layer: 0
   m_Name: ItemPos (5)
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &6849970209672744442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849970209672744441}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
+--- !u!114 &6849970209672744443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849970209672744441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!54 &6849970209674867425
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38862,6 +38931,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1228854627199612, guid: d2dbc9b09b13e084a98079c245d4c928, type: 3}
+      propertyPath: m_TagString
+      value: Box
+      objectReference: {fileID: 0}
     - target: {fileID: 4873718609230712, guid: d2dbc9b09b13e084a98079c245d4c928, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -41036,7 +41109,7 @@ GameObject:
   - component: {fileID: 6849970209865268525}
   m_Layer: 0
   m_Name: Wood 1
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

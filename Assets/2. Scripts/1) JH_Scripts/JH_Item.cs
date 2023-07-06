@@ -97,6 +97,7 @@ public class JH_Item : MonoBehaviour
     void IAmFlower()
     {
 
+        JH_ScoreManager.instance.COIN_SCORE++;
 
     }
 
@@ -113,7 +114,8 @@ public class JH_Item : MonoBehaviour
     private void IAmFood()
     {
 
-        JH_ScoreManager.instance.COIN_SCORE++;
+        // 플레이어 HP 회복
+        PlayerHP.instance.HP += 20;
 
     }
 
