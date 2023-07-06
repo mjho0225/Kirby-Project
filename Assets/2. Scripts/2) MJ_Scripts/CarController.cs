@@ -16,6 +16,12 @@ using EZCameraShake;
 // 자동으로 대쉬를 하게 만들고 싶다.
 public class CarController : MonoBehaviour
 {
+    public static CarController instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public enum CarState
     {
         Move,
