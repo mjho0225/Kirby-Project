@@ -29,9 +29,11 @@ public class PlayerAbsorb : MonoBehaviour
        Absorbed,
     }
 
-    float currTime2; 
     public AbsorbState state = AbsorbState.Ready;
+
+
     bool getRanger = false;
+    float currTime2;
     void Start()
     {
         absorbTrigger = GameObject.Find("AbsorbTrigger");
@@ -90,10 +92,16 @@ public class PlayerAbsorb : MonoBehaviour
 
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hitInfo;
+
+        //wall layer만 제외하기
+      
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
+        int layerMask = (1 << LayerMask.NameToLayer("Wall"));
+        layerMask = ~layerMask;
+        print(layerMask);
         if (Input.GetButton("Fire1"))
         {
-            if (Physics.Raycast(ray, out hitInfo))
+            if (Physics.Raycast(ray, out hitInfo, 200f, layerMask))
             {
                 currTime += Time.deltaTime;
               
@@ -110,7 +118,7 @@ public class PlayerAbsorb : MonoBehaviour
                         absorbItemTag = absorbItem.tag;
                     }
                 
-                    if (absorbItem.layer == 6 || absorbItem.layer == 9)
+                    if (absorbItem.layer == 6 || absorbItem.layer == 9 || absorbItem.layer == 8)
                     {
                         print("흡입준비 => 흡입시작");
                         state = AbsorbState.Absorbing;
@@ -140,7 +148,7 @@ public class PlayerAbsorb : MonoBehaviour
         //거리가 5f이내면 강제로 흡입완료 아닐 경우 흡입 대기로 돌아간다.
         float distance = Vector3.Distance(absorbItem.transform.position, transform.position);
         //print("distance" + distance);
-        if (distance < 8f)
+        if (distance < 4f)
         {
            
             Vector3 dir = transform.position;

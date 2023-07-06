@@ -10,7 +10,7 @@ public class Bullet02 : MonoBehaviour
     void Start()
     {
         Rigidbody bulletRb = GetComponent<Rigidbody>();
-        bulletRb.velocity = transform.forward * 30;
+        bulletRb.velocity = transform.forward * 10;
 
     }
 

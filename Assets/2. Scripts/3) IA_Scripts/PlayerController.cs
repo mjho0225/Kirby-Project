@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool isGuard = false;
 
     float currTime;
-    int damage = 5;
+    int damage = 2;
 
     float rx;
     float ry;
@@ -89,21 +89,6 @@ public class PlayerController : MonoBehaviour
         {
             Guard();
         }
-
-        //isAbsorb = GetComponent<PlayerAbsorb>().isAbsorb;
-
-
-        //if(attackState == AttackState.RANGER && Fire2)
-        //{
-        //    Vector3 posZ = transform.position;
-        //    posZ.z += 3;
-        //    GameObject go = Instantiate(bubleGun, posZ, Quaternion.identity);
-        //    Rigidbody rb = go.GetComponent<Rigidbody>();
-        //    rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
-
-        //    ChangeAbsorb();
-        //}
-
 
     }
 
@@ -284,10 +269,12 @@ public class PlayerController : MonoBehaviour
             Vector3 dir = transform.position;
             //넉백일 경우와 아닐경우 분리
             //흡수할 경우 넉백이 일어나면 안됨
-            rb.AddForce(-dir * (100f * Time.deltaTime), ForceMode.Impulse);
+            rb.AddForce(-dir * (50f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
-            
-            OnDamage();
+            if(!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
+            {
+                OnDamage();
+            }
         }
 
     }
@@ -305,6 +292,7 @@ public class PlayerController : MonoBehaviour
     {
         print("DIE");
         Destroy(gameObject, 2);
+        
     }
 
     //공격받는 스크립트 따로 만들게 되면 위치 옮기기
@@ -313,7 +301,7 @@ public class PlayerController : MonoBehaviour
         //임시로 두번 맞으면 죽음
         //대쉬 상태일 때도 무적!!
         if (!isGuard || isDash) playerHP.HP -= damage;
-        if(playerHP.HP < 0)
+        if (playerHP.HP < 0)
         {
             Die();
         }

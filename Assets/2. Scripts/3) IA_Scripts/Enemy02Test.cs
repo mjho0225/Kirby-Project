@@ -183,12 +183,13 @@ public class Enemy02Test : MonoBehaviour
 
             state = State.KnockBack;
             knockBack = true;
+            print("col");
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeTime = 0;
             matChange = true;
 
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
-            rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
+            rb.AddForce(-dirPlayer * 5f * Time.deltaTime, ForceMode.Impulse);
         }
 
 

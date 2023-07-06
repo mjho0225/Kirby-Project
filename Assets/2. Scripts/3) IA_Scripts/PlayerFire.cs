@@ -23,6 +23,7 @@ public class PlayerFire : MonoBehaviour
 
     float currTime = 0;
     public RawImage img;
+    public RawImage starImg;
 
     LineRenderer lineRenderer;
     float lineWidth = 0.1f;
@@ -40,6 +41,8 @@ public class PlayerFire : MonoBehaviour
     GameObject particle;
     int particleCount;
 
+    
+
     public GameObject bubleGun;
     void Start()
     {
@@ -50,6 +53,8 @@ public class PlayerFire : MonoBehaviour
         attackState = AttackState.shot;
         rb = GetComponentInParent<Rigidbody>();
         rb.isKinematic = false;
+        img.enabled = false;
+        starImg.enabled = false;
     }
 
     void GetInput()
@@ -111,6 +116,16 @@ public class PlayerFire : MonoBehaviour
         SphereCollider mesh_child = GetComponent<SphereCollider>();
         mesh_child.enabled = false;
     }
+
+    void StartLockOn()
+    {
+        
+    }
+
+    private void ResetLockOn()
+    {
+       
+    }
     private void ChargeShot()
     {
         print("ChargeShot");
@@ -122,23 +137,43 @@ public class PlayerFire : MonoBehaviour
             particleCount++;
         }
         isCharge = true;
-        img.enabled = true;
+    
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         lineRenderer.enabled = true;
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
 
-        if (Physics.Raycast(ray, out hit))
+        int layerMask = (1 << LayerMask.NameToLayer("Wall"));
+        layerMask = ~layerMask;
+        print(layerMask);
+        if (Physics.Raycast(ray, out hit, 200f, layerMask))
         {
             print("hitInfo" + hit.point);
             Vector3 v3Pos = ray.GetPoint(hit.distance);
 
             Transform playerPos = transform;
             lineRenderer.SetPosition(0, playerPos.position);
-            lineRenderer.SetPosition(1, hit.point); // lineRenderer 1번째 target position 설정
-            //img.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            // lineRenderer 1번째 target position 설정
+                                                    //img.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+           
+            //라곤
+            if(hit.collider.gameObject.layer == 6)
+            {
+                //과녁 이펙트 에너미 가운데
+                lineRenderer.SetPosition(1, hit.collider.gameObject.transform.position);
+                img.enabled = false;
+                starImg.enabled = true;
+                starImg.transform.position = hit.collider.gameObject.transform.position;
 
-            img.transform.position = lineRenderer.GetPosition(1);
+            }
+            else
+            {
+                lineRenderer.SetPosition(1, hit.point);
+                img.enabled = true;
+                starImg.enabled = false;
+                img.transform.position = lineRenderer.GetPosition(1);
+            }
+
             firePos02 = hit.point;
         }
 
@@ -152,6 +187,7 @@ public class PlayerFire : MonoBehaviour
         lineRenderer.enabled = false;
         isCharge = false;
         img.enabled = false;
+        starImg.enabled = false;
         particleCount = 0;
 
 
@@ -171,8 +207,8 @@ public class PlayerFire : MonoBehaviour
         Destroy(particle, 2f); 
         print("발사2");
         Vector3 dir = transform.position;
-        dir.y += 1;
-        dir.x += 1;
+        //dir.y += 1;
+        //dir.x += 1;
         GameObject bullet02 = Instantiate(bulletFactory02, dir, Quaternion.LookRotation(firePos02 - transform.position));
       
         currTime += Time.deltaTime;
