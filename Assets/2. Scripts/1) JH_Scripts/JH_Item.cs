@@ -326,7 +326,7 @@ public class JH_Item : MonoBehaviour
         }
 
         // 플레이어가 부딪히면
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" )
         {
 
             if (iAm == WHO.item_Coin)
