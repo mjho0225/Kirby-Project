@@ -19,8 +19,8 @@ public class JH_e_Gosum : MonoBehaviour
 
     float changeTime = 0; // 변신 초 계산
     //float scaleTime = 0; // 스케일 커지는 초 계산
-    float changeColor = 0;
-    bool currentChage = false; // 현재 변신 상태 false = 변신하지 않은 상태 | true = 변신 상태
+    public float changeColor = 0;
+    public bool currentChage = false; // 현재 변신 상태 false = 변신하지 않은 상태 | true = 변신 상태
     bool matChange = false;
 
     Rigidbody rb;
