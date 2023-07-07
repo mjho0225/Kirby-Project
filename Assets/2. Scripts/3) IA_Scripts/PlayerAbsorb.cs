@@ -178,25 +178,25 @@ public class PlayerAbsorb : MonoBehaviour
             switch (absorbItemTag)
             {
                 case "e_ranger":
-                    RName = "Moving_Ranger";
+                    RName = "Moving_Ranger_B";
                     break;
                 case "e_fox":
-                    RName = "MonsterFox";
+                    RName = "MonsterFox_B";
                     break;
                 case "e_mush":
-                    RName = "Mush";
+                    RName = "Mush_B";
                     break;
                 case "e_ghost":
-                    RName = "GhostPos";
+                    RName = "GhostPos_B";
                     break;
                 case "e_bomb":
-                    RName = "Mons_Bomb";
+                    RName = "Mons_Bomb_B";
                     break;
                 case "e_bird":
                     RName = ""; //새 몬스터는 아직 미정
                     break;
                 case "e_gosum":
-                    RName = "Gosum";
+                    RName = "Gosum_B";
                     break;
                 default:
                     //공격기 없는 기본 에너미들
