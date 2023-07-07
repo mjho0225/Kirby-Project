@@ -92,7 +92,8 @@ public class PlayerFire : MonoBehaviour
             //UpdateClear();
         }
 
-        if (fire2D)
+        //½î´Â Áß¿¡´Â °ø°Ý±â ¸ø ¹ñÀ½
+        if (!(isCharge) &&  fire2D)
         {
             Vector3 posZ = transform.position;
             posZ.z += 2;
@@ -140,6 +141,7 @@ public class PlayerFire : MonoBehaviour
     
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         lineRenderer.enabled = true;
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
 
@@ -157,7 +159,7 @@ public class PlayerFire : MonoBehaviour
                                                     //img.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
            
             //¶ó°ï
-            if(hit.collider.gameObject.layer == 6)
+            if(hit.collider.gameObject.layer == 8)
             {
                 //°ú³á ÀÌÆåÆ® ¿¡³Ê¹Ì °¡¿îµ¥
                 lineRenderer.SetPosition(1, hit.collider.gameObject.transform.position);

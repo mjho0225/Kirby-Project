@@ -261,15 +261,17 @@ public class PlayerController : MonoBehaviour
             isLadder = true;
 
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Absorb"))
         {
+            print("eTrigger%%%%%%%%%%%");
            
             //박치기 = 서로피격
             //print("damage 함수처리");
-            Vector3 dir = transform.position;
+            Vector3 dir = transform.position  - other.gameObject.transform.position;
             //넉백일 경우와 아닐경우 분리
             //흡수할 경우 넉백이 일어나면 안됨
-            rb.AddForce(-dir * (50f * Time.deltaTime), ForceMode.Impulse);
+            rb.AddForce(dir * (150f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
             if(!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
             {
