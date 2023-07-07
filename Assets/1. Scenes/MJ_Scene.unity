@@ -1202,10 +1202,11 @@ GameObject:
   - component: {fileID: 132981236}
   - component: {fileID: 132981239}
   - component: {fileID: 132981238}
+  - component: {fileID: 132981240}
   - component: {fileID: 132981237}
   m_Layer: 0
-  m_Name: Cube (15)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1288,6 +1289,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132981235}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &132981240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132981235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &150638353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,10 +1412,11 @@ GameObject:
   - component: {fileID: 160764967}
   - component: {fileID: 160764966}
   - component: {fileID: 160764965}
+  - component: {fileID: 160764968}
   - component: {fileID: 160764964}
   m_Layer: 0
-  m_Name: box (1)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1482,6 +1499,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &160764968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160764963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &161365096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,10 +1525,11 @@ GameObject:
   - component: {fileID: 161365100}
   - component: {fileID: 161365099}
   - component: {fileID: 161365098}
+  - component: {fileID: 161365101}
   - component: {fileID: 161365097}
   m_Layer: 0
-  m_Name: box
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1579,6 +1612,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &161365101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161365096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &174718700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,10 +2123,11 @@ GameObject:
   - component: {fileID: 189205592}
   - component: {fileID: 189205595}
   - component: {fileID: 189205594}
+  - component: {fileID: 189205596}
   - component: {fileID: 189205593}
   m_Layer: 0
-  m_Name: Cube (17)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2161,6 +2210,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189205591}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &189205596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189205591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &198754877
 GameObject:
   m_ObjectHideFlags: 0
@@ -4059,10 +4123,11 @@ GameObject:
   - component: {fileID: 433601308}
   - component: {fileID: 433601307}
   - component: {fileID: 433601306}
+  - component: {fileID: 433601309}
   - component: {fileID: 433601305}
   m_Layer: 0
-  m_Name: box (6)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4145,6 +4210,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &433601309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433601304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &477200583
 GameObject:
   m_ObjectHideFlags: 0
@@ -7374,10 +7454,11 @@ GameObject:
   - component: {fileID: 800898004}
   - component: {fileID: 800898007}
   - component: {fileID: 800898006}
+  - component: {fileID: 800898008}
   - component: {fileID: 800898005}
   m_Layer: 0
-  m_Name: Cube (26)
-  m_TagString: Untagged
+  m_Name: Wood1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7460,6 +7541,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800898003}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &800898008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800898003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &803657869
 GameObject:
   m_ObjectHideFlags: 0
@@ -8004,10 +8100,11 @@ GameObject:
   - component: {fileID: 837575021}
   - component: {fileID: 837575020}
   - component: {fileID: 837575019}
+  - component: {fileID: 837575022}
   - component: {fileID: 837575018}
   m_Layer: 0
-  m_Name: box (3)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8090,6 +8187,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &837575022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837575017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &840657071
 GameObject:
   m_ObjectHideFlags: 0
@@ -8229,10 +8341,11 @@ GameObject:
   - component: {fileID: 869938185}
   - component: {fileID: 869938188}
   - component: {fileID: 869938187}
+  - component: {fileID: 869938189}
   - component: {fileID: 869938186}
   m_Layer: 0
-  m_Name: Cube (22)
-  m_TagString: Untagged
+  m_Name: Wood1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8315,6 +8428,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869938184}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &869938189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869938184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &874318498
 GameObject:
   m_ObjectHideFlags: 3
@@ -10408,7 +10536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.9, y: -19.7}
+  m_AnchoredPosition: {x: -8.900024, y: -19.700012}
   m_SizeDelta: {x: 60, y: 15}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1084096462
@@ -12443,7 +12571,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   m_OnObjectExit:
-    m_Action: 0
+    m_Action: 3
     m_Target: {fileID: 1859455194}
     m_BoostAmount: 0
     m_StartTime: 0
@@ -12574,8 +12702,8 @@ GameObject:
   - component: {fileID: 1224774588}
   - component: {fileID: 1224774587}
   m_Layer: 0
-  m_Name: Cube (24)
-  m_TagString: Untagged
+  m_Name: Wood1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13282,10 +13410,11 @@ GameObject:
   - component: {fileID: 1275256104}
   - component: {fileID: 1275256103}
   - component: {fileID: 1275256102}
+  - component: {fileID: 1275256105}
   - component: {fileID: 1275256101}
   m_Layer: 0
-  m_Name: box (7)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13368,6 +13497,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 12.03, z: 0}
+--- !u!114 &1275256105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275256100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &1276270481
 GameObject:
   m_ObjectHideFlags: 0
@@ -15521,10 +15665,11 @@ GameObject:
   - component: {fileID: 1529602847}
   - component: {fileID: 1529602846}
   - component: {fileID: 1529602845}
+  - component: {fileID: 1529602848}
   - component: {fileID: 1529602844}
   m_Layer: 0
-  m_Name: box
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15607,6 +15752,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &1529602848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529602843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &1550662070
 GameObject:
   m_ObjectHideFlags: 0
@@ -15753,10 +15913,11 @@ GameObject:
   - component: {fileID: 1559946127}
   - component: {fileID: 1559946130}
   - component: {fileID: 1559946129}
+  - component: {fileID: 1559946131}
   - component: {fileID: 1559946128}
   m_Layer: 0
-  m_Name: Cube (21)
-  m_TagString: Untagged
+  m_Name: Wood1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15839,6 +16000,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559946126}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1559946131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559946126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &1564517940
 GameObject:
   m_ObjectHideFlags: 0
@@ -16959,7 +17135,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   m_OnObjectExit:
-    m_Action: 0
+    m_Action: 3
     m_Target: {fileID: 659849825}
     m_BoostAmount: 0
     m_StartTime: 0
@@ -17475,10 +17651,11 @@ GameObject:
   - component: {fileID: 1773444283}
   - component: {fileID: 1773444282}
   - component: {fileID: 1773444281}
+  - component: {fileID: 1773444284}
   - component: {fileID: 1773444280}
   m_Layer: 0
-  m_Name: box (2)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17561,6 +17738,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &1773444284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773444279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &1784268342
 GameObject:
   m_ObjectHideFlags: 0
@@ -17960,10 +18152,11 @@ GameObject:
   - component: {fileID: 1801288415}
   - component: {fileID: 1801288414}
   - component: {fileID: 1801288413}
+  - component: {fileID: 1801288416}
   - component: {fileID: 1801288412}
   m_Layer: 0
-  m_Name: box (4)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18046,6 +18239,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &1801288416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801288411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &1819113557
 GameObject:
   m_ObjectHideFlags: 0
@@ -19916,10 +20124,11 @@ GameObject:
   - component: {fileID: 1975196444}
   - component: {fileID: 1975196447}
   - component: {fileID: 1975196446}
+  - component: {fileID: 1975196448}
   - component: {fileID: 1975196445}
   m_Layer: 0
-  m_Name: Cube (18)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20002,6 +20211,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975196443}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1975196448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975196443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &2004015551
 GameObject:
   m_ObjectHideFlags: 0
@@ -20207,10 +20431,11 @@ GameObject:
   - component: {fileID: 2011362410}
   - component: {fileID: 2011362409}
   - component: {fileID: 2011362408}
+  - component: {fileID: 2011362411}
   - component: {fileID: 2011362407}
   m_Layer: 0
-  m_Name: box (5)
-  m_TagString: Untagged
+  m_Name: Iron1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20293,6 +20518,21 @@ Transform:
   m_Father: {fileID: 769134167}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &2011362411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011362406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!1 &2012682256
 GameObject:
   m_ObjectHideFlags: 0
@@ -20825,9 +21065,10 @@ GameObject:
   - component: {fileID: 2045930186}
   - component: {fileID: 2045930185}
   - component: {fileID: 2045930184}
+  - component: {fileID: 2045930187}
   m_Layer: 0
-  m_Name: Cube (23)
-  m_TagString: Untagged
+  m_Name: Wood1
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20910,6 +21151,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045930182}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2045930187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045930182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iAm: 0
+  scoreCount: 0
+  box: 0
 --- !u!198 &2077306047 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7649857661119300694, guid: 3ea9df7c953288645a4cda5800eb5f03, type: 3}
