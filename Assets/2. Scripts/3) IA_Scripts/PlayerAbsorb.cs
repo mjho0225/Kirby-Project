@@ -16,7 +16,7 @@ public class PlayerAbsorb : MonoBehaviour
 
     bool isEmpty = true;
     //int layer;
-    float power = 10f;
+    float power = 20f;
     [SerializeField] public GameObject absorbItem;
     string RName;
     GameObject absorbTrigger;
@@ -51,6 +51,7 @@ public class PlayerAbsorb : MonoBehaviour
         isEmpty = true;
         currTime = 0;
         currTime2 = 0;
+    
     }
 
     private void Update()
@@ -84,7 +85,8 @@ public class PlayerAbsorb : MonoBehaviour
        
        
     }
-
+    [SerializeField]
+    private LayerMask layerMask;
     private void UpdateReady()
     {
         //콜라이더 바꾸기
@@ -95,21 +97,28 @@ public class PlayerAbsorb : MonoBehaviour
 
         //wall layer만 제외하기
       
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
+        //Debug.DrawRay(ray.origin, ray.direction, Color.blue);
         int layerMask = (1 << LayerMask.NameToLayer("Player"));
         layerMask = ~layerMask;
         //print(layerMask);
+        ;
         if (Input.GetButton("Fire1"))
         {
-            if (Physics.Raycast(ray, out hitInfo, 200f, layerMask))
+            //
+            //Physics.SphereCast
+            if (Physics.SphereCast(ray.origin, 3f, ray.direction, out hitInfo, 200f, layerMask, QueryTriggerInteraction.UseGlobal))
+                //if (Physics.SphereCast(ray.origin, 50f, ray.direction, out hitInfo, 200f, layerMask))
+            //if (Physics.Raycast(ray, out hitInfo, 200f, layerMask))
             {
+
+
                 currTime += Time.deltaTime;
               
-                if (currTime > 1.2f)
+                if (currTime > 0.5f)
                 {
+                    GetComponentInParent<PlayerController>().speed = 2f;
                     print(hitInfo.collider.gameObject.layer);
-                    
-                    if(hitInfo.collider.gameObject.layer == 9)
+                    if (hitInfo.collider.gameObject.layer == 9)
                     {
                         absorbItem = hitInfo.collider.gameObject;
                         absorbItemTag = absorbItem.tag;
@@ -145,6 +154,7 @@ public class PlayerAbsorb : MonoBehaviour
     private void UpdateAbsorbing()
     {
 
+    
         //콜라이더 바꾸기
         OnAbsorbCollider();
         //거리가 5f이내면 강제로 흡입완료 아닐 경우 흡입 대기로 돌아간다.
@@ -172,52 +182,77 @@ public class PlayerAbsorb : MonoBehaviour
     private void UpdateAbsorbed()
     {
         OffAbsorbCollider();
-     
+        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         rb.isKinematic = false;
             //먹는 애니메이션 진행 후
-            switch (absorbItemTag)
-            {
-                case "e_ranger":
-                    RName = "Moving_Ranger_B";
-                    break;
-                case "e_fox":
-                    RName = "MonsterFox_B";
-                    break;
-                case "e_mush":
-                    RName = "Mush_B";
-                    break;
-                case "e_ghost":
-                    RName = "GhostPos_B";
-                    break;
-                case "e_bomb":
-                    RName = "Mons_Bomb_B";
-                    break;
-                case "e_bird":
-                    RName = ""; //새 몬스터는 아직 미정
-                    break;
-                case "e_gosum":
-                    RName = "Gosum_B";
-                    break;
-                default:
-                    //공격기 없는 기본 에너미들
-                    break;
-            }
+            //switch (absorbItemTag)
+            //{
+            //case "e_ranger":
+            //    RName = "Moving_Ranger_B";
+            //    break;
+            //case "e_fox":
+            //    RName = "MonsterFox_B";
+            //    break;
+            //case "e_mush":
+            //    RName = "Mush_B";
+            //    break;
+            //case "e_ghost":
+            //    RName = "GhostPos_B";
+            //    break;
+            //case "e_bomb":
+            //    RName = "Mons_Bomb_B";
+            //    break;
+            //case "e_bird":
+            //    RName = ""; //새 몬스터는 아직 미정
+            //    break;
+            //case "e_gosum":
+            //    RName = "Gosum_B";
+            //    break;
+            //default:
+            //    //공격기 없는 기본 에너미들
+            //    break;
+            //case "e_ranger":
+            //    RName = "Moving_Ranger";
+            //    break;
+            //case "e_fox":
+            //    RName = "MonsterFox";
+            //    break;
+            //case "e_mush":
+            //    RName = "Mush";
+            //    break;
+            //case "e_ghost":
+            //    RName = "GhostPos";
+            //    break;
+            //case "e_bomb":
+            //    RName = "Mons_Bomb";
+            //    break;
+            //case "e_bird":
+            //    RName = ""; //새 몬스터는 아직 미정
+            //    break;
+            //case "e_gosum":
+            //    RName = "Gosum";
+            //    break;
+            //default:
+            //    //공격기 없는 기본 에너미들
+            //    break;
+            
+        //}
            
             if (Input.GetButtonDown("Fire1") && !(getRanger))
             {
-
-               
+                GetComponentInParent<PlayerController>().speed = 5f;
                 print(absorbItemTag  + ": 먹은 에너미 발사");
-                GameObject obj = Resources.Load<GameObject>(RName);
+            //GameObject obj = Resources.Load<GameObject>(RName);
+                GameObject obj = Resources.Load<GameObject>("BubbleMonster");
                 Vector3 posZ = transform.position;
                 posZ.z += 2;
 
                 GameObject go = Instantiate(obj, posZ, Quaternion.identity);
                 Rigidbody rb = go.GetComponent<Rigidbody>();
                 rb.AddForce(transform.forward * power, ForceMode.Impulse);
-
-                //아이템 비우기
-                Reset();
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            //아이템 비우기
+            Reset();
 
             }
      
@@ -251,6 +286,7 @@ public class PlayerAbsorb : MonoBehaviour
            
                 if (absorbItemTag == "e_ranger")
                 {
+                    GetComponentInParent<PlayerController>().speed = 6f;
                     getRanger = true;
                  
                 }

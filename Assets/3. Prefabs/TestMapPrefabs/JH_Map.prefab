@@ -5855,7 +5855,7 @@ GameObject:
   - component: {fileID: 851876273538988353}
   - component: {fileID: 851876273538988352}
   - component: {fileID: 851876273538988359}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InvWall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -7194,7 +7194,7 @@ GameObject:
   - component: {fileID: 851876273619144775}
   - component: {fileID: 851876273619144774}
   - component: {fileID: 851876273619144773}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InvWall1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -8182,6 +8182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
   knockBack: 0
@@ -14991,7 +14992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.9, y: -19.7}
+  m_AnchoredPosition: {x: -8.900024, y: -19.700012}
   m_SizeDelta: {x: 60, y: 15}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &851876274094339363
@@ -15044,7 +15045,7 @@ GameObject:
   - component: {fileID: 851876274094499320}
   - component: {fileID: 851876274094499327}
   - component: {fileID: 851876274094499326}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InvWall
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -19286,7 +19287,7 @@ GameObject:
   - component: {fileID: 851876274277177088}
   - component: {fileID: 851876274277177095}
   - component: {fileID: 851876274277177094}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InvWall1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -19676,6 +19677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
   knockBack: 0
@@ -20522,6 +20524,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be0a5ea31418414e99443c187e88543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideWall: {fileID: 0}
+  guideWay: []
+  hit: 0
 --- !u!111 &851876274323001121
 Animation:
   m_ObjectHideFlags: 0
@@ -32899,6 +32904,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime1: 0
+  area1Start: 0
+  bigRock: 0
+  area4Start: 0
+  finishRock: 0
   RockArea1:
   - {fileID: 851876275286150351}
   - {fileID: 851876273430062922}

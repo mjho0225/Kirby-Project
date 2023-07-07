@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     bool space, shift, shiftUP;
 
     public float jumpPower = 5f;
-    public float speed = 5f;
+    public float speed = 7f;
     float maxHeight = 5f; //현재 커비 위치에서 4.5배
     int jumpCnt;
     int maxJumpCnt = 20;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool isGuard = false;
 
     float currTime;
-    int damage = 2;
+    int damage = 1;
 
     float rx;
     float ry;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     PlayerState state;
     public AttackState attackState = AttackState.ABSORB;
     public GameObject gun;
-
+    PlayerFire playerFire;
 
     void Start()
     {
@@ -61,36 +61,12 @@ public class PlayerController : MonoBehaviour
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
        
+       
     }
 
+    bool isAbsorbed;
 
-
-    // Update is called once per frame 
-    void Update()
-    {
-
-        GetInput();
-        if (isLadder)
-        {
-            rb.useGravity = false;
-            MoveUp();
-        }
-        else
-        {
-            rb.useGravity = true;
-            Move();
-        }
-
-        if (state == PlayerState.BASIC)
-        {
-            Jump();
-        }
-        else if (state == PlayerState.GUARD)
-        {
-            Guard();
-        }
-
-    }
+    
 
     public void ChangeRanger()
     {
@@ -111,6 +87,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        GetInput();
+        if (isLadder)
+        {
+            rb.useGravity = false;
+            MoveUp();
+        }
+        else
+        {
+            rb.useGravity = true;
+            //차징샷 이동 금지
+            Move();
+
+        }
+
+
+        if (state == PlayerState.BASIC)
+        {
+            Jump();
+        }
+        else if (state == PlayerState.GUARD)
+        {
+            Guard();
+        }
+    }
     public void ChangeAbsorb()
     {
 
@@ -134,15 +136,37 @@ public class PlayerController : MonoBehaviour
         Fire2 = Input.GetButtonDown("Fire2");
     }
 
-    void Move()
-    {
+    float rotationVelocity;
 
-        Vector3 dir = new Vector3(h, 0, v);
-        //dir.y = 0; //들리거나 아래로 떨어지는 오류 방지
-        dir.Normalize();
-        //결정된 y 속도를 dir의 y항목에 반영해야 한다.
-        Vector3 velocity = dir * speed; //sp eed 값이 yvelocity에 곱해지지 않기 위해 따로 계산
-        transform.position += velocity * Time.deltaTime;
+    //private void MoveRotation()
+    //{
+    //    Vector3 dir = new Vector3(h, 0, v);
+    //    // 크기가 0보다 크거나 // auto dashing 중에 했을 때
+    //    if (dir.magnitude > 0)
+    //    {
+
+    //        // 내가 이동하려는 방향과 현재 물체의 방향 각 x,z Atan2를 이용하여 각을 구하고 도로 만든다.
+    //        float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+
+    //        // 부드러운 각도 회전을 이용한다.나의 y축에서 얼마 만큼의 속도로 타겟으로 돌아가는지 조정한다.
+    //        float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationVelocity, 1f);
+
+    //        // 그만큼 각도를 회전한다.
+    //        transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
+         
+    //    }
+
+    //}
+
+    void Move()
+    {  
+            Vector3 dir = new Vector3(h, 0, v);
+            //dir.y = 0; //들리거나 아래로 떨어지는 오류 방지
+           //dir = Camera.main.transform.TransformDirection(dir);
+            dir.Normalize();
+            //결정된 y 속도를 dir의 y항목에 반영해야 한다.
+            Vector3 velocity = dir * speed; //sp eed 값이 yvelocity에 곱해지지 않기 위해 따로 계산
+            transform.position += velocity * Time.deltaTime;
 
         if (h != 0 || v != 0 && !(isDumble))
         {
@@ -169,13 +193,16 @@ public class PlayerController : MonoBehaviour
 
         print("MoveUP");
 
-        bool upKey = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-        bool downKey = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+        bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        bool upKeyU = Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W);
+        bool downKey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
 
         if (upKey)
         {
+
             Vector3 dir = transform.position;
-            dir.y += 2;
+            //dir = Camera.main.transform.TransformDirection(dir);
+            dir.y += 0.05f;
             print("dir.y" + dir.y);
             transform.position = Vector3.Lerp(transform.position, dir, 1f);
 
@@ -183,9 +210,15 @@ public class PlayerController : MonoBehaviour
         }
         else if (downKey)
         {
+            Vector3 dir = transform.position;
+            //dir = Camera.main.transform.TransformDirection(dir);
+            dir.y -= 0.01f;
+            print("dir.y" + dir.y);
+            transform.position = Vector3.Lerp(transform.position, dir, 1f);
             //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
         }
-
+      
+        //중력이 없는 상태에서 멈추기
     }
 
 
@@ -211,29 +244,34 @@ public class PlayerController : MonoBehaviour
             if (jumpCnt < 1)
             {
                 jumpPower = 7;
+                rb.drag = 0;
                 print("구르기 애니메이션");
 
                 rb.velocity = new Vector3(0, jumpPower, 0);
                 jumpCnt++;
 
             }
-            else if (jumpCnt >= 1)
+            else if (jumpCnt >= 1 && !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed))
             {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    //점프 중간에 마우스 좌클릭한다면
-                    transform.localScale = new Vector3(1f, 1f, 1f);
-                    isGrounded = false;
+
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        //점프 중간에 마우스 좌클릭한다면
+                        transform.localScale = new Vector3(1f, 1f, 1f);
+                        isGrounded = false;
+                    }
+                    //느리게 가기
+                    jumpPower = 8;
+                    rb.drag = 4;
+
+                    print("날개 애니메이션");
+
+                    transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    //점프 높이 커비의 4~5배
+
+                    rb.velocity = new Vector3(0, jumpPower, 0);
+                    jumpCnt++;
                 }
-
-                print("날개 애니메이션");
-                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                //점프 높이 커비의 4~5배
-                jumpPower = 4;
-                rb.velocity = new Vector3(0, jumpPower, 0);
-                jumpCnt++;
-            }
-
         }
     }
 
@@ -245,7 +283,7 @@ public class PlayerController : MonoBehaviour
         isJump = false;
     }
 
-
+    int hitCount;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ground")
@@ -277,6 +315,22 @@ public class PlayerController : MonoBehaviour
             {
                 OnDamage();
             }
+        }
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("Car"))
+        {
+           if(hitCount < 1)
+            {
+                
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            GameObject obj = Resources.Load<GameObject>("CarTest");
+            Vector3 posZ = transform.position;
+            posZ.z += 1;
+            GameObject go = Instantiate(obj, posZ, Quaternion.identity);
+            hitCount++;
+            }
+
         }
 
     }

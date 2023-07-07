@@ -19,7 +19,7 @@ public class PlayerFire : MonoBehaviour
     public GameObject bulletFactory;
     public GameObject bulletFactory02;
     public Transform firePos;
-    bool isCharge = false;
+    public bool isCharge = false;
 
     float currTime = 0;
     public RawImage img;
@@ -164,6 +164,7 @@ public class PlayerFire : MonoBehaviour
                 //과녁 이펙트 에너미 가운데
                 lineRenderer.SetPosition(1, hit.collider.gameObject.transform.position);
                 img.enabled = false;
+               
                 starImg.enabled = true;
                 starImg.transform.position = hit.collider.gameObject.transform.position;
 
