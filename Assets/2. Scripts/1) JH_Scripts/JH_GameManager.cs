@@ -10,16 +10,16 @@ public class JH_GameManager : MonoBehaviour
     
     public static JH_GameManager instance;
 
-    public GameObject respawnPos1;
-    public GameObject respawnPos2;
-    public GameObject respawnPos3;
-    public GameObject respawnPos4;
-    public GameObject respawnPos5;
-    public GameObject respawnPos6;
-    public GameObject respawnPos7;
+    //public GameObject respawnPos1;
+    //public GameObject respawnPos2;
+    //public GameObject respawnPos3;
+    //public GameObject respawnPos4;
+    //public GameObject respawnPos5;
+    //public GameObject respawnPos6;
+    //public GameObject respawnPos7;
 
-    public GameObject playerKirby;
-    public GameObject playerCar;
+    //public GameObject playerKirby;
+    //public GameObject playerCar;
 
     public bool changePlayer = false;
 
@@ -62,19 +62,19 @@ public class JH_GameManager : MonoBehaviour
             SaveWaii();
         }
 
-        if (changePlayer == true)
-        {
-            playerKirby.SetActive(false);
-            playerCar.SetActive(true);
-        }
+        //if (changePlayer == true)
+        //{
+        //    playerKirby.SetActive(false);
+        //    playerCar.SetActive(true);
+        //}
         
-        if(changePlayer == false)
-        {
-            playerKirby.SetActive(true);
-            playerCar.SetActive(false);
-        }
+        //if(changePlayer == false)
+        //{
+        //    playerKirby.SetActive(true);
+        //    playerCar.SetActive(false);
+        //}
 
-        GM_Mode();
+        //GM_Mode();
 
     }
 
@@ -94,32 +94,32 @@ public class JH_GameManager : MonoBehaviour
     }
 
 
-    void GM_Mode()
-    {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            //페이드 인/아웃
+    //void GM_Mode()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Keypad1))
+    //    {
+    //        //페이드 인/아웃
 
-            //플레이어 위치 변경
-            playerKirby.transform.position = respawnPos1.transform.position;
+    //        //플레이어 위치 변경
+    //        playerKirby.transform.position = respawnPos1.transform.position;
 
-            // 주의 : 카메라 위치 따라가야함
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            //페이드 인/아웃
-            //플레이어 위치 변경
-            playerKirby.transform.position = respawnPos2.transform.position;
+    //        // 주의 : 카메라 위치 따라가야함
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Keypad2))
+    //    {
+    //        //페이드 인/아웃
+    //        //플레이어 위치 변경
+    //        playerKirby.transform.position = respawnPos2.transform.position;
 
-            // 주의 : 카메라 위치 따라가야함
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            //페이드 인/아웃
-            //플레이어 위치 변경
-            playerKirby.transform.position = respawnPos3.transform.position;
+    //        // 주의 : 카메라 위치 따라가야함
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Keypad3))
+    //    {
+    //        //페이드 인/아웃
+    //        //플레이어 위치 변경
+    //        playerKirby.transform.position = respawnPos3.transform.position;
 
-            // 주의 : 카메라 위치 따라가야함
-        }
-    }
+    //        // 주의 : 카메라 위치 따라가야함
+    //    }
+    //}
 }
