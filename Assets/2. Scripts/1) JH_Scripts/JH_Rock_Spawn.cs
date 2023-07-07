@@ -13,6 +13,7 @@ public class JH_Rock_Spawn : MonoBehaviour
     public float currentTime1 = 0;
     float currentTime2 = 0;
     float currentTime3 = 0;
+    public float currentTime4 = 0;
 
     public bool area1Start = false;
     public bool bigRock = false;
@@ -73,11 +74,11 @@ public class JH_Rock_Spawn : MonoBehaviour
                 currentTime2 = 0;
             }
         }
-        
 
 
+        currentTime4 += Time.deltaTime;
         // 해당 지점에 도착하면 큰 돌 떨어지기 시작 (bigRock)
-        if (bigRock == true)
+        if (bigRock == true && currentTime4>= 4)
         {
             Instantiate(area3Rock, RockArea3.transform.position, Quaternion.identity);
             area1Start = false;
