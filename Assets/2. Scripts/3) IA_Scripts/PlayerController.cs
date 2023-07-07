@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-
+        
 
         if (space && isGrounded)
         {
@@ -246,14 +246,12 @@ public class PlayerController : MonoBehaviour
                 jumpPower = 7;
                 rb.drag = 0;
                 print("구르기 애니메이션");
-
                 rb.velocity = new Vector3(0, jumpPower, 0);
                 jumpCnt++;
-
             }
-            else if (jumpCnt >= 1 && !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed))
+            else if (jumpCnt >= 1)
             {
-
+               //&& !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
                     if (Input.GetButtonDown("Fire1"))
                     {
                         //점프 중간에 마우스 좌클릭한다면
@@ -271,7 +269,8 @@ public class PlayerController : MonoBehaviour
 
                     rb.velocity = new Vector3(0, jumpPower, 0);
                     jumpCnt++;
-                }
+                    
+             }
         }
     }
 

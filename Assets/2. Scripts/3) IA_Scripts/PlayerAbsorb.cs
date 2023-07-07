@@ -56,6 +56,8 @@ public class PlayerAbsorb : MonoBehaviour
 
     private void Update()
     {
+
+        print("state" + state);
         switch (state)
         {
             case AbsorbState.Ready:
@@ -288,7 +290,8 @@ public class PlayerAbsorb : MonoBehaviour
                 {
                     GetComponentInParent<PlayerController>().speed = 6f;
                     getRanger = true;
-                 
+                    state = PlayerAbsorb.AbsorbState.Ready;
+
                 }
             }
         }
