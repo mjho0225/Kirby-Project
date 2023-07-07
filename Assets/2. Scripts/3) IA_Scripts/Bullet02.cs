@@ -10,7 +10,7 @@ public class Bullet02 : MonoBehaviour
     void Start()
     {
         Rigidbody bulletRb = GetComponent<Rigidbody>();
-        bulletRb.velocity = transform.forward * 10;
+        bulletRb.velocity = transform.forward * 30;
 
     }
 
@@ -19,14 +19,12 @@ public class Bullet02 : MonoBehaviour
     {
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
 
         //GameObject.Find("PlayerRanger").GetComponent<PlayerFire>().UpdateClear();
-        if (collision.gameObject.tag == "Ground")
-        {
-            Destroy(gameObject, 1);
-        }
+       
+      
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             if(hitCount < 1)
@@ -37,8 +35,9 @@ public class Bullet02 : MonoBehaviour
             }
             
         }
+            Destroy(gameObject, 3);
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         hitCount = 0;
     }

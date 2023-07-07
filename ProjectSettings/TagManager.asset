@@ -20,6 +20,7 @@ TagManager:
   - Waii
   - Flower
   - Food
+  - bullet2
   layers:
   - Default
   - TransparentFX
