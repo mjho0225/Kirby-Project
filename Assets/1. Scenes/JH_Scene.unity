@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18383303, g: 0.3361673, b: 0.5611491, a: 1}
+  m_IndirectSpecularColor: {r: 0.18393658, g: 0.33618683, b: 0.56117064, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1154,6 +1154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime1: 0
+  currentTime4: 0
+  area1Start: 0
+  bigRock: 0
+  area4Start: 0
+  finishRock: 0
   RockArea1:
   - {fileID: 141002275}
   - {fileID: 2063986086}
@@ -13023,6 +13028,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7d9ed11a9e51442a8a78e54cd3bd5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPos1: {fileID: 0}
+  respawnPos2: {fileID: 0}
+  respawnPos3: {fileID: 0}
+  respawnPos4: {fileID: 0}
+  respawnPos5: {fileID: 0}
+  respawnPos6: {fileID: 0}
+  respawnPos7: {fileID: 0}
+  playerKirby: {fileID: 0}
+  playerCar: {fileID: 0}
+  changePlayer: 0
   SavePanel: {fileID: 261598240}
   sceneTime: 0
   savePanel_On: 0
@@ -15501,6 +15516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
   knockBack: 0
@@ -35049,6 +35065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
   knockBack: 0
@@ -42377,6 +42394,7 @@ MonoBehaviour:
   bulletFactory02: {fileID: 0}
   firePos: {fileID: 1161034485487322470}
   img: {fileID: 0}
+  starImg: {fileID: 0}
   chargeEffect: {fileID: 0}
   bubleGun: {fileID: 0}
 --- !u!114 &1161034486476121258

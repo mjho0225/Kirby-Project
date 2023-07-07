@@ -37,7 +37,7 @@ public class JH_SpawnStart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" || other.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             if (this.gameObject.name.Contains("BigRock"))
             {
