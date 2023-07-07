@@ -42,7 +42,7 @@ public class JH_Rock_Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        area1Start = true;
+        //area1Start = true;
         //bigRock = true;
         //area4Start = true;
         //finishRock = true;

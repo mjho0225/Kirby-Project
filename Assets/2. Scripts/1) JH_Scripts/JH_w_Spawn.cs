@@ -24,7 +24,7 @@ public class JH_w_Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnTime = 3;
+        spawnTime = 5;
 
         distPlayer = GameObject.FindGameObjectWithTag("Player");
 
