@@ -27,6 +27,8 @@ public class JH_GameManager : MonoBehaviour
     public GameObject ButtonVideo;
     public GameObject EndingVideo;
     public GameObject StartButton;
+    public GameObject Subcam;
+    public GameObject Panel_COIN;
 
     public bool changePlayer = false;
 
@@ -40,7 +42,7 @@ public class JH_GameManager : MonoBehaviour
 
     float degree = 0;
 
-    public Image image_Fade;
+    //public Image image_Fade;
 
     // Start is called before the first frame update
 
@@ -58,7 +60,7 @@ public class JH_GameManager : MonoBehaviour
         degree = 0;
         
         SavePanel.SetActive(false);
-
+        Panel_COIN.SetActive(false);
         //Time.timeScale = 0;
 
 
@@ -96,17 +98,35 @@ public class JH_GameManager : MonoBehaviour
 
         GM_Mode();
 
+        startTime += Time.deltaTime;
 
-        if (startTime >= 3 && playing == true)
+        //if (startTime >= 3 && playing == true)
+        //{
+        //    StartCoroutine("FadeIn");
+        //    if (startTime >= 4)
+        //    {
+        //        StartCoroutine("FadeOut");
+        //        if (startTime > 5)
+        //        {
+        //            image_Fade.gameObject.SetActive(false);
+        //            playing = false;
+        //        }
+        //    }
+
+        //}
+        if (playing == true)
         {
-            StartCoroutine("FadeIn");
-            if(startTime >= 6)
+            startTime += Time.deltaTime;
+            if (startTime >= 10)
             {
-                StartCoroutine("FadeOut");
+                Subcam.SetActive(false);
+                ButtonVideo.SetActive(false);
+                //image_Fade.gameObject.SetActive(false);
                 playing = false;
+                Panel_COIN.SetActive(true);
             }
-            
         }
+        
     }
 
 
@@ -175,29 +195,29 @@ public class JH_GameManager : MonoBehaviour
     
 
 
-    public IEnumerator FadeOut()
-    {
+    //public IEnumerator FadeOut()
+    //{
 
-        Color color = image_Fade.color;
-        while (color.a > 0)
-        {
-            color.a -= Time.unscaledDeltaTime;
-            image_Fade.color = color;
-            yield return null;
-        }
+    //    Color color = image_Fade.color;
+    //    while (color.a > 0)
+    //    {
+    //        color.a -= Time.unscaledDeltaTime;
+    //        image_Fade.color = color;
+    //        yield return null;
+    //    }
 
-    }
+    //}
 
-    public IEnumerator FadeIn()
-    {
+    //public IEnumerator FadeIn()
+    //{
 
-        Color color = image_Fade.color;
-        while (color.a < 1)
-        {
-            color.a += Time.unscaledDeltaTime;
-            image_Fade.color = color;
-            yield return null;
-        }
-    }
+    //    Color color = image_Fade.color;
+    //    while (color.a < 1)
+    //    {
+    //        color.a += Time.unscaledDeltaTime;
+    //        image_Fade.color = color;
+    //        yield return null;
+    //    }
+    //}
 
 }

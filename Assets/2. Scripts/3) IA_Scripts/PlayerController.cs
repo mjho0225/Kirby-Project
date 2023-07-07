@@ -320,7 +320,7 @@ public class PlayerController : MonoBehaviour
         {
            if(hitCount < 1)
             {
-                
+            
             Destroy(gameObject);
             Destroy(other.gameObject);
             GameObject obj = Resources.Load<GameObject>("CarTest");

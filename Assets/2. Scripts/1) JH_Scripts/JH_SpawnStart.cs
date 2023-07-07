@@ -42,10 +42,12 @@ public class JH_SpawnStart : MonoBehaviour
             if (this.gameObject.name.Contains("BigRock"))
             {
                 JH_Rock_Spawn.instance.bigRock = true;
+                JH_Rock_Spawn.instance.area1Start = false;
             }
             if (this.gameObject.name.Contains("Area4Rock"))
             {
                 JH_Rock_Spawn.instance.area4Start = true;
+                
             }
             if (this.gameObject.name.Contains("FinishRock"))
             {
