@@ -190,6 +190,15 @@ public class JH_e_Fox : MonoBehaviour
         if (other.gameObject.tag == "bubble" || other.gameObject.tag == "bullet2")
         {
             enemyHP -= 100;
+
+            state = State.KnockBack;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
+
+            rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
     }
 

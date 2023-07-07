@@ -13,7 +13,7 @@ public class JH_w_Spawn : MonoBehaviour
 
     public List<GameObject> foxCount;
 
-    public float spawnTime = 3;
+    public float spawnTime = 0;
     float currentTime;
 
     private void Awake()
@@ -24,6 +24,8 @@ public class JH_w_Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnTime = 3;
+
         distPlayer = GameObject.FindGameObjectWithTag("Player");
 
         //快急 贸澜 积己 秦淋
@@ -43,23 +45,31 @@ public class JH_w_Spawn : MonoBehaviour
         if (foxCount.Count == 0)
         {
             currentTime += Time.deltaTime;
-            currentTime = 0;
+            
             if (currentTime >= spawnTime)
             {
                 GameObject fox = Instantiate(e_Fox, this.transform.position, Quaternion.identity);
                 fox.GetComponent<JH_e_Fox>().mySpawner = this;
                 foxCount.Add(fox);
-                
+
             }
         }
         
     }
 
 
+    void FoxSpawn()
+    {
+        GameObject fox = Instantiate(e_Fox, this.transform.position, Quaternion.identity);
+        fox.GetComponent<JH_e_Fox>().mySpawner = this;
+        foxCount.Add(fox);
+    }
+
 
     internal void DestroyedFox(JH_e_Fox fox)
     {
         if (foxCount.Contains(fox.gameObject))
             foxCount.Remove(fox.gameObject);
+        currentTime = 0;
     }
 }
