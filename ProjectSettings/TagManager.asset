@@ -21,6 +21,7 @@ TagManager:
   - Flower
   - Food
   - bullet2
+  - bubble
   layers:
   - Default
   - TransparentFX
