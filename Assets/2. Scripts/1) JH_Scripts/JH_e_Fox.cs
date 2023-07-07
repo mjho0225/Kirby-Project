@@ -159,10 +159,7 @@ public class JH_e_Fox : MonoBehaviour
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
 
-        if(collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
-        {
-            enemyHP -= 100;
-        }
+        
 
         else if (collision.gameObject.tag == "Player")
         {
@@ -188,16 +185,23 @@ public class JH_e_Fox : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "bubble" || other.gameObject.tag == "bullet2")
+        {
+            enemyHP -= 100;
+        }
+    }
 
 
     //void OnDamage()
     //{
-        
+
     //    enemyHP -= 50;
 
     //    if (enemyHP <= 0)
     //    {
-            
+
     //        Destroy(this.gameObject);
     //    }
     //}
