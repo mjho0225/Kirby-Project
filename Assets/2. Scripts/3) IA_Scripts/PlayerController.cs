@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 print("날개 애니메이션");
-                transform.localScale = new Vector3(2f, 2f, 2f);
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 //점프 높이 커비의 4~5배
                 jumpPower = 4;
                 rb.velocity = new Vector3(0, jumpPower, 0);
@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
         {
             print("사다리");
             isLadder = true;
-
+            JH_Rock_Spawn.instance.area1Start = true;
         }
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Absorb"))
