@@ -46,7 +46,7 @@ public class JH_e_Target : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "bullet")
+        if(collision.gameObject.tag == "bullet" || collision.gameObject.tag == "bullet2")
         {
             hit = true;
              Destroy(this);
