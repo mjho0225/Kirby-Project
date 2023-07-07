@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
         {
             print("»ç´Ù¸®");
             isLadder = true;
-
+            JH_Rock_Spawn.instance.area1Start = true;
         }
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Absorb"))
