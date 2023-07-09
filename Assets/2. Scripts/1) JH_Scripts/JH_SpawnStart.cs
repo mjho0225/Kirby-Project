@@ -43,6 +43,7 @@ public class JH_SpawnStart : MonoBehaviour
             {
                 JH_Rock_Spawn.instance.bigRock = true;
                 JH_Rock_Spawn.instance.area1Start = false;
+                JH_Rock_Spawn.instance.currentTime4 = 0;
             }
             if (this.gameObject.name.Contains("Area4Rock"))
             {

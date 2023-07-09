@@ -9,7 +9,7 @@ public class JH_Rock_fall : MonoBehaviour
     int listCount; // 패트롤 리스트의 개수 파악
     public int i = 0;
 
-    float rockSpeed = 7f;
+    float rockSpeed = 4.5f;
     float fallSpeed = 20f;
 
     // Start is called before the first frame update
@@ -37,7 +37,7 @@ public class JH_Rock_fall : MonoBehaviour
             }
             if (i >= 2)
             {
-                rockSpeed = 7f;
+                rockSpeed = 20f;
             }
 
             if (i>12 && i <= 13)
@@ -46,7 +46,7 @@ public class JH_Rock_fall : MonoBehaviour
             }
             if (i >= 14)
             {
-                rockSpeed = 7f;
+                rockSpeed = 20f;
             }
             if (i >= 15)
             {

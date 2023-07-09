@@ -78,7 +78,7 @@ public class JH_Rock_Spawn : MonoBehaviour
 
         currentTime4 += Time.deltaTime;
         // 해당 지점에 도착하면 큰 돌 떨어지기 시작 (bigRock)
-        if (bigRock == true && currentTime4>= 4)
+        if (bigRock == true && currentTime4 >= 5)
         {
             Instantiate(area3Rock, RockArea3.transform.position, Quaternion.identity);
             area1Start = false;
