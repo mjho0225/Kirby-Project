@@ -49,7 +49,7 @@ public class JH_e_Target : MonoBehaviour
         if(collision.gameObject.tag == "bullet" || collision.gameObject.tag == "bullet2")
         {
             hit = true;
-             Destroy(this);
+            Destroy(this.gameObject);
             //StartCoroutine("WayGuide");
         }
     }
