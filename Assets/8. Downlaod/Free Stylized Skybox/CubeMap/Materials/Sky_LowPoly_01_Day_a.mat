@@ -74,7 +74,11 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+<<<<<<< HEAD
     - _Rotation: 242.89537
+=======
+    - _Rotation: 50.326065
+>>>>>>> 7266d58a3e03ea2245aecae72564887b8abcc3f5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

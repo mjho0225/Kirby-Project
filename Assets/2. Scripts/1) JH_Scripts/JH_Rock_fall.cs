@@ -37,7 +37,7 @@ public class JH_Rock_fall : MonoBehaviour
             }
             if (i >= 2)
             {
-                rockSpeed = 20f;
+                rockSpeed = 4.5f;
             }
 
             if (i>12 && i <= 13)
@@ -46,7 +46,7 @@ public class JH_Rock_fall : MonoBehaviour
             }
             if (i >= 14)
             {
-                rockSpeed = 20f;
+                rockSpeed = 4.5f;
             }
             if (i >= 15)
             {
