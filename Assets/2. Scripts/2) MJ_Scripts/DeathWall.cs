@@ -26,7 +26,6 @@ public class DeathWall : MonoBehaviour
     // 카메라 쉐이킹을 0.5초 후에 실행시키고 싶다.
     IEnumerator IEOnDamage()
     {
-        PlayerHP.instance.HP -= 5;
         yield return new WaitForSeconds(0.18f);
         // 0.1초 뒤에 실행시키고 싶다.
         CameraShaker.Instance.ShakeOnce(5f, 5f, 0.1f, 1.5f);
