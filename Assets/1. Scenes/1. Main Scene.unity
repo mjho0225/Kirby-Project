@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.38849676, g: 0.72812957, b: 0.7325377, a: 1}
+  m_IndirectSpecularColor: {r: 0.38810045, g: 0.7278148, b: 0.7324987, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11218,6 +11218,63 @@ Transform:
   m_Father: {fileID: 6849970209293009624}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &547093457831626199
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3274669677724367925, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_Name
+      value: Test_Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977092438548327334, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
 --- !u!4 &1149705477452987030
 Transform:
   m_ObjectHideFlags: 0
@@ -11292,6 +11349,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4975129867661588079, guid: 17e2a35f5fe542b4793c93abc1e1b30a, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 3274669677724367925, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17e2a35f5fe542b4793c93abc1e1b30a, type: 3}
 --- !u!65 &3214816299159572139
@@ -11380,6 +11441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranger (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7113258990914690250, guid: a66bbec96b4d18b419f289a8b6509e76, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 3274669677724367925, guid: 4e0fca8afd7e6d54da78a70d941370a7, type: 3}
     - target: {fileID: 7113258990914690255, guid: a66bbec96b4d18b419f289a8b6509e76, type: 3}
       propertyPath: m_RootOrder
       value: 21
