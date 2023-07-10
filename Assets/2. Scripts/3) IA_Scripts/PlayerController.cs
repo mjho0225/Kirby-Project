@@ -331,8 +331,12 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
 
                 //GameObject obj = Resources.Load<GameObject>("CarTest");
-                Vector3 posZ = transform.position;
-                posZ.z += 1;
+                //Vector3 posZ = transform.position;
+                //posZ.z += 1;
+                //posZ.y += 5;
+                Vector3 pos = carObj.transform.position;
+                pos.y += 5;
+                carObj.transform.position = pos;
                 //GameObject go = Instantiate(obj, posZ, Quaternion.identity);
                 carObj.SetActive(true);
                 hitCount++;

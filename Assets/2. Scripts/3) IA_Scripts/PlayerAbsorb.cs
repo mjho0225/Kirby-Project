@@ -149,13 +149,14 @@ public class PlayerAbsorb : MonoBehaviour
                     //}
 
                 }
-
+                
             }
         }
         if (Input.GetButtonUp("Fire1"))
         {
             print("»Ì¿‘∏ÿ√„");
             currTime = 0f;
+            GetComponentInParent<PlayerController>().speed = 7f;
         }
     }
     private void UpdateAbsorbing()
