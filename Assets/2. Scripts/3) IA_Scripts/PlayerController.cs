@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject absorbObj;
     public GameObject rangerObj;
+    public GameObject carObj;
+
     enum PlayerState
     {
         BASIC,
@@ -60,13 +62,13 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
-       
-       
+        carObj.SetActive(false);
+
     }
 
     bool isAbsorbed;
 
-    
+
 
     public void ChangeRanger()
     {
@@ -75,7 +77,7 @@ public class PlayerController : MonoBehaviour
         //GetComponent<PlayerAbsorb>().enabled = false;
         //// print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
         //gun.SetActive(true);
-       
+
         print(rangerObj);
         //Destroy(absorbObj); 
         //GameObject obj = Resources.Load<GameObject>("Player_Ranger");
@@ -153,20 +155,20 @@ public class PlayerController : MonoBehaviour
 
     //        // 그만큼 각도를 회전한다.
     //        transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
-         
+
     //    }
 
     //}
 
     void Move()
-    {  
-            Vector3 dir = new Vector3(h, 0, v);
-            //dir.y = 0; //들리거나 아래로 떨어지는 오류 방지
-           //dir = Camera.main.transform.TransformDirection(dir);
-            dir.Normalize();
-            //결정된 y 속도를 dir의 y항목에 반영해야 한다.
-            Vector3 velocity = dir * speed; //sp eed 값이 yvelocity에 곱해지지 않기 위해 따로 계산
-            transform.position += velocity * Time.deltaTime;
+    {
+        Vector3 dir = new Vector3(h, 0, v);
+        //dir.y = 0; //들리거나 아래로 떨어지는 오류 방지
+        //dir = Camera.main.transform.TransformDirection(dir);
+        dir.Normalize();
+        //결정된 y 속도를 dir의 y항목에 반영해야 한다.
+        Vector3 velocity = dir * speed; //sp eed 값이 yvelocity에 곱해지지 않기 위해 따로 계산
+        transform.position += velocity * Time.deltaTime;
 
         if (h != 0 || v != 0 && !(isDumble))
         {
@@ -217,14 +219,14 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, dir, 1f);
             //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
         }
-      
+
         //중력이 없는 상태에서 멈추기
     }
 
 
     void Jump()
     {
-        
+
 
         if (space && isGrounded)
         {
@@ -251,26 +253,26 @@ public class PlayerController : MonoBehaviour
             }
             else if (jumpCnt >= 1)
             {
-               //&& !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        //점프 중간에 마우스 좌클릭한다면
-                        transform.localScale = new Vector3(1f, 1f, 1f);
-                        isGrounded = false;
-                    }
-                    //느리게 가기
-                    jumpPower = 8;
-                    rb.drag = 4;
+                //&& !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    //점프 중간에 마우스 좌클릭한다면
+                    transform.localScale = new Vector3(1f, 1f, 1f);
+                    isGrounded = false;
+                }
+                //느리게 가기
+                jumpPower = 8;
+                rb.drag = 4;
 
-                    print("날개 애니메이션");
+                print("날개 애니메이션");
 
-                    transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    //점프 높이 커비의 4~5배
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                //점프 높이 커비의 4~5배
 
-                    rb.velocity = new Vector3(0, jumpPower, 0);
-                    jumpCnt++;
-                    
-             }
+                rb.velocity = new Vector3(0, jumpPower, 0);
+                jumpCnt++;
+
+            }
         }
     }
 
@@ -285,6 +287,7 @@ public class PlayerController : MonoBehaviour
     int hitCount;
     private void OnTriggerEnter(Collider other)
     {
+        print("other.gameObject.layer"+ other);
         if (other.tag == "Ground")
         {
             isJump = false;
@@ -298,36 +301,41 @@ public class PlayerController : MonoBehaviour
             isLadder = true;
             JH_Rock_Spawn.instance.area1Start = true;
         }
-        
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Absorb"))
         {
             print("eTrigger%%%%%%%%%%%");
-           
+
             //박치기 = 서로피격
             //print("damage 함수처리");
-            Vector3 dir = transform.position  - other.gameObject.transform.position;
+            Vector3 dir = transform.position - other.gameObject.transform.position;
             //넉백일 경우와 아닐경우 분리
             //흡수할 경우 넉백이 일어나면 안됨
             rb.AddForce(dir * (150f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
-            if(!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
+            if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
             {
                 OnDamage();
             }
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Car"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
-           if(hitCount < 1)
-            {
+            print("other.gameObject.layer");
             
-            Destroy(gameObject);
-            Destroy(other.gameObject);
-            GameObject obj = Resources.Load<GameObject>("CarTest");
-            Vector3 posZ = transform.position;
-            posZ.z += 1;
-            GameObject go = Instantiate(obj, posZ, Quaternion.identity);
-            hitCount++;
+            if (hitCount < 1)
+            {
+                rangerObj.SetActive(false);
+                absorbObj.SetActive(false);
+               
+                Destroy(other.gameObject);
+
+                //GameObject obj = Resources.Load<GameObject>("CarTest");
+                Vector3 posZ = transform.position;
+                posZ.z += 1;
+                //GameObject go = Instantiate(obj, posZ, Quaternion.identity);
+                carObj.SetActive(true);
+                hitCount++;
             }
 
         }
@@ -347,7 +355,7 @@ public class PlayerController : MonoBehaviour
     {
         print("DIE");
         Destroy(gameObject, 2);
-        
+
     }
 
     //공격받는 스크립트 따로 만들게 되면 위치 옮기기

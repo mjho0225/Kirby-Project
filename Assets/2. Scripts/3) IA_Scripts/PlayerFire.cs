@@ -41,7 +41,7 @@ public class PlayerFire : MonoBehaviour
     GameObject particle;
     int particleCount;
 
-    
+
 
     public GameObject bubleGun;
     void Start()
@@ -55,6 +55,7 @@ public class PlayerFire : MonoBehaviour
         rb.isKinematic = false;
         img.enabled = false;
         starImg.enabled = false;
+        GetComponentInParent<PlayerController>().speed = 7f;
     }
 
     void GetInput()
@@ -64,26 +65,27 @@ public class PlayerFire : MonoBehaviour
         fireS = Input.GetButton("Fire1");
         fire2D = Input.GetButtonDown("Fire2");
     }
-    
+
     void Update()
     {
         GetInput();
-        
+
 
         if (fireS)
         {
             currTime += Time.deltaTime;
 
 
-            if (currTime > chargeWaitTime){
-                ChargeShot();           
+            if (currTime > chargeWaitTime)
+            {
+                ChargeShot();
             }
         }
-        if(fireD && !isCharge)
+        if (fireD && !isCharge)
         {
             Destroy(particle, 1f);
             Shot();
-            
+
         }
         if (fireU && isCharge)
         {
@@ -93,7 +95,7 @@ public class PlayerFire : MonoBehaviour
         }
 
         //쏘는 중에는 공격기 못 뱉음
-        if (!(isCharge) &&  fire2D)
+        if (!(isCharge) && fire2D)
         {
             Vector3 posZ = transform.position;
             posZ.z += 2;
@@ -120,12 +122,12 @@ public class PlayerFire : MonoBehaviour
 
     void StartLockOn()
     {
-        
+
     }
 
     private void ResetLockOn()
     {
-       
+
     }
     private void ChargeShot()
     {
@@ -138,7 +140,7 @@ public class PlayerFire : MonoBehaviour
             particleCount++;
         }
         isCharge = true;
-    
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -156,15 +158,15 @@ public class PlayerFire : MonoBehaviour
             Transform playerPos = transform;
             lineRenderer.SetPosition(0, playerPos.position);
             // lineRenderer 1번째 target position 설정
-                                                    //img.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-           
+            //img.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
             //라곤
-            if(hit.collider.gameObject.layer == 8)
+            if (hit.collider.gameObject.layer == 8 || hit.collider.gameObject.layer == 6)
             {
                 //과녁 이펙트 에너미 가운데
                 lineRenderer.SetPosition(1, hit.collider.gameObject.transform.position);
                 img.enabled = false;
-               
+
                 starImg.enabled = true;
                 starImg.transform.position = hit.collider.gameObject.transform.position;
 
@@ -200,6 +202,7 @@ public class PlayerFire : MonoBehaviour
         Destroy(particle, 1f);
         print("발사");
         GameObject bullet = Instantiate(bulletFactory, firePos.position, firePos.rotation);
+        
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = firePos.forward * 50;
         currTime = 0;
@@ -207,20 +210,20 @@ public class PlayerFire : MonoBehaviour
 
     void Shot2()
     {
-        Destroy(particle, 2f); 
+        Destroy(particle, 2f);
         print("발사2");
-        Vector3 dir = transform.position;
-        //dir.y += 1;
+        //Vector3 dir = transform.position;
+        //dir.z +=  1;
         //dir.x += 1;
-        GameObject bullet02 = Instantiate(bulletFactory02, dir, Quaternion.LookRotation(firePos02 - transform.position));
-      
+        GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
+
         currTime += Time.deltaTime;
-        if(currTime > 1.5f)
+        if (currTime > 1.5f)
         {
             UpdateClear();
         }
         //currTime = 0;
-       
+
     }
 
 }

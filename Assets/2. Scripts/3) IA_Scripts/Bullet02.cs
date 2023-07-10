@@ -19,12 +19,12 @@ public class Bullet02 : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collider collision)
     {
 
         //GameObject.Find("PlayerRanger").GetComponent<PlayerFire>().UpdateClear();
-       
-      
+
+        Destroy(gameObject);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             if(hitCount < 1)
@@ -37,8 +37,9 @@ public class Bullet02 : MonoBehaviour
         }
             Destroy(gameObject, 3);
     }
-    private void OnTriggerExit(Collider collision)
+    private void OnCollisionExit(Collision collision)
     {
         hitCount = 0;
     }
+    
 }

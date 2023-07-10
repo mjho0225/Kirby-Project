@@ -29,6 +29,7 @@ public class JH_GameManager : MonoBehaviour
     public GameObject StartButton;
     public GameObject Subcam;
     public GameObject Panel_COIN;
+    public GameObject PlayerHP;
 
     public bool changePlayer = false;
 
@@ -62,6 +63,7 @@ public class JH_GameManager : MonoBehaviour
         SavePanel.SetActive(false);
         Panel_COIN.SetActive(false);
         //Time.timeScale = 0;
+        PlayerHP.SetActive(false);
 
 
     }
@@ -124,6 +126,7 @@ public class JH_GameManager : MonoBehaviour
                 //image_Fade.gameObject.SetActive(false);
                 playing = false;
                 Panel_COIN.SetActive(true);
+                PlayerHP.SetActive(true);
             }
         }
         
@@ -190,6 +193,7 @@ public class JH_GameManager : MonoBehaviour
         playing = true;
 
         StartButton.SetActive(false);
+        
     }
 
     
