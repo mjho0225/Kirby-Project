@@ -144,6 +144,11 @@ public class JH_e_Gosum : MonoBehaviour
         if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
         {
             enemyHP -= 100;
+            knockBack = true;
+            transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            changeTime = 0;
+            matChange = true;
+
         }
 
     }
