@@ -41,7 +41,7 @@ public class JH_GameManager : MonoBehaviour
 
     public bool savePanel_On = false;
 
-    float degree = 0;
+    //float degree = 0;
 
     //public Image image_Fade;
 
@@ -58,7 +58,7 @@ public class JH_GameManager : MonoBehaviour
 
     void Start()
     {
-        degree = 0;
+        //degree = 0;
         
         SavePanel.SetActive(false);
         Panel_COIN.SetActive(false);
@@ -71,13 +71,13 @@ public class JH_GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        degree += Time.deltaTime;
-        if (degree >= 360)
-        {
-            degree = 0;
-        }
+        //degree += Time.deltaTime;
+        //if (degree >= 360)
+        //{
+        //    degree = 0;
+        //}
 
-        RenderSettings.skybox.SetFloat("_Rotation", degree);
+        //RenderSettings.skybox.SetFloat("_Rotation", degree);
 
 
         if(savePanel_On == true)
