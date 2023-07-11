@@ -6693,6 +6693,8 @@ MonoBehaviour:
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
+  changeColor: 0
+  currentChage: 0
   knockBack: 0
 --- !u!54 &543855369934359777
 Rigidbody:
@@ -10564,7 +10566,13 @@ MonoBehaviour:
   respawnPos6: {fileID: 0}
   respawnPos7: {fileID: 0}
   playerKirby: {fileID: 0}
-  playerCar: {fileID: 0}
+  StartVideo: {fileID: 0}
+  ButtonVideo: {fileID: 0}
+  EndingVideo: {fileID: 0}
+  StartButton: {fileID: 0}
+  Subcam: {fileID: 0}
+  Panel_COIN: {fileID: 0}
+  PlayerHP: {fileID: 0}
   changePlayer: 0
   SavePanel: {fileID: 851876273856870378}
   sceneTime: 0
@@ -18400,6 +18408,8 @@ MonoBehaviour:
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
+  changeColor: 0
+  currentChage: 0
   knockBack: 0
 --- !u!23 &851876273664971094
 MeshRenderer:
@@ -29506,6 +29516,8 @@ MonoBehaviour:
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
+  changeColor: 0
+  currentChage: 0
   knockBack: 0
 --- !u!1 &851876274291242980
 GameObject:
