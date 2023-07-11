@@ -51194,6 +51194,10 @@ PrefabInstance:
       propertyPath: sliderHP
       value: 
       objectReference: {fileID: 1501829223}
+    - target: {fileID: 1733305571, guid: 694b3aa843b01ae48b4a7b0502f5d99e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2967649562784730194, guid: 694b3aa843b01ae48b4a7b0502f5d99e, type: 3}
       propertyPath: img
       value: 
@@ -51258,8 +51262,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8001939895156646049, guid: 694b3aa843b01ae48b4a7b0502f5d99e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8001939895156646051, guid: 694b3aa843b01ae48b4a7b0502f5d99e, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020863316047560541, guid: 694b3aa843b01ae48b4a7b0502f5d99e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9020863316047560543, guid: 694b3aa843b01ae48b4a7b0502f5d99e, type: 3}

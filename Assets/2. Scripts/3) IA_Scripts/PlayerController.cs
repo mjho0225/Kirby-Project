@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     public AttackState attackState = AttackState.ABSORB;
     public GameObject gun;
     PlayerFire playerFire;
-
+    public Animator anim;
     void Start()
     {
         playerHP = GetComponent<PlayerHP>();
@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
         carObj.SetActive(false);
+
 
     }
 
@@ -104,7 +105,10 @@ public class PlayerController : MonoBehaviour
             Move();
 
         }
-
+        if (h != 0 || v != 0)
+        {
+            anim.SetTrigger("Walk");
+        }
 
         if (state == PlayerState.BASIC)
         {
