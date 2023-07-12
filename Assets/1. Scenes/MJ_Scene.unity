@@ -1882,6 +1882,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!135 &458211508
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3000,7 +3001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &659849826
 Transform:
   m_ObjectHideFlags: 0
@@ -3397,7 +3398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &718021518
 Transform:
   m_ObjectHideFlags: 0
@@ -4487,8 +4488,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940597848}
-  m_LocalRotation: {x: 0.09229593, y: 0.7010574, z: -0.09229593, w: 0.7010574}
-  m_LocalPosition: {x: 17.683958, y: -0.2896328, z: 266.2939}
+  m_LocalRotation: {x: 0.2164396, y: -0, z: -0, w: 0.976296}
+  m_LocalPosition: {x: -14.576044, y: -17.552769, z: -60.02517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4560,9 +4561,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 10
+  near clip plane: 0.3
   far clip plane: 1000
-  field of view: 50
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -4658,7 +4659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: 0.9659258, z: -0.2588191, w: 0}
-  m_LocalPosition: {x: 62.13, y: 27.319998, z: 352.52}
+  m_LocalPosition: {x: 54.531414, y: 27.319998, z: 352.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5509,6 +5510,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &1164678223
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5575,7 +5577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1205730580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5889,6 +5891,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &1253565607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6387,6 +6390,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &1363612163
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6777,6 +6781,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &1444505086
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7367,6 +7372,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &1531450468
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7942,7 +7948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1667279868
 Transform:
   m_ObjectHideFlags: 0
@@ -8562,7 +8568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1733305572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8614,13 +8620,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733305571}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 51.40859, y: 13.735491, z: 319.97586}
+  m_LocalPosition: {x: 43.81, y: 13.735491, z: 319.97586}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 649690445}
-  m_Father: {fileID: 5943703588995643434}
-  m_RootOrder: 2
+  m_Father: {fileID: 2058759890}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1733305575
 MonoBehaviour:
@@ -8945,6 +8951,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &1795298911
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9471,7 +9478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859455194}
   m_LocalRotation: {x: 0, y: 0.9659258, z: -0.2588191, w: 0}
-  m_LocalPosition: {x: 62.13, y: 27.319998, z: 352.52}
+  m_LocalPosition: {x: 54.531414, y: 27.319998, z: 352.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10078,7 +10085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2036401335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10324,6 +10331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1733305574}
   - {fileID: 5943703588995643434}
   m_Father: {fileID: 3690702460873650682}
   m_RootOrder: 1
@@ -10451,6 +10459,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &2092795339
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10618,7 +10627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &2105506064
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -12148,6 +12157,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &2425127376256076655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936214317114862602}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.29999983, z: -1.5799906}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8452582133190195508}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2425454554769776824
 GameObject:
   m_ObjectHideFlags: 0
@@ -13403,11 +13427,11 @@ MonoBehaviour:
   speed: 5
   isGuard: 0
   rotSpeed: 100
-  absorbObj: {fileID: 0}
+  absorbObj: {fileID: 8452582133190195504}
   rangerObj: {fileID: 4629793293371232327}
   carObj: {fileID: 1733305571}
+  feetEffect: {fileID: 983941585715213782, guid: 59c26170254f52d4b801e7bdb97dfc45, type: 3}
   attackState: 0
-  gun: {fileID: 0}
   anim: {fileID: 1960183031821720672}
 --- !u!114 &4427283746749770549
 MonoBehaviour:
@@ -14801,10 +14825,13 @@ MonoBehaviour:
   emptyState: 1
   absorbItem: {fileID: 0}
   absorbItemTag: 
+  effectPos: {fileID: 2425127376256076655}
+  absorbParticle: []
   state: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  particles: []
 --- !u!4 &5648632851240919317
 Transform:
   m_ObjectHideFlags: 0
@@ -14935,9 +14962,8 @@ Transform:
   m_Children:
   - {fileID: 4629793293371232323}
   - {fileID: 8452582133190195508}
-  - {fileID: 1733305574}
   m_Father: {fileID: 2058759890}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5943703588995643435
 Animator:
@@ -18024,6 +18050,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!4 &6849970207867172392
 Transform:
   m_ObjectHideFlags: 0
@@ -18808,6 +18835,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970207898140219
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23101,6 +23129,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970208192646944
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23518,6 +23547,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!4 &6849970208215733448
 Transform:
   m_ObjectHideFlags: 0
@@ -27105,6 +27135,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970208473418434
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -28407,6 +28438,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970208563565313
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31069,6 +31101,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!4 &6849970208702526392
 Transform:
   m_ObjectHideFlags: 0
@@ -32880,6 +32913,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970208821509626
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -33931,6 +33965,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!54 &6849970208854475841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38518,6 +38553,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!65 &6849970209075850720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39213,6 +39249,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970209111924645
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -39423,6 +39460,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970209121407322
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44488,6 +44526,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!4 &6849970209443559399
 Transform:
   m_ObjectHideFlags: 0
@@ -46301,6 +46340,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!4 &6849970209547935664
 Transform:
   m_ObjectHideFlags: 0
@@ -48684,6 +48724,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &6849970209676754272
 GameObject:
   m_ObjectHideFlags: 0
@@ -52508,6 +52549,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &6849970209892546872
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53355,6 +53397,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!224 &6849970209933338152
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58315,6 +58358,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!65 &6910382619996489233
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58343,6 +58387,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!64 &6911613059924706588
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -59952,7 +59997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &8452582133190195506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60012,6 +60057,7 @@ Transform:
   - {fileID: 2401021422441873258}
   - {fileID: 8452582132812961864}
   - {fileID: 5608059884236342810}
+  - {fileID: 2425127376256076655}
   m_Father: {fileID: 5943703588995643434}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60502,6 +60548,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582813067354079164}
   m_Mesh: {fileID: -5053925668127403250, guid: c0770ef9458a57c4a8b87c5c416e7fa7, type: 3}
+--- !u!1 &8936214317114862602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2425127376256076655}
+  m_Layer: 10
+  m_Name: effectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &8989160566629636048
 GameObject:
   m_ObjectHideFlags: 0
