@@ -9,7 +9,7 @@ public class Item_rot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Instantiate(f_Paticle, transform.position, Quaternion.identity);
+        Instantiate(f_Paticle, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
