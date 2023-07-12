@@ -130,14 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5943703588995643434}
     m_Modifications:
-    - target: {fileID: 1960183031249622466, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5608059883667328952, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
+    - target: {fileID: 2425127375752331981, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.462
+      value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2425127375752331981, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647159559663096010, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
+      propertyPath: effectPos
+      value: 
+      objectReference: {fileID: 2096992662}
     - target: {fileID: 8452582133692100754, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
       propertyPath: m_Name
       value: Player
@@ -185,6 +189,10 @@ PrefabInstance:
     - target: {fileID: 8452582133692100758, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936214317687023016, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
+      propertyPath: m_Name
+      value: effectPos
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
@@ -432,6 +440,11 @@ PrefabInstance:
 --- !u!1 &2081716461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8452582133692100754, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
+  m_PrefabInstance: {fileID: 572164514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2096992662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2425127375752331981, guid: c77e686ac3a326a4787c64d440ec0081, type: 3}
   m_PrefabInstance: {fileID: 572164514}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2130310270
@@ -6770,6 +6783,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &4427283745183466767
 GameObject:
   m_ObjectHideFlags: 0
@@ -11768,6 +11782,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!135 &4427283746256998879
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11867,6 +11882,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!135 &4427283746312626241
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12426,6 +12442,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!114 &4427283746363324309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13164,6 +13181,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &4427283746508349726
 GameObject:
   m_ObjectHideFlags: 0
@@ -13483,6 +13501,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &4427283746561053174
 GameObject:
   m_ObjectHideFlags: 0
@@ -13722,6 +13741,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &4427283746675736698
 GameObject:
   m_ObjectHideFlags: 0
@@ -15856,6 +15876,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &4427283747066893286
 GameObject:
   m_ObjectHideFlags: 0
@@ -35603,6 +35624,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &7097431672246010801
 GameObject:
   m_ObjectHideFlags: 0
@@ -35813,6 +35835,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &7097431672253245417
 GameObject:
   m_ObjectHideFlags: 0
@@ -41227,6 +41250,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &7097431672580713864
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -41534,6 +41558,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &7097431672607049113
 GameObject:
   m_ObjectHideFlags: 0
@@ -42127,6 +42152,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1001 &7097431672619012997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44249,6 +44275,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!23 &7097431672720341062
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47471,6 +47498,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!135 &7097431672875991744
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -49684,6 +49712,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &7097431673014559937
 GameObject:
   m_ObjectHideFlags: 0
@@ -51966,6 +51995,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &7097431673140181427
 GameObject:
   m_ObjectHideFlags: 0
@@ -53278,6 +53308,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &7097431673210477156
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -57089,6 +57120,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!65 &7097431673429994964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59089,6 +59121,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!65 &7097431673509492752
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59954,6 +59987,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!4 &7097431673550341250
 Transform:
   m_ObjectHideFlags: 0
@@ -64015,6 +64049,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!1 &7097431673721663749
 GameObject:
   m_ObjectHideFlags: 0
@@ -64685,6 +64720,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!65 &7097431673789003920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68576,6 +68612,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!54 &7097431673981569095
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -71092,6 +71129,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!33 &7097431674115077538
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -73567,6 +73605,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!114 &7104128797585257302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73582,6 +73621,7 @@ MonoBehaviour:
   iAm: 0
   scoreCount: 0
   box: 0
+  flowerAnim: 0
 --- !u!65 &7104128797585257303
 BoxCollider:
   m_ObjectHideFlags: 0
