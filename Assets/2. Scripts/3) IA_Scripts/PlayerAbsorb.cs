@@ -127,7 +127,7 @@ public class PlayerAbsorb : MonoBehaviour
             {
                 GameObject go = Instantiate(absorbParticle[i], effectPos.position, effectPos.rotation);
                 go.GetComponent<ParticleSystem>().Play();
-                //particles[i] = go;
+                
             }
 
         }
@@ -145,7 +145,7 @@ public class PlayerAbsorb : MonoBehaviour
         {
             currTime += Time.deltaTime;
 
-            if (!(isParticling)) makeParticle();
+            //if (!(isParticling)) makeParticle();
             if (currTime > 0.5f)
                 {
 
