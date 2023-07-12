@@ -103,7 +103,8 @@ public class PlayerAbsorb : MonoBehaviour
     
     float min;
     GameObject gb;
-    GameObject[] particles;
+    //public ParticleSystem[] particles;
+    public List<GameObject> particles;
     bool isParticling = false;
     private void UpdateReady()
     {
@@ -128,6 +129,10 @@ public class PlayerAbsorb : MonoBehaviour
                 GameObject go = Instantiate(absorbParticle[i], effectPos.position, effectPos.rotation);
                 go.GetComponent<ParticleSystem>().Play();
                 
+                particles.Add(go);
+                //particles[i] = go.GetComponent<ParticleSystem>();
+
+                //print(particles[i]);
             }
 
         }
@@ -135,7 +140,7 @@ public class PlayerAbsorb : MonoBehaviour
         void DestroyParticle()
         {
             isParticling = false;
-            for (int i = 0; i < absorbParticle.Length; i++)
+            for (int i = 0; i < particles.Count; i++)
             {
                 Destroy(particles[i], 0.5f);
             }
@@ -145,7 +150,7 @@ public class PlayerAbsorb : MonoBehaviour
         {
             currTime += Time.deltaTime;
 
-            //if (!(isParticling)) makeParticle();
+            if (!(isParticling)) makeParticle();
             if (currTime > 0.5f)
                 {
 
