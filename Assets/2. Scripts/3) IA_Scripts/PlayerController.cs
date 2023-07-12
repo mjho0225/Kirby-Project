@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float jumpPower = 5f;
     public float speed = 7f;
-    float maxHeight = 5f; //현재 커비 위치에서 4.5배
+    float maxHeight = 4.5f; //현재 커비 위치에서 4.5배
     int jumpCnt;
     int maxJumpCnt = 20;
     bool isGrounded = false;
@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     public GameObject rangerObj;
     public GameObject carObj;
 
+    public GameObject feetEffect;
+
     enum PlayerState
     {
         BASIC,
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerState state;
     public AttackState attackState = AttackState.ABSORB;
-    public GameObject gun;
+    //public GameObject gun;
     PlayerFire playerFire;
     public Animator anim;
     void Start()
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
         carObj.SetActive(false);
-
+        print("anim"+ anim);
 
     }
 
@@ -74,10 +76,6 @@ public class PlayerController : MonoBehaviour
     public void ChangeRanger()
     {
         attackState = AttackState.RANGER;
-        //GetComponent<PlayerFire>().enabled = true;
-        //GetComponent<PlayerAbsorb>().enabled = false;
-        //// print("총 모양 커비로 변신, 임시 총 오브젝트 켜기");
-        //gun.SetActive(true);
 
         print(rangerObj);
         //Destroy(absorbObj); 
@@ -88,6 +86,28 @@ public class PlayerController : MonoBehaviour
         PlayerAbsorb newAbsorb = absorbObj.GetComponent<PlayerAbsorb>();
         newAbsorb.Reset();
 
+    }
+
+    bool isMaking = false;
+    IEnumerator makeFeetEffect()
+    {
+            
+                isMaking = true;
+            
+                Vector3 posLeft = transform.position;
+                posLeft.y = transform.position.y - (transform.lossyScale.y / 2) + 0.2f; //pos 값 체크
+                posLeft.x = transform.position.x - 0.5f;
+                GameObject left = Instantiate(feetEffect);
+                left.transform.position = posLeft;
+                yield return new WaitForSeconds(1);
+                Vector3 posRight = transform.position;
+                posRight.y = transform.position.y - (transform.lossyScale.y / 2) + 0.2f; //pos 값 체크
+                posRight.x = transform.position.x + 0.5f;
+                GameObject right = Instantiate(feetEffect);
+                right.transform.position = posRight;
+                yield return new WaitForSeconds(0.1f);
+                isMaking = false;
+           
     }
 
     void Update()
@@ -104,10 +124,6 @@ public class PlayerController : MonoBehaviour
             //차징샷 이동 금지
             Move();
 
-        }
-        if (h != 0 || v != 0)
-        {
-            anim.SetTrigger("Walk");
         }
 
         if (state == PlayerState.BASIC)
@@ -142,37 +158,34 @@ public class PlayerController : MonoBehaviour
         Fire2 = Input.GetButtonDown("Fire2");
     }
 
-    float rotationVelocity;
-
-    //private void MoveRotation()
-    //{
-    //    Vector3 dir = new Vector3(h, 0, v);
-    //    // 크기가 0보다 크거나 // auto dashing 중에 했을 때
-    //    if (dir.magnitude > 0)
-    //    {
-
-    //        // 내가 이동하려는 방향과 현재 물체의 방향 각 x,z Atan2를 이용하여 각을 구하고 도로 만든다.
-    //        float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-
-    //        // 부드러운 각도 회전을 이용한다.나의 y축에서 얼마 만큼의 속도로 타겟으로 돌아가는지 조정한다.
-    //        float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationVelocity, 1f);
-
-    //        // 그만큼 각도를 회전한다.
-    //        transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
-
-    //    }
-
-    //}
 
     void Move()
     {
+       
         Vector3 dir = new Vector3(h, 0, v);
-        //dir.y = 0; //들리거나 아래로 떨어지는 오류 방지
-        //dir = Camera.main.transform.TransformDirection(dir);
+      
+        dir = Camera.main.transform.TransformDirection(dir);
+        dir.y = 0;
         dir.Normalize();
         //결정된 y 속도를 dir의 y항목에 반영해야 한다.
         Vector3 velocity = dir * speed; //sp eed 값이 yvelocity에 곱해지지 않기 위해 따로 계산
         transform.position += velocity * Time.deltaTime;
+
+        if (h != 0 || v != 0 && (!isJump))
+        {
+            print("test");
+            anim.SetBool("isWalk", true);
+            if (!isMaking)
+            {
+                StartCoroutine(makeFeetEffect());
+            }
+            //anim.SetTrigger("Walk");
+        }
+        else
+        {
+            anim.SetBool("isWalk", false);
+            
+        }
 
         if (h != 0 || v != 0 && !(isDumble))
         {
@@ -183,11 +196,11 @@ public class PlayerController : MonoBehaviour
             //만약 그 각도가 90보다 작다면 오른쪽으로 회전하자
             if (angle < 90)
             {
-                transform.Rotate(0, 300 * Time.deltaTime, 0); //현재각도에서 회전
+                transform.Rotate(0, 200 * Time.deltaTime, 0); //현재각도에서 회전
             }
             else
             {
-                transform.Rotate(0, -300 * Time.deltaTime, 0);
+                transform.Rotate(0, -200 * Time.deltaTime, 0);
             }
             //그렇지 않으면 왼쪽으로 회전
 
@@ -234,6 +247,7 @@ public class PlayerController : MonoBehaviour
 
         if (space && isGrounded)
         {
+            currTime += Time.deltaTime;
             isJump = true;
 
             if (jumpCnt >= maxJumpCnt)
@@ -249,33 +263,39 @@ public class PlayerController : MonoBehaviour
 
             if (jumpCnt < 1)
             {
-                jumpPower = 7;
+                jumpPower = 8;
                 rb.drag = 0;
                 print("구르기 애니메이션");
                 rb.velocity = new Vector3(0, jumpPower, 0);
                 jumpCnt++;
+                //TIMELINE 구르기 애니메이션 만들기
+                anim.SetTrigger("Jump");
+                
+                
+
+                //anim.SetTrigger("Jump01");
             }
             else if (jumpCnt >= 1)
             {
-                //&& !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
+                //&& !(GetComponentInChildren<PlayerAbsorb>().statec == PlayerAbsorb.AbsorbState.Absorbed)
                 if (Input.GetButtonDown("Fire1"))
                 {
                     //점프 중간에 마우스 좌클릭한다면
                     transform.localScale = new Vector3(1f, 1f, 1f);
                     isGrounded = false;
                 }
-                //느리게 가기
-                jumpPower = 8;
-                rb.drag = 4;
+                //느리게 가기 
+                jumpPower = 6;
+                rb.drag = 3;
 
                 print("날개 애니메이션");
 
-                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 //점프 높이 커비의 4~5배
 
                 rb.velocity = new Vector3(0, jumpPower, 0);
                 jumpCnt++;
-
+                //anim.SetTrigger("Jump02"); //혹은 스케일
             }
         }
     }
@@ -286,6 +306,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         jumpCnt = 0;
         isJump = false;
+        
     }
 
     int hitCount;
@@ -306,23 +327,6 @@ public class PlayerController : MonoBehaviour
             JH_Rock_Spawn.instance.area1Start = true;
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Absorb"))
-        {
-            print("eTrigger%%%%%%%%%%%");
-
-            //박치기 = 서로피격
-            //print("damage 함수처리");
-            Vector3 dir = transform.position - other.gameObject.transform.position;
-            //넉백일 경우와 아닐경우 분리
-            //흡수할 경우 넉백이 일어나면 안됨
-            rb.AddForce(dir * (150f * Time.deltaTime), ForceMode.Impulse);
-            //본인도 데미지
-            if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
-            {
-                OnDamage();
-            }
-        }
-
         if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             print("other.gameObject.layer");
@@ -334,10 +338,6 @@ public class PlayerController : MonoBehaviour
                
                 Destroy(other.gameObject);
 
-                //GameObject obj = Resources.Load<GameObject>("CarTest");
-                //Vector3 posZ = transform.position;
-                //posZ.z += 1;
-                //posZ.y += 5;
                 Vector3 pos = carObj.transform.position;
                 pos.y += 5;
                 carObj.transform.position = pos;
@@ -357,7 +357,26 @@ public class PlayerController : MonoBehaviour
             isLadder = false;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        //onTriggerEnter Layer Absorb로 처리에서 인식 불가 문제로 콜라이더로 변경
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            print("eTrigger%%%%%%%%%%%");
 
+            //박치기 = 서로피격
+            print("damage 함수처리");
+            Vector3 dir = transform.position - collision.gameObject.transform.position;
+            //넉백일 경우와 아닐경우 분리
+            //흡수할 경우 넉백이 일어나면 안됨
+            rb.AddForce(dir * (300f * Time.deltaTime), ForceMode.Impulse);
+            //본인도 데미지
+            if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
+            {
+                OnDamage();
+            }
+        }
+    }
 
     void Die()
     {
@@ -439,7 +458,6 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
     }
 
 
@@ -500,7 +518,8 @@ public class PlayerController : MonoBehaviour
                     //isGrounded = false;
                     // 천장에 닿았다
                     Vector3 pos = transform.position;
-                    pos.y = maxHeight;
+                    //최대 높이 + 바뀌는 땅의 높이 y값
+                    pos.y = maxHeight + hitInfo.transform.position.y;
                     transform.position = pos;
                 }
             }
