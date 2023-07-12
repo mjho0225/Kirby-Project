@@ -114,6 +114,7 @@ public class JH_Item : MonoBehaviour
     private void IAmFood()
     {
 
+
         // 플레이어 HP 회복
         PlayerHP.instance.HP += 2;
 
@@ -345,7 +346,9 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Food)
             {
                 IAmFood();
-                Destroy(gameObject);
+                this.gameObject.transform.Translate(Vector3.up * 10 * Time.deltaTime) ;
+                this.gameObject.GetComponent<Collider>().enabled = false;
+                Destroy(gameObject,1);
             }
 
             if (iAm == WHO.item_Box)
