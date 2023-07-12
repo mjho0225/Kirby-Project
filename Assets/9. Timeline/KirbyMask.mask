@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: KirbyMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: ArmLeft
+    m_Weight: 1
+  - m_Path: ArmRight
+    m_Weight: 1
+  - m_Path: Body
+    m_Weight: 1
+  - m_Path: BodyBaseShape
+    m_Weight: 1
+  - m_Path: Camera
+    m_Weight: 1
+  - m_Path: CustomBoneShapeArm
+    m_Weight: 1
+  - m_Path: FootShape
+    m_Weight: 1
+  - m_Path: KirbyArmature
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/BendyBottom
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/BendyBottom/Bendy
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/BendyBottom/Bendy/Arm.L
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/BendyBottom/Bendy/Arm.L/Arm.L_end
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/BendyBottom/Bendy/Arm.R
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/BendyBottom/Bendy/Arm.R/Arm.R_end
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/Leg.L
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/Leg.L/Foot.L
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/Leg.L/Foot.L/Foot.L_end
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/Leg.R
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/Leg.R/Foot.R
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/Leg.R/Foot.R/Foot.R_end
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/SquishHandle
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/Body/SquishHandle/SquishHandle_end
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/FootIK.L
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/FootIK.L/ToeTarget.L
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/FootIK.L/ToeTarget.L/ToeTarget.L_end
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/FootIK.R
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/FootIK.R/ToeTarget.R
+    m_Weight: 1
+  - m_Path: KirbyArmature/Root/FootIK.R/ToeTarget.R/ToeTarget.R_end
+    m_Weight: 1
+  - m_Path: Lamp
+    m_Weight: 1
+  - m_Path: LegLeft
+    m_Weight: 1
+  - m_Path: LegRight
+    m_Weight: 1
+  - m_Path: RootShape
+    m_Weight: 1
