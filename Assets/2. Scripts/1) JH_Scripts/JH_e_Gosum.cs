@@ -105,6 +105,8 @@ public class JH_e_Gosum : MonoBehaviour
     }
 
 
+    
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")
@@ -117,7 +119,7 @@ public class JH_e_Gosum : MonoBehaviour
 
             }
 
-            
+            print("Ãæµ¹");
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeTime = 0;
