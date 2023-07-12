@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class JH_Item : MonoBehaviour
 {
+
     public enum WHO
     {
         item_Coin,
@@ -94,9 +95,11 @@ public class JH_Item : MonoBehaviour
         }
 
     }
+
+    public bool flowerAnim = false;
     void IAmFlower()
     {
-
+        flowerAnim = true;
         JH_ScoreManager.instance.COIN_SCORE++;
 
     }
@@ -360,7 +363,8 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Flower)
             {
                 IAmFlower();
-                Destroy(this.gameObject);
+                this.gameObject.GetComponent<Collider>().enabled = false;
+                //Destroy(this.gameObject);
             }
         }
 
