@@ -57,21 +57,21 @@ public class JH_Rock_Spawn : MonoBehaviour
         if(area1Start == true)
         {
             currentTime1 += Time.deltaTime;
-            if (currentTime1 > 2)
+            if (currentTime1 >2f)
             {
 
                 Invoke("Area1RockSpawn1", 1);
                 Invoke("Area1RockSpawn2", 2);
-                currentTime1 = 0;
+                currentTime1 = -2f;
             }
 
             currentTime2 += Time.deltaTime;
-            if (currentTime2 > 4)
+            if (currentTime2 > 3)
             {
                 Invoke("Area2RockSpawn1", 2);
                 Invoke("Area2RockSpawn2", 4);
                 Invoke("Area2RockSpawn3", 3);
-                currentTime2 = 0;
+                currentTime2 = -3;
             }
         }
 

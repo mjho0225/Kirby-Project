@@ -15,6 +15,7 @@ public class JH_e_Fox : MonoBehaviour
     Vector3 playerPos;
     // Start is called before the first frame update
 
+    public Material mat_Fox;
     
     float changeTime = 0; 
     bool matChange = false;
@@ -78,7 +79,8 @@ public class JH_e_Fox : MonoBehaviour
         if (changeTime >= 0.2f && matChange == true)
         {
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
-            if(changeTime > 1.5f)
+            mat_Fox.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
+            if (changeTime > 1.5f)
             {
             matChange = false;
 
@@ -152,6 +154,7 @@ public class JH_e_Fox : MonoBehaviour
             state = State.KnockBack;
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            mat_Fox.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             changeTime = 0;
             matChange = true;
 
@@ -175,6 +178,7 @@ public class JH_e_Fox : MonoBehaviour
             state = State.KnockBack;
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            mat_Fox.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             changeTime = 0;
             matChange = true;
 
@@ -194,6 +198,7 @@ public class JH_e_Fox : MonoBehaviour
             state = State.KnockBack;
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            mat_Fox.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             changeTime = 0;
             matChange = true;
 

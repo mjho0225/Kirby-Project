@@ -161,6 +161,7 @@ MonoBehaviour:
   enemyHP: 100
   mySpawner: {fileID: 0}
   targetPlayer: {fileID: 0}
+  mat_Fox: {fileID: 2100000, guid: 0871efd4aa082b94ba1d013e4e09df68, type: 2}
   state: 0
   knockBack: 0
 --- !u!54 &6712429737814638380
@@ -230,9 +231,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7899824948031537290, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6030892704446296535, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -987865741685521018, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
       propertyPath: m_Name
       value: Pet_FennecFox_HQ
+      objectReference: {fileID: 0}
+    - target: {fileID: 2737468475409611933, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672972607654645040, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249726448914713499, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365298641447456571, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a17af57f8e3a90e4ba93d646ccf1f95e, type: 3}

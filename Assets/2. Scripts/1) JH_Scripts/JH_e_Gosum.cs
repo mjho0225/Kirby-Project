@@ -27,9 +27,13 @@ public class JH_e_Gosum : MonoBehaviour
     public bool knockBack = false;
 
 
+    public Material matGosum;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        matGosum.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
         agent = GetComponent<NavMeshAgent>();
 
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -57,7 +61,9 @@ public class JH_e_Gosum : MonoBehaviour
         if (changeTime >= 0.2f && matChange == true)
         {
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            matGosum.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
             matChange = false;
+            
         }
 
         //dirPlayer = targetPlayer.transform.position - this.transform.position;
@@ -80,7 +86,12 @@ public class JH_e_Gosum : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        UpdateKnockBack();
+        if(knockBack == true)
+        {
+            UpdateKnockBack();
+            
+        }
+        
 
     }
 
@@ -125,6 +136,7 @@ public class JH_e_Gosum : MonoBehaviour
             changeTime = 0;
             matChange = true;
 
+            matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             //transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f), 10f * Time.deltaTime);
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
         }
@@ -139,7 +151,7 @@ public class JH_e_Gosum : MonoBehaviour
             changeTime = 0;
             matChange = true;
 
-
+            matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
 
@@ -150,7 +162,7 @@ public class JH_e_Gosum : MonoBehaviour
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeTime = 0;
             matChange = true;
-
+            matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
         }
 
     }
@@ -159,7 +171,11 @@ public class JH_e_Gosum : MonoBehaviour
     {
         if (changeTime >= 0.2f && matChange == true)
         {
+
+
+            
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            
             if (changeTime > 1.5f)
             {
                 matChange = false;
@@ -169,5 +185,10 @@ public class JH_e_Gosum : MonoBehaviour
         }
 
 
+    }
+
+    private void OnDestroy()
+    {
+        matGosum.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
     }
 }
