@@ -134,6 +134,20 @@ public class PlayerController : MonoBehaviour
         {
             Guard();
         }
+
+        //print("rb.velocity" + rb.velocity.y);
+        if (isJump && !isMaxHigh) checkedVelocity();
+
+
+    }
+    float kirbyHeight;
+    bool isMaxHigh;
+    void checkedVelocity()
+    {
+       if (rb.velocity.y < 1f)
+        {
+            isMaxHigh = true;
+        } 
     }
     public void ChangeAbsorb()
     {
@@ -143,7 +157,7 @@ public class PlayerController : MonoBehaviour
         absorbObj.SetActive(true);
         //GetComponent<PlayerFire>().enabled = false;
         //GetComponent<PlayerAbsorb>().enabled = true;
-        //gun.SetActive(false);
+        //gun.SetActiv e(false);
     }
 
     void GetInput()
@@ -244,7 +258,6 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
 
-
         if (space && isGrounded)
         {
             currTime += Time.deltaTime;
@@ -268,15 +281,20 @@ public class PlayerController : MonoBehaviour
                 print("구르기 애니메이션");
                 rb.velocity = new Vector3(0, jumpPower, 0);
                 jumpCnt++;
-                //TIMELINE 구르기 애니메이션 만들기
+
                 anim.SetTrigger("Jump");
                 
+                //TIMELINE 구르기 애니메이션 만들기
+                //if (isMaxHigh)
+                //{
+                //    anim.SetTrigger("Jump");
+                //    isMaxHigh = false;
+                //}
                 
-
-                //anim.SetTrigger("Jump01");
             }
             else if (jumpCnt >= 1)
             {
+                isMaxHigh = false;
                 //&& !(GetComponentInChildren<PlayerAbsorb>().statec == PlayerAbsorb.AbsorbState.Absorbed)
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -287,9 +305,9 @@ public class PlayerController : MonoBehaviour
                 //느리게 가기 
                 jumpPower = 6;
                 rb.drag = 3;
-
+                
                 print("날개 애니메이션");
-
+                anim.SetBool("isJump02", true);
                 transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 //점프 높이 커비의 4~5배
 
@@ -306,7 +324,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         jumpCnt = 0;
         isJump = false;
-        
+        isMaxHigh = false;
+        anim.SetBool("isJump02", false);
+
     }
 
     int hitCount;
@@ -315,7 +335,9 @@ public class PlayerController : MonoBehaviour
         print("other.gameObject.layer"+ other);
         if (other.tag == "Ground")
         {
+            anim.SetBool("isJump02", false);
             isJump = false;
+            //isMaxHigh = false;
             transform.localScale = new Vector3(1f, 1f, 1f);
             isGrounded = true;
             jumpCnt = 0;
@@ -371,10 +393,14 @@ public class PlayerController : MonoBehaviour
             //흡수할 경우 넉백이 일어나면 안됨
             rb.AddForce(dir * (300f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
-            if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
+            if (attackState == AttackState.ABSORB)
             {
-                OnDamage();
+                if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
+                {
+                    OnDamage();
+                }
             }
+            
         }
     }
 
@@ -425,6 +451,8 @@ public class PlayerController : MonoBehaviour
                 isGuard = false;
                 tempDash.GetComponent<Light>().enabled = true;
                 transform.localScale = new Vector3(1f, 1f, 1f);
+
+                
                 if (dashCount >= 1)
                 {
                     if (isDash)
@@ -521,7 +549,17 @@ public class PlayerController : MonoBehaviour
                     //최대 높이 + 바뀌는 땅의 높이 y값
                     pos.y = maxHeight + hitInfo.transform.position.y;
                     transform.position = pos;
+
+                    kirbyHeight = hitInfo.distance;
+
+
+
                 }
+
+                //if(hitInfo.distance > 3)
+                //{
+
+                //}
             }
 
         }

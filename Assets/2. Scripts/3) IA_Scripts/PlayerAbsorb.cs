@@ -24,7 +24,7 @@ public class PlayerAbsorb : MonoBehaviour
     Rigidbody rb;
     public string absorbItemTag;
     public Transform effectPos;
-
+    public GameObject flaregun;
     public GameObject[] absorbParticle;
 
     public enum AbsorbState
@@ -41,6 +41,7 @@ public class PlayerAbsorb : MonoBehaviour
     float currTime2;
     void Start()
     {
+        flaregun.SetActive(false);
         absorbTrigger = GameObject.Find("AbsorbTrigger");
         rb = GetComponentInParent<Rigidbody>();
     }
@@ -56,6 +57,7 @@ public class PlayerAbsorb : MonoBehaviour
         isEmpty = true;
         currTime = 0;
         currTime2 = 0;
+       
 
     }
 
@@ -106,6 +108,33 @@ public class PlayerAbsorb : MonoBehaviour
     //public ParticleSystem[] particles;
     public List<GameObject> particles;
     bool isParticling = false;
+
+
+    void makeParticle()
+    {
+        isParticling = true;
+        for (int i = 0; i < absorbParticle.Length; i++)
+        {
+            GameObject go = Instantiate(absorbParticle[i], effectPos.position, effectPos.rotation);
+            go.GetComponent<ParticleSystem>().Play();
+
+            particles.Add(go);
+            //particles[i] = go.GetComponent<ParticleSystem>();
+
+            //print(particles[i]);
+        }
+
+    }
+
+    void DestroyParticle()
+    {
+        isParticling = false;
+        for (int i = 0; i < particles.Count; i++)
+        {
+            print("particles[i]" + particles[i]);
+            Destroy(particles[i], 0.5f);
+        }
+    }
     private void UpdateReady()
     {
         //콜라이더 바꾸기
@@ -121,43 +150,18 @@ public class PlayerAbsorb : MonoBehaviour
         //print(layerMask);
 
 
-        void makeParticle()
-        {
-            isParticling = true;
-            for (int i = 0; i < absorbParticle.Length; i++)
-            {
-                GameObject go = Instantiate(absorbParticle[i], effectPos.position, effectPos.rotation);
-                go.GetComponent<ParticleSystem>().Play();
-                
-                particles.Add(go);
-                //particles[i] = go.GetComponent<ParticleSystem>();
-
-                //print(particles[i]);
-            }
-
-        }
-
-        void DestroyParticle()
-        {
-            isParticling = false;
-            for (int i = 0; i < particles.Count; i++)
-            {
-                Destroy(particles[i], 0.5f);
-            }
-        }
 
         if (Input.GetButton("Fire1"))
         {
             currTime += Time.deltaTime;
 
-            if (!(isParticling)) makeParticle();
+           
             if (currTime > 0.5f)
                 {
-
-                    
-                    GetComponentInParent<PlayerController>().speed = minSpeed;
-                    if(Physics.SphereCast(ray.origin, 2f, ray.direction, out hitInfo, 15f, layerMask, QueryTriggerInteraction.UseGlobal))
-                {
+                if (!(isParticling)) makeParticle();
+                
+                   if(Physics.SphereCast(ray.origin, 2f, ray.direction, out hitInfo, 15f, layerMask, QueryTriggerInteraction.UseGlobal))
+                    {
                     GetComponentInParent<PlayerController>().speed = minSpeed;
                     print("absorbItem(*((" + hitInfo.collider.gameObject.layer);
                     print("hitInfo(*((" + hitInfo);
@@ -228,7 +232,7 @@ public class PlayerAbsorb : MonoBehaviour
             //{
             //    particles[i].GetComponent<ParticleSystem>().Stop();
             //}
-
+            DestroyParticle();
         }
     }
 
@@ -246,8 +250,9 @@ public class PlayerAbsorb : MonoBehaviour
 
     private void UpdateAbsorbing()
     {
+        GetComponentInParent<PlayerController>().speed = minSpeed;
 
-
+        DestroyParticle();
         //콜라이더 바꾸기
         OnAbsorbCollider();
         //거리가 5f이내면 강제로 흡입완료 아닐 경우 흡입 대기로 돌아간다.
@@ -382,6 +387,7 @@ public class PlayerAbsorb : MonoBehaviour
                     GetComponentInParent<PlayerController>().speed = maxSpeed;
                     getRanger = true;
                     state = PlayerAbsorb.AbsorbState.Ready;
+                    flaregun.SetActive(true);
 
                 }
             }

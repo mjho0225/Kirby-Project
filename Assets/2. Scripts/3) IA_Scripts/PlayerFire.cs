@@ -42,6 +42,7 @@ public class PlayerFire : MonoBehaviour
     int particleCount;
 
 
+    public GameObject fire01Effect;
 
     public GameObject bubleGun;
     void Start()
@@ -56,6 +57,8 @@ public class PlayerFire : MonoBehaviour
         img.enabled = false;
         starImg.enabled = false;
         GetComponentInParent<PlayerController>().speed = 7f;
+
+        
     }
 
     void GetInput()
@@ -74,8 +77,6 @@ public class PlayerFire : MonoBehaviour
         if (fireS)
         {
             currTime += Time.deltaTime;
-
-
             if (currTime > chargeWaitTime)
             {
                 ChargeShot();
@@ -139,6 +140,7 @@ public class PlayerFire : MonoBehaviour
             particle.transform.position = transform.position;
             particleCount++;
         }
+
         isCharge = true;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -199,13 +201,21 @@ public class PlayerFire : MonoBehaviour
     }
     void Shot()
     {
+
+        Instantiate(fire01Effect, firePos.position, firePos.rotation);
+       
         Destroy(particle, 1f);
         print("น฿ป็");
+     
         GameObject bullet = Instantiate(bulletFactory, firePos.position, firePos.rotation);
         
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = firePos.forward * 50;
         currTime = 0;
+       
+        transform.localScale = new Vector3(1f, 0.6f, 1f);
+        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 100);
+
     }
 
     void Shot2()
@@ -227,3 +237,4 @@ public class PlayerFire : MonoBehaviour
     }
 
 }
+
