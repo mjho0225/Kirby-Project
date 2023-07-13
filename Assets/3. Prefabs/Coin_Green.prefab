@@ -164,6 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07a95ed063818e4ca49c4181e7ee280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wave: {fileID: 8855389246633656605, guid: 733ed035a9606104299694e4163af017, type: 3}
+  star: {fileID: 3406538876290098529, guid: e534115609b575a4498c1cce33ae8b7b, type: 3}
+  mat_Coin: {fileID: 1157875516870094683}
 --- !u!1 &6283639208193973673
 GameObject:
   m_ObjectHideFlags: 0

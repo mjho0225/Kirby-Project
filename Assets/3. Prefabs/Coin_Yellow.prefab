@@ -127,6 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3733077912222770048}
   - component: {fileID: 3843113227662336731}
+  - component: {fileID: 3843113227662336732}
   m_Layer: 0
   m_Name: Coin_Yellow
   m_TagString: Untagged
@@ -163,6 +164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07a95ed063818e4ca49c4181e7ee280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wave: {fileID: 8855389246633656605, guid: 733ed035a9606104299694e4163af017, type: 3}
+  star: {fileID: 3406538876290098529, guid: e534115609b575a4498c1cce33ae8b7b, type: 3}
+  mat_Coin: {fileID: 7515619480687436654}
+--- !u!135 &3843113227662336732
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647185977387079378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8409437072037293556
 GameObject:
   m_ObjectHideFlags: 0
