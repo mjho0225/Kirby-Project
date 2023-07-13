@@ -44,12 +44,11 @@ public class CarController : MonoBehaviour
     // 파티클을 생성하고 싶다.
     public ParticleSystem[] NormalParticle;
     // 파티클 배열
-    public float maxEmission = 25;
+    public float maxEmission = 50;
     // 최대 효과. 비율
     private float emissionRate;
     private float rotationVelocity;
     public float rotationTime = 0.3f;
-
 
     private void Update()
     {
@@ -106,7 +105,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        EmissionNormalMoveParticle();
+        //EmissionNormalMoveParticle();
         FreezeRotation();
     }
 
@@ -128,14 +127,14 @@ public class CarController : MonoBehaviour
     private void MoveNormal()
     {
         // 처음 비율을 초기화 한다.
-        emissionRate = 0;
+        //emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
         if (Mathf.Abs(speedInput) > 0 && !autoDashing && mainRigidbody.velocity.magnitude < normalMaxSpeed)
         {
             // 앞 방향으로 힘을 주고싶다.
             mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
             // 최대 배출을 생성한다.
-            emissionRate = maxEmission;
+            //emissionRate = maxEmission;
             // 마찰 지정
             mainRigidbody.drag = dragOnGround;
         }
