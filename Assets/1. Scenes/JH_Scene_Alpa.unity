@@ -109975,6 +109975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin_Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 7647185977387079378, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
+      propertyPath: m_TagString
+      value: Coin
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
 --- !u!1 &3865866971114945843
@@ -114037,6 +114041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
@@ -114156,6 +114161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}

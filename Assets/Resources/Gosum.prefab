@@ -859,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class JH_e_Fox : MonoBehaviour
 {
+    public GameObject coin_Yellow;
+
     public int enemyHP = 100;
 
     public JH_w_Spawn mySpawner;
@@ -171,6 +173,9 @@ public class JH_e_Fox : MonoBehaviour
             if (enemyHP <= 0)
             {
                 state = State.Die;
+                Instantiate(coin_Yellow, transform.position, Quaternion.identity);
+                JH_i_Coin_rot.instance.monsDrop = true;
+                JH_ScoreManager.instance.COIN_SCORE++;
                 Destroy(this.gameObject);
                 
             }
@@ -222,6 +227,7 @@ public class JH_e_Fox : MonoBehaviour
 
     private void OnDestroy()
     {
+        
         mySpawner.DestroyedFox(this);
         
     }
