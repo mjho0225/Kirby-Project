@@ -9,6 +9,7 @@ public class JH_e_Target : MonoBehaviour
     public List<GameObject> guideWay;
 
     public bool hit = false;
+    float guideTime = 0;
 
     enum TargetStage
     {
@@ -22,6 +23,10 @@ public class JH_e_Target : MonoBehaviour
     void Start()
     {
         
+        for (int i = 0; i < guideWay.Count; i++)
+        {
+            guideWay[i].gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -40,16 +45,40 @@ public class JH_e_Target : MonoBehaviour
         {
             //WayGuide();
             Destroy(this.transform.gameObject);
+
+            guideTime += Time.deltaTime;
+
+            //다시 살릴예정
+            //for (int i = 0; i < guideWay.Count;)
+            //{
+            //    if (guideTime >= 0.5f)
+            //    {
+            //        guideWay[i].gameObject.SetActive(true);
+            //        i++;
+            //        guideTime = 0;
+            //    }
+
+            //    if (i >= guideWay.Count)
+            //    {
+            //        Destroy(hideWall, guideWay.Count * 0.5f);
+            //        Destroy(gameObject);
+            //        hit = false;
+            //    }
+
+            //}
+
+
         }
     }
-
+    
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "bullet" || collision.gameObject.tag == "bullet2")
         {
             hit = true;
-            Destroy(this.gameObject);
+            gameObject.GetComponent<Renderer>().enabled = false;
+            //Destroy(this.gameObject);
             //StartCoroutine("WayGuide");
         }
     }
