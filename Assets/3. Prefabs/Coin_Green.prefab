@@ -128,9 +128,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4993514957191270846}
   - component: {fileID: 7676440550243053875}
+  - component: {fileID: 5568813339427308775}
   m_Layer: 0
   m_Name: Coin_Green
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +168,26 @@ MonoBehaviour:
   wave: {fileID: 8855389246633656605, guid: 733ed035a9606104299694e4163af017, type: 3}
   star: {fileID: 3406538876290098529, guid: e534115609b575a4498c1cce33ae8b7b, type: 3}
   mat_Coin: {fileID: 1157875516870094683}
+  monsDrop: 0
+--- !u!114 &5568813339427308775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622559180751375108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 7647185977387079378, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
+  coin_Green: {fileID: 5622559180751375108}
+  coin_Red: {fileID: 5354643841152948832, guid: 4e676d3567e575841a1f8a15d139c090, type: 3}
+  iAm: 0
+  scoreCount: 0
+  box: 0
+  flowerAnim: 0
 --- !u!1 &6283639208193973673
 GameObject:
   m_ObjectHideFlags: 0

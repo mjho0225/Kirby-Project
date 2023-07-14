@@ -7,6 +7,8 @@ public class JH_e_Gosum : MonoBehaviour
 {
     NavMeshAgent agent;
 
+    public GameObject coin_Green;
+
     public int enemyHP = 100;
 
     public GameObject targetPlayer;
@@ -83,7 +85,12 @@ public class JH_e_Gosum : MonoBehaviour
 
         if(enemyHP <= 0)
         {
+            
+            Instantiate(coin_Green, transform.position, Quaternion.identity);
+            JH_i_Coin_rot.instance.monsDrop = true;
+            JH_ScoreManager.instance.COIN_SCORE += 5;
             Destroy(this.gameObject);
+
         }
 
         if(knockBack == true)
@@ -125,7 +132,9 @@ public class JH_e_Gosum : MonoBehaviour
             enemyHP -= 20;
             if (enemyHP <= 0)
             {
-                
+                Instantiate(coin_Green, transform.position, Quaternion.identity);
+                JH_i_Coin_rot.instance.monsDrop = true;
+                JH_ScoreManager.instance.COIN_SCORE += 5;
                 Destroy(this.gameObject);
 
             }

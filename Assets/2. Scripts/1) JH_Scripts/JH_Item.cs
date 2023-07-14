@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class JH_Item : MonoBehaviour
 {
+    public GameObject coin_Yellow;
+    public GameObject coin_Green;
+    public GameObject coin_Red;
 
     public enum WHO
     {
@@ -100,7 +103,7 @@ public class JH_Item : MonoBehaviour
     void IAmFlower()
     {
         flowerAnim = true;
-        JH_ScoreManager.instance.COIN_SCORE++;
+        //JH_ScoreManager.instance.COIN_SCORE++;
 
     }
 
@@ -147,14 +150,14 @@ public class JH_Item : MonoBehaviour
         if(box == Box.Wood1)
         {
             // 1점 짜리 코인 드랍
-
+            Instantiate(coin_Yellow, transform.position, Quaternion.identity);
             //테스트
             JH_ScoreManager.instance.COIN_SCORE++;
         }
         if (box == Box.Wood2)
         {
             // 5점 짜리 코인 드랍
-
+            Instantiate(coin_Green, transform.position, Quaternion.identity);
             //테스트
             JH_ScoreManager.instance.COIN_SCORE += 5;
         }
@@ -165,7 +168,7 @@ public class JH_Item : MonoBehaviour
         if (box == Box.Iron2)
         {
             // 10점 짜리 코인 드랍
-
+            Instantiate(coin_Red, transform.position, Quaternion.identity);
 
         }
         if (box == Box.Star)
@@ -285,15 +288,15 @@ public class JH_Item : MonoBehaviour
         if (me == "Coin")
         {
             iAm = WHO.item_Coin;
-            if (this.gameObject.name.Contains("Coin1"))
+            if (this.gameObject.name.Contains("Coin_Yellow"))
             {
                 scoreCount = CountScore.score1;
             }
-            if (this.gameObject.name.Contains("Coin5"))
+            if (this.gameObject.name.Contains("Coin_Green"))
             {
                 scoreCount = CountScore.score5;
             }
-            if (this.gameObject.name.Contains("Coin10"))
+            if (this.gameObject.name.Contains("Coin_Red"))
             {
                 scoreCount = CountScore.score10;
             }
@@ -338,7 +341,7 @@ public class JH_Item : MonoBehaviour
                 IAmCoin();
 
                 //동전 획득 애니메이션
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
 
             if (iAm == WHO.item_Waii)
@@ -364,6 +367,7 @@ public class JH_Item : MonoBehaviour
             {
                 IAmFlower();
                 this.gameObject.GetComponent<Collider>().enabled = false;
+                Instantiate(coin_Yellow, transform.position, Quaternion.identity);
                 //Destroy(this.gameObject);
             }
         }

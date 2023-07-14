@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JH_i_Coin_rot : MonoBehaviour
 {
+    public static JH_i_Coin_rot instance; 
 
     public ParticleSystem wave;
     public ParticleSystem star;
@@ -12,10 +13,22 @@ public class JH_i_Coin_rot : MonoBehaviour
 
     bool coinAct;
 
+    public bool monsDrop = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(monsDrop == true)
+        {
+            coinAct = true;
+            GetComponent<Collider>().enabled = false;
+            Instantiate(wave, transform.position, Quaternion.identity);
+        }
+
     }
 
     // Update is called once per frame
@@ -33,7 +46,7 @@ public class JH_i_Coin_rot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && monsDrop == false)
         {
             coinAct = true;
             GetComponent<Collider>().enabled = false;
@@ -72,6 +85,6 @@ public class JH_i_Coin_rot : MonoBehaviour
     {
         //star.Play();
         Instantiate(star, transform.position, Quaternion.identity);
-        
+        monsDrop = false;
     }
 }

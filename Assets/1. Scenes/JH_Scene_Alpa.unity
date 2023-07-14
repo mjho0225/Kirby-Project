@@ -4492,6 +4492,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -19360,6 +19363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -28424,6 +28430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -28589,6 +28598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -30505,6 +30517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 7647185977387079378, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
+  coin_Red: {fileID: 5354643841152948832, guid: 4e676d3567e575841a1f8a15d139c090, type: 3}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -31797,6 +31812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -32877,6 +32895,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -37292,6 +37313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -38671,6 +38695,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -39796,6 +39823,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -47055,6 +47085,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -52909,6 +52942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -54116,6 +54152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -62214,6 +62253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -62549,6 +62591,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -65313,6 +65358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -72688,6 +72736,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -73332,6 +73383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -76572,6 +76626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -76747,6 +76804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -76932,6 +76992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 7647185977387079378, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
+  coin_Red: {fileID: 5354643841152948832, guid: 4e676d3567e575841a1f8a15d139c090, type: 3}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -92466,6 +92529,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -94569,6 +94635,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -98474,6 +98543,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 7647185977387079378, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
+  coin_Red: {fileID: 5354643841152948832, guid: 4e676d3567e575841a1f8a15d139c090, type: 3}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -100204,6 +100276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -102401,6 +102476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -104316,6 +104394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff1539ed98bc4a4388df15f47709f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Yellow: {fileID: 0}
+  coin_Green: {fileID: 0}
+  coin_Red: {fileID: 0}
   iAm: 0
   scoreCount: 0
   box: 0
@@ -109894,6 +109975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin_Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 7647185977387079378, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
+      propertyPath: m_TagString
+      value: Coin
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c120f60805d37d84aa9d3dee23bd22f8, type: 3}
 --- !u!1 &3865866971114945843
@@ -113956,6 +114041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
@@ -114075,6 +114161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0859c9bc00f634f4193d794df150b34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin_Green: {fileID: 5622559180751375108, guid: 9d6bbe5bba56d8c45ae82b8b0ca9e699, type: 3}
   enemyHP: 100
   targetPlayer: {fileID: 0}
   bullet: {fileID: 0}
