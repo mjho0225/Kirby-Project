@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class JH_Item : MonoBehaviour
 {
+    public GameObject coin_Yellow;
+    public GameObject coin_Green;
+    public GameObject coin_Red;
 
     public enum WHO
     {
@@ -364,6 +367,7 @@ public class JH_Item : MonoBehaviour
             {
                 IAmFlower();
                 this.gameObject.GetComponent<Collider>().enabled = false;
+                Instantiate(coin_Yellow, transform.position, Quaternion.identity);
                 //Destroy(this.gameObject);
             }
         }
