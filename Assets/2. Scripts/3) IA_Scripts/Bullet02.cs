@@ -4,6 +4,7 @@ public class Bullet02 : MonoBehaviour
 {
     public ParticleSystem HitEffect;
     int hitCount;
+    public GameObject bulletStar;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +25,12 @@ public class Bullet02 : MonoBehaviour
         //GameObject.Find("PlayerRanger").GetComponent<PlayerFire>().UpdateClear();
 
         Destroy(gameObject);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             if (hitCount < 1)
             {
                 Instantiate(HitEffect, collision.transform.position, Quaternion.identity);
+                Instantiate(bulletStar, collision.contacts[0].point, Quaternion.identity);
                 Destroy(gameObject, 2f);
                 hitCount++;
             }

@@ -40,10 +40,10 @@ public class PlayerFire : MonoBehaviour
     public GameObject chargeEffect;
     GameObject particle;
     int particleCount;
-
+    
 
     public GameObject fire01Effect;
-
+    public GameObject flareGun;
     public GameObject bubleGun;
     void Start()
     {
@@ -134,12 +134,6 @@ public class PlayerFire : MonoBehaviour
     {
         print("ChargeShot");
 
-        if (particleCount < 1)
-        {
-            particle = Instantiate(chargeEffect);
-            particle.transform.position = transform.position;
-            particleCount++;
-        }
 
         isCharge = true;
 
@@ -158,9 +152,10 @@ public class PlayerFire : MonoBehaviour
             Vector3 v3Pos = ray.GetPoint(hit.distance);
 
             Transform playerPos = transform;
-            lineRenderer.SetPosition(0, playerPos.position);
+            lineRenderer.SetPosition(0, firePos.position);
             // lineRenderer 1번째 target position 설정
             //img.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
 
             //라곤
             if (hit.collider.gameObject.layer == 8 || hit.collider.gameObject.layer == 6)
@@ -182,6 +177,19 @@ public class PlayerFire : MonoBehaviour
             }
 
             firePos02 = hit.point;
+
+           
+            if (particleCount < 1)
+            {
+               
+                particle = Instantiate(chargeEffect, lineRenderer.GetPosition(0), Quaternion.LookRotation(firePos02 - transform.position));
+                particleCount++;
+            }
+
+            Vector3 pointTolook = ray.GetPoint(200f);
+
+            flareGun.transform.LookAt(new Vector3(-(pointTolook.x), transform.position.y, -(pointTolook.z)));
+            //flareGun.transform.Rotate(Input.mousePosition);
         }
 
 
@@ -220,18 +228,19 @@ public class PlayerFire : MonoBehaviour
 
     void Shot2()
     {
+        Instantiate(fire01Effect, firePos.position, firePos.rotation);
         Destroy(particle, 2f);
         print("발사2");
         //Vector3 dir = transform.position;
         //dir.z +=  1;
         //dir.x += 1;
         GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
-
-        currTime += Time.deltaTime;
-        if (currTime > 1.5f)
-        {
-            UpdateClear();
-        }
+        UpdateClear();
+        //currTime += Time.deltaTime;
+        //if (currTime > 1.5f)
+        //{
+        //    UpdateClear();
+        //}
         //currTime = 0;
 
     }
