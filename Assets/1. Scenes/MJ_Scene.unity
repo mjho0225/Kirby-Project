@@ -2479,6 +2479,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636093965}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &648634272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648634274}
+  - component: {fileID: 648634273}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &648634273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648634272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cfd37f3b8a3864eb9291c222d5494a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &648634274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648634272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649690444
 GameObject:
   m_ObjectHideFlags: 0
@@ -8813,7 +8857,7 @@ GameObject:
   - component: {fileID: 908385945}
   - component: {fileID: 908385948}
   m_Layer: 5
-  m_Name: ChangeBackground
+  m_Name: Changed Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8889,7 +8933,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -16373,7 +16417,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -22016,8 +22060,9 @@ GameObject:
   - component: {fileID: 1687016673}
   - component: {fileID: 1687016675}
   - component: {fileID: 1687016674}
+  - component: {fileID: 1687016676}
   m_Layer: 0
-  m_Name: BackgroundCamera
+  m_Name: Background Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22069,7 +22114,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 1
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -22089,6 +22134,27 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &1687016676
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687016672}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1687310990
 GameObject:
   m_ObjectHideFlags: 3
@@ -24692,7 +24758,7 @@ PlayableDirector:
   m_PlayableAsset: {fileID: 11400000, guid: b165d476870970544855d3bd296d6876, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
-  m_DirectorUpdateMode: 1
+  m_DirectorUpdateMode: 2
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -706273398448724759, guid: b165d476870970544855d3bd296d6876, type: 2}
@@ -24717,6 +24783,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -5595337503563526367, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 5438770717228159751, guid: b165d476870970544855d3bd296d6876, type: 2}
+    value: {fileID: 1687016676}
   m_ExposedReferences:
     m_References:
     - 553782992ef3a45418dd37fbb0b6ac88: {fileID: 910914750}
@@ -102311,7 +102379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &8087230652022491068
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102347,7 +102415,7 @@ MonoBehaviour:
   changeColor: 0
   currentChage: 0
   knockBack: 0
-  matGosum: {fileID: 0}
+  matGosum: {fileID: 2100000, guid: 1abd6c84a809bda4f8971275436b9ac9, type: 2}
 --- !u!33 &8087230652022491070
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102447,7 +102515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &8087230652590641032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102483,7 +102551,7 @@ MonoBehaviour:
   changeColor: 0
   currentChage: 0
   knockBack: 0
-  matGosum: {fileID: 0}
+  matGosum: {fileID: 2100000, guid: 1abd6c84a809bda4f8971275436b9ac9, type: 2}
 --- !u!33 &8087230652590641034
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102902,7 +102970,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -102924,8 +102992,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals: []
-    m_Events: []
+    m_Signals:
+    - {fileID: 11400000, guid: cfe3441fcec7a2f43bef50e79862a7b5, type: 2}
+    - {fileID: 11400000, guid: 2a1c5135e78e4a4438584a1e4f5e80b4, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 648634273}
+          m_TargetAssemblyTypeName: TimeSignal, Assembly-CSharp
+          m_MethodName: PauseTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 648634273}
+          m_TargetAssemblyTypeName: TimeSignal, Assembly-CSharp
+          m_MethodName: StartTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8452582133243833576
 GameObject:
   m_ObjectHideFlags: 0
