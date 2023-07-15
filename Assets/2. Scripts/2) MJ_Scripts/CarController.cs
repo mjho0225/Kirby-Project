@@ -75,8 +75,12 @@ public class CarController : MonoBehaviour
             autoDashing = true;
             forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-            // 대쉬 파티클을 실행한다
-            NormalParticle[2].Play();
+            
+            foreach(ParticleSystem ps in NormalParticle)
+            {
+                ps.Play();
+            }
+
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -86,7 +90,10 @@ public class CarController : MonoBehaviour
             // 일반 상태로 변경한다.
             carState = CarState.Move;
             // 대쉬 파티클을 실행하지 않는다.
-            NormalParticle[2].Stop();
+            foreach (ParticleSystem ps in NormalParticle)
+            {
+                ps.Stop();
+            }
         }
     }
 
@@ -127,7 +134,7 @@ public class CarController : MonoBehaviour
     private void MoveNormal()
     {
         // 처음 비율을 초기화 한다.
-        //emissionRate = 0;
+        emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
         if (Mathf.Abs(speedInput) > 0 && !autoDashing && mainRigidbody.velocity.magnitude < normalMaxSpeed)
         {
@@ -152,10 +159,11 @@ public class CarController : MonoBehaviour
         // 파티클에 각각 접근하여
         foreach (ParticleSystem part in NormalParticle)
         {
-            // 배출을 지정하고
+
             var emissionModule = part.emission;
             // 모듈을 시간을 생성한다.
             emissionModule.rateOverTime = emissionRate;
+
         }
     }
 
@@ -208,6 +216,7 @@ public class CarController : MonoBehaviour
         {
             isGrounded = true;
         }
+        // 커비가 땅에 닿았고, 점프를 했다면 이펙트를 넣는다.
     }
 
 }
