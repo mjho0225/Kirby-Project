@@ -66,6 +66,7 @@ public class CarController : MonoBehaviour
         }
     }
 
+
     private void MoveDash()
     {
         // 만약에 앞으로 가는 벡터가 zero 일 때 앞으로 가는 방향에 힘을 준다.
@@ -75,7 +76,8 @@ public class CarController : MonoBehaviour
             autoDashing = true;
             forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-            
+            // 부스터 사운드를 발동한다.
+            AudioManager.instance.PlaySound("Booster");
             foreach(ParticleSystem ps in NormalParticle)
             {
                 ps.Play();
@@ -102,6 +104,7 @@ public class CarController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             mainRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            AudioManager.instance.PlaySound("Jump");
             isGrounded = false;
         }
         mainRigidbody.AddForce(Vector3.up * -gravity * 25);
@@ -133,7 +136,6 @@ public class CarController : MonoBehaviour
 
     private void MoveNormal()
     {
-        // 처음 비율을 초기화 한다.
         emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
         if (Mathf.Abs(speedInput) > 0 && !autoDashing && mainRigidbody.velocity.magnitude < normalMaxSpeed)
@@ -183,6 +185,7 @@ public class CarController : MonoBehaviour
             // 그만큼 각도를 회전한다.
             bodyTransform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
             // 속력 값을 만든다.
+
             speedInput = forwardAccel * 700f;
         }
 
