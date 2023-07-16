@@ -8125,7 +8125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691315297}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -67.38, y: 39.2, z: -116.6}
+  m_LocalPosition: {x: -66.48, y: 38.25, z: -115.55}
   m_LocalScale: {x: 4.9459705, y: 1, z: 1.4442008}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8990,14 +8990,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819647398}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -64.83, y: 38.48, z: -115.4}
+  m_LocalRotation: {x: 0.59497136, y: 0.38211143, z: -0.59497136, w: 0.38211143}
+  m_LocalPosition: {x: -63.9, y: 38.24, z: -115.399994}
   m_LocalScale: {x: 4.9459705, y: 1, z: 1.4442008}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1824498340}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 114.58, y: 90, z: 0}
 --- !u!65 &1819647400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11614,6 +11614,7 @@ MonoBehaviour:
   starImg: {fileID: 620311672}
   chargeEffect: {fileID: 149735602626672004, guid: 5ee09ea982e5e024b848dad5f48c9b3d, type: 3}
   fire01Effect: {fileID: 0}
+  flareGun: {fileID: 0}
   bubleGun: {fileID: 8374555588431858420, guid: fb2a3d012cc21da4cb936f388236a422, type: 3}
 --- !u!120 &1468149914673193852
 LineRenderer:
