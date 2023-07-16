@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
+// 플레이어가 밑에 하단에서 레이 캐스트를 쏳았을 때 지면에 닿았다면 발생시킨다.
 public class DeathWall : MonoBehaviour
 {
     // 플레이어를 가져온다.
@@ -14,6 +15,7 @@ public class DeathWall : MonoBehaviour
     // 만약 플레이어가 태그 된다면 원래 위치에서 태어나게 한다.
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             player.transform.position = checkPoint.transform.position;
