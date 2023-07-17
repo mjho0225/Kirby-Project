@@ -78,6 +78,7 @@ public class JH_e_Gosum : MonoBehaviour
         {
             //transform.rotation = Quaternion.LookRotation(dirPlayer); //문제있음
             transform.rotation = Quaternion.LookRotation(playerPos); //문제 수정
+            
             //transform.Translate(dirPlayer * 0.2f * Time.deltaTime);
             transform.Translate(-playerPos * 0.2f * Time.deltaTime);
             //transform.position = Vector3.MoveTowards(transform.position,targetPlayer.transform.position,3*Time.deltaTime);

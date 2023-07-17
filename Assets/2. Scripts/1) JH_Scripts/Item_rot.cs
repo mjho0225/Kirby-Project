@@ -22,4 +22,14 @@ public class Item_rot : MonoBehaviour
         //계속 회전
         transform.Rotate(new Vector3(0, 50 * Time.deltaTime, 0));
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            
+            //GetComponent<Collider>().enabled = false;
+        }
+    }
 }
