@@ -6,17 +6,19 @@ public class Bullet02 : MonoBehaviour
     int hitCount;
     public GameObject bulletStar;
     // Start is called before the first frame update
+    
     void Start()
     {
         Rigidbody bulletRb = GetComponent<Rigidbody>();
         bulletRb.velocity = transform.forward * 30;
+       
+      
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void OnCollisionEnter(Collision collision)

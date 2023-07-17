@@ -49,29 +49,35 @@ public class JH_e_Gosum : MonoBehaviour
         changeTime += Time.deltaTime;
         changeColor += Time.deltaTime;
 
-        if (changeTime >= 3) //3초있다가 커짐
-        {
-            ChangeBig(); //크게 변신
-            if (changeTime >= 6) // 3초있다가 작아짐
-            {
-                ChangeSmall(); // 변신 풀림 > 작게 변신
-
-                changeTime = 0; // 변신이 풀렸을때 초기화
-            }
-        }
-
-        if (changeTime >= 0.2f && matChange == true)
-        {
-            transform.GetComponent<MeshRenderer>().material.color = Color.red;
-            matGosum.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
-            matChange = false;
-            
-        }
-
         //dirPlayer = targetPlayer.transform.position - this.transform.position;
         dirPlayer = targetPlayer.transform.position - this.transform.position;
         playerPos = new Vector3(dirPlayer.x, 0, dirPlayer.z);
         distPlayer = Vector3.Distance(targetPlayer.transform.position, gameObject.transform.position);
+
+        if (distPlayer < 7)
+        {
+            if (changeTime >= 3) //3초있다가 커짐
+            {
+                ChangeBig(); //크게 변신
+                
+            }
+
+        }
+        if (changeTime >= 6 && currentChage == true) // 3초있다가 작아짐
+        {
+            ChangeSmall(); // 변신 풀림 > 작게 변신
+
+            changeTime = 0; // 변신이 풀렸을때 초기화
+        }
+
+
+        if (changeColor >= 0.2f && matChange == true)
+        {
+            transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            matGosum.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
+            matChange = false;
+
+        }
 
         //ry = dirPlayer.y;
         if (distPlayer <= 7)
@@ -128,7 +134,7 @@ public class JH_e_Gosum : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Player")
+        if(collision.transform.tag == "Player" && currentChage == false)
         {
             enemyHP -= 20;
             if (enemyHP <= 0)
@@ -143,7 +149,7 @@ public class JH_e_Gosum : MonoBehaviour
             print("충돌");
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
-            changeTime = 0;
+            changeColor = 0;
             matChange = true;
 
             matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
@@ -151,21 +157,21 @@ public class JH_e_Gosum : MonoBehaviour
             rb.AddForce(-dirPlayer * 200f * Time.deltaTime, ForceMode.Impulse);
         }
 
-        if (collision.gameObject.tag == "bullet")
+        if (collision.gameObject.tag == "bullet" && currentChage == false)
         {
             //OnDamage();
             enemyHP -= 20;
             //state = State.KnockBack;
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
-            changeTime = 0;
+            changeColor = 0;
             matChange = true;
 
             matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
 
-        if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
+        if ((collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")&&currentChage == false)
         {
             enemyHP -= 100;
             knockBack = true;
@@ -179,14 +185,14 @@ public class JH_e_Gosum : MonoBehaviour
 
     void UpdateKnockBack()
     {
-        if (changeTime >= 0.2f && matChange == true)
+        if (changeColor >= 0.2f && matChange == true)
         {
 
 
             
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
             
-            if (changeTime > 1.5f)
+            if (changeColor > 1.5f)
             {
                 matChange = false;
 
