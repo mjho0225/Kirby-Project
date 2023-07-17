@@ -75,7 +75,7 @@ public class CarController : MonoBehaviour
             autoDashing = true;
             forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-            
+            AudioManager.instance.PlaySound("Booster");
             foreach(ParticleSystem ps in NormalParticle)
             {
                 ps.Play();
@@ -102,6 +102,7 @@ public class CarController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             mainRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            AudioManager.instance.PlaySound("Jump");
             isGrounded = false;
         }
         mainRigidbody.AddForce(Vector3.up * -gravity * 25);
