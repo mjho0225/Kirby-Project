@@ -5,7 +5,7 @@ using UnityEngine;
 public class JH_Rock_fall : MonoBehaviour
 {
     public ParticleSystem fall;
-    bool fallen = false;
+    public bool fallen = false;
 
     //Rigidbody rb;
     public List<Transform> patrolPos; // 패트롤 위치가 몇개이냐에 따라 쉽게 늘릴수 있도록 퍼블릭으로
@@ -47,14 +47,17 @@ public class JH_Rock_fall : MonoBehaviour
 
             if (i > 12 && i <= 13)
             {
+                this.fallen = false;
                 rockSpeed = fallSpeed;
             }
             if (i >= 14)
             {
+                
                 rockSpeed = 4.5f;
             }
             if (i >= 15)
             {
+                
                 rockSpeed = fallSpeed;
             }
             transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, rockSpeed * Time.deltaTime);
