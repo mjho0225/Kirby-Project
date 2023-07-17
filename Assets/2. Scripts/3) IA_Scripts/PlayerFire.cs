@@ -45,8 +45,6 @@ public class PlayerFire : MonoBehaviour
     public GameObject fire01Effect;
     public GameObject flareGun;
     public GameObject bubleGun;
-    public GameObject kirbyModel;
-
     void Start()
     {
         OffAbsorbCollider();
@@ -71,36 +69,26 @@ public class PlayerFire : MonoBehaviour
         fire2D = Input.GetButtonDown("Fire2");
     }
 
-    bool isAbsorb = false;
-
     void Update()
     {
         GetInput();
-        checkCar();
+
 
         if (fireS)
         {
-            if (isAbsorb)
+            currTime += Time.deltaTime;
+            if (currTime > chargeWaitTime)
             {
-                absorbCar();
+                ChargeShot();
             }
-            else
-            {
-                currTime += Time.deltaTime;
-                if (currTime > chargeWaitTime)
-                {
-                    ChargeShot();
-                }
-            }
-
         }
-        if (fireD && !isCharge && !isAbsorb)
+        if (fireD && !isCharge)
         {
             Destroy(particle, 1f);
             Shot();
 
         }
-        if (fireU && isCharge && !isAbsorb)
+        if (fireU && isCharge)
         {
             Destroy(particle, 1f);
             Shot2();
@@ -121,76 +109,6 @@ public class PlayerFire : MonoBehaviour
 
 
     }
-
-    void OnDrawGizmosSelected()
-    {
-        Vector3 posZ = transform.position;
-        //스피어 앞방향
-        posZ.z += 3f;
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(posZ, 3f);
-    }
-    Collider[] cols;
-    void checkCar()
-    {
-
-        int layer = 1 << LayerMask.NameToLayer("Car");
-        Vector3 posZY = transform.position;
-        //스피어 앞방향
-        posZY.z += 3;
-        posZY.y += 1;
-        cols = Physics.OverlapSphere(posZY, 4f, layer);
-        print("cols" + cols);
-        if (cols.Length > 0)
-        {
-            isAbsorb = true;
-        }
-    }
-
-    void absorbCar()
-    {
-        //car mesh 합치기, Layer 중복 상위 오브젝트에만 CarLayer처리 + rigidbody
-        for (int i = 0; i < cols.Length; i++)
-        {
-            print("cols" + cols[i]);
-            float dist = Vector3.Distance(transform.position, cols[i].gameObject.transform.position);
-            Vector3 dir = transform.position;
-            if (dist < 8f)
-            {
-
-                cols[i].gameObject.transform.LookAt(dir);
-                cols[i].gameObject.transform.position = Vector3.Lerp(cols[i].gameObject.transform.position, dir, Time.deltaTime * 10);
-                //rb.isKinematic = true;
-            }
-            if(dist < 2f)
-            {
-                isAbsorb = false;
-                Destroy(cols[i].gameObject);
-                StartCoroutine(disableKirbyModel());
-            }
-           
-        }
-    }
-
-    IEnumerator disableKirbyModel() {
-        yield return new WaitForSeconds(2f);
-        gameObject.SetActive(false);
-        kirbyModel.SetActive(false);
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        print(collision);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
-        {
-            isAbsorb = false;
-            Destroy(collision.gameObject);
-            gameObject.SetActive(false);
-            kirbyModel.SetActive(false);
-        }
-    }
-
-
     void OffAbsorbCollider()
     {
         SphereCollider[] mesh_origin = GetComponentsInParent<SphereCollider>();

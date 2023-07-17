@@ -187,30 +187,30 @@ public class PlayerAbsorb : MonoBehaviour
                         
                         int layer = (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("BubleGun"));
                         Vector3 posZY = transform.position;
-                        //스피어 앞방향
+                    //스피어 앞방향
                         posZY.z += 2;
                         posZY.y += 1;
-                        Collider[] cols = Physics.OverlapSphere(posZY, 1.5f, layer);
+                    Collider[] cols = Physics.OverlapSphere(posZY, 1.5f, layer);
                         for (int i = 0; i < cols.Length; i++)
-                            {
-                                print("cols" + cols[i]);
-                                float dist = Vector3.Distance(transform.position, cols[i].gameObject.transform.position);
-                                min = dist;
-                                gb = cols[i].gameObject;
+                    {
+                        print("cols" + cols[i]);
+                        float dist = Vector3.Distance(transform.position, cols[i].gameObject.transform.position);
+                        min = dist;
+                        gb = cols[i].gameObject;
 
-                                if (dist < min)
-                                {
-                                    min = dist;
-                                    gb = cols[i].gameObject;
-                                }
-                            }
-                        if (min != 0)
+                        if (dist < min)
                         {
-                            absorbItem = gb;
-                            print("absorbItem" + absorbItem);
-                            absorbItemTag = absorbItem.tag;
-                            state = AbsorbState.Absorbing;
-                         }
+                            min = dist;
+                            gb = cols[i].gameObject;
+                        }
+                    }
+                        if (min != 0)
+                    {
+                        absorbItem = gb;
+                        print("absorbItem" + absorbItem);
+                        absorbItemTag = absorbItem.tag;
+                        state = AbsorbState.Absorbing;
+                    }
                     }
 
                 //범위내에
