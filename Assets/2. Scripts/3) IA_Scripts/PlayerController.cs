@@ -349,26 +349,26 @@ public class PlayerController : MonoBehaviour
             JH_Rock_Spawn.instance.area1Start = true;
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
-        {
-            print("other.gameObject.layer");
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
+        //{w
+        //    print("other.gameObject.layer");
             
-            if (hitCount < 1)
-            {
-                rangerObj.SetActive(false);
-                absorbObj.SetActive(false);
+        //    if (hitCount < 1)
+        //    {
+        //        rangerObj.SetActive(false);
+        //        absorbObj.SetActive(false);
                
-                Destroy(other.gameObject);
+        //        Destroy(other.gameObject);
 
-                Vector3 pos = carObj.transform.position;
-                pos.y += 5;
-                carObj.transform.position = pos;
-                //GameObject go = Instantiate(obj, posZ, Quaternion.identity);
-                carObj.SetActive(true);
-                hitCount++;
-            }
+        //        Vector3 pos = carObj.transform.position;
+        //        pos.y += 5;
+        //        carObj.transform.position = pos;
+        //        //GameObject go = Instantiate(obj, posZ, Quaternion.identity);
+        //        carObj.SetActive(true);
+        //        hitCount++;
+        //    }
 
-        }
+        //}
 
     }
 
