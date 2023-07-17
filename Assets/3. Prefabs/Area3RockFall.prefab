@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe6faaffc62f4c408bac21e97ce7fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fall: {fileID: 265766274217486953, guid: d3015b7eea383f64d8b81f965cc466e7, type: 3}
   patrolPos:
   - {fileID: 7489931265240490513}
   - {fileID: 7489931265020202694}

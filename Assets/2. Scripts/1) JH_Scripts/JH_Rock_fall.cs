@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class JH_Rock_fall : MonoBehaviour
 {
+    public ParticleSystem fall;
+    bool fallen = false;
+
     //Rigidbody rb;
     public List<Transform> patrolPos; // 패트롤 위치가 몇개이냐에 따라 쉽게 늘릴수 있도록 퍼블릭으로
     int listCount; // 패트롤 리스트의 개수 파악
@@ -31,16 +34,18 @@ public class JH_Rock_fall : MonoBehaviour
             //// 리스트(패트롤 위치)로 이동할때 회전하여 정면을 바라보게 하고싶다.
             transform.LookAt(patrolPos[i]);
             // 리스트로 이동하고싶다.
-            if(i>0 && i <= 1)
+            if (i > 0 && i <= 1)
             {
                 rockSpeed = fallSpeed;
             }
             if (i >= 2)
             {
                 rockSpeed = 4.5f;
+
             }
 
-            if (i>12 && i <= 13)
+
+            if (i > 12 && i <= 13)
             {
                 rockSpeed = fallSpeed;
             }
@@ -66,6 +71,9 @@ public class JH_Rock_fall : MonoBehaviour
                 }
             }
         }
+
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,5 +83,20 @@ public class JH_Rock_fall : MonoBehaviour
         {
             PlayerHP.instance.HP -= 5;
         }
+
+        
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ground" && this.fallen == false)
+        {
+            print("낙하");
+            Vector3 fallPos = transform.position;
+            fallPos = new Vector3(fallPos.x, fallPos.y - 2.2f, fallPos.z);
+            Instantiate(fall, fallPos, Quaternion.identity);
+            this.fallen = true;
+        }
+    }
+
 }
