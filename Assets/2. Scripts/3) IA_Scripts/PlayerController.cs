@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
                 posLeft.x = transform.position.x - 0.5f;
                 GameObject left = Instantiate(feetEffect);
                 left.transform.position = posLeft;
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
                 Vector3 posRight = transform.position;
                 posRight.y = transform.position.y - (transform.lossyScale.y / 2) + 0.2f; //pos 값 체크
                 posRight.x = transform.position.x + 0.5f;
@@ -122,7 +122,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = true;
             //차징샷 이동 금지
-            Move();
+            if(!(GetComponentInChildren<PlayerFire>().isCharge)) Move();
+
 
         }
 
@@ -138,6 +139,7 @@ public class PlayerController : MonoBehaviour
         //print("rb.velocity" + rb.velocity.y);
         if (isJump && !isMaxHigh) checkedVelocity();
 
+        
 
     }
     float kirbyHeight;
@@ -308,7 +310,7 @@ public class PlayerController : MonoBehaviour
                 
                 print("날개 애니메이션");
                 anim.SetBool("isJump02", true);
-                transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
                 //점프 높이 커비의 4~5배
 
                 rb.velocity = new Vector3(0, jumpPower, 0);
