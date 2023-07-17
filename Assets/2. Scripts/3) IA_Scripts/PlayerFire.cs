@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EZCameraShake;
 
 //[RequireComponent(typeof(LineRenderer))]
 public class PlayerFire : MonoBehaviour
@@ -38,6 +39,7 @@ public class PlayerFire : MonoBehaviour
 
     Vector3 firePos02;
     public GameObject chargeEffect;
+    public GameObject chergeEffect02;
     GameObject particle;
     int particleCount;
     
@@ -47,6 +49,11 @@ public class PlayerFire : MonoBehaviour
     public GameObject bubleGun;
     public GameObject kirbyModel;
 
+    public Animator anim;
+
+
+
+    
     void Start()
     {
         OffAbsorbCollider();
@@ -60,7 +67,6 @@ public class PlayerFire : MonoBehaviour
         starImg.enabled = false;
         GetComponentInParent<PlayerController>().speed = 7f;
 
-        
     }
 
     void GetInput()
@@ -166,6 +172,9 @@ public class PlayerFire : MonoBehaviour
             {
                 isAbsorb = false;
                 Destroy(cols[i].gameObject);
+                
+                //자동차 프리팹 setActive;
+
                 StartCoroutine(disableKirbyModel());
             }
            
@@ -218,7 +227,7 @@ public class PlayerFire : MonoBehaviour
 
 
         isCharge = true;
-
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -263,14 +272,20 @@ public class PlayerFire : MonoBehaviour
            
             if (particleCount < 1)
             {
-               
-                particle = Instantiate(chargeEffect, lineRenderer.GetPosition(0), Quaternion.LookRotation(firePos02 - transform.position));
+                Vector3 pos = lineRenderer.GetPosition(0);
+                pos.z += 1f;
+
+                particle = Instantiate(chargeEffect, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
                 particleCount++;
             }
 
-            Vector3 pointTolook = ray.GetPoint(200f);
+            
+            particle.transform.position = firePos.position;
 
-            flareGun.transform.LookAt(new Vector3(-(pointTolook.x), transform.position.y, -(pointTolook.z)));
+
+            Vector3 pointTolook = ray.GetPoint(200f);
+            //flareGun.transform.LookAt(new Vector3(-(pointTolook.x), transform.position.y, -(pointTolook.z)));
+            flareGun.transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
             //flareGun.transform.Rotate(Input.mousePosition);
         }
 
@@ -291,7 +306,10 @@ public class PlayerFire : MonoBehaviour
     }
     void Shot()
     {
-
+      
+        CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
+        //anim.SetBool("isFire", true);
+        anim.SetTrigger("Fire");
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
        
         Destroy(particle, 1f);
@@ -310,6 +328,10 @@ public class PlayerFire : MonoBehaviour
 
     void Shot2()
     {
+        Instantiate(chergeEffect02, firePos.position, firePos.rotation);
+        Destroy(particle);
+        CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
+        anim.SetTrigger("Fire");
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
         Destroy(particle, 2f);
         print("발사2");

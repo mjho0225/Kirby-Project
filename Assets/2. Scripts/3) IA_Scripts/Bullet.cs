@@ -27,11 +27,12 @@ public class Bullet : MonoBehaviour
         //Destroy(gameObject, 4);
         if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-
             Instantiate(bulletStar, collision.contacts[0].point, Quaternion.identity);
-            
+            Destroy(gameObject);
+        }else if(collision.gameObject.layer == LayerMask.NameToLayer("Wall")){
             Destroy(gameObject);
         }
+        
        
     }
 }
