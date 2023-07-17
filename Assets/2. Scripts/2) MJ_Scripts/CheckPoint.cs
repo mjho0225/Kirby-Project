@@ -12,8 +12,8 @@ public class CheckPoint : MonoBehaviour
     // 레이 전역변수
     private Ray ray;
 
-
-    void Update()
+    // 물리기반은 FixedUpdate에서 사용한다.(update에서 사용하면 프레임 드랍이 나타남)
+    void FixedUpdate()
     {
         //플레이어 기준으로 밑에 레이저를 발생한다.
         ray = new Ray(player.transform.position, -player.transform.up);
