@@ -151,16 +151,24 @@ public class PlayerController : MonoBehaviour
         //print("rb.velocity" + rb.velocity.y);
         if (isJump && !isMaxHigh) checkedVelocity();
 
-        if (jumpCnt >= maxJumpCnt)
+        if (isJump)
         {
-            CheckHeight();
-            disableJump();
-            return;
+            if(jumpCnt >= maxJumpCnt)
+            {
+                CheckHeight();
+                disableJump();
+                return;
+            }
+            else
+            {
+                CheckHeight();
+            }
+           
         }
-        else
-        {
-            CheckHeight();
-        }
+        //else
+        //{
+        //    CheckHeight();
+        //}
 
     }
     float kirbyHeight;
@@ -418,11 +426,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //위치가 필요함
+    public GameObject checkPoint;
     void Die()
     {
         print("DIE");
-        Destroy(gameObject, 2);
-
+        //나의 위치를 체크포인트 위치로 하고싶다.
+        transform.position = checkPoint.transform.position;
+        //
+        playerHP.HP = 10;
     }
 
     //공격받는 스크립트 따로 만들게 되면 위치 옮기기
@@ -431,7 +443,7 @@ public class PlayerController : MonoBehaviour
         //임시로 두번 맞으면 죽음
         //대쉬 상태일 때도 무적!!
         if (!isGuard || isDash) playerHP.HP -= damage;
-        if (playerHP.HP < 0)
+        if (playerHP.HP < 1)
         {
             Die();
         }

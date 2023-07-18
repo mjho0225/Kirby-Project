@@ -88631,6 +88631,7 @@ MonoBehaviour:
   feetEffect: {fileID: 983941585715213782, guid: 59c26170254f52d4b801e7bdb97dfc45, type: 3}
   attackState: 0
   anim: {fileID: 6650332440618135}
+  checkPoint: {fileID: 894704051}
 --- !u!114 &424559414875928548
 MonoBehaviour:
   m_ObjectHideFlags: 0
