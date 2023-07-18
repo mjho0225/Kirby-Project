@@ -43,10 +43,10 @@ public class JH_e_Target : MonoBehaviour
 
         if (hit == true)
         {
-            //WayGuide();
-            Destroy(this.transform.gameObject);
+            WayGuide();
+            //Destroy(this.transform.gameObject);
 
-            guideTime += Time.deltaTime;
+            //guideTime += Time.deltaTime;
 
             //다시 살릴예정
             //for (int i = 0; i < guideWay.Count;)
@@ -88,7 +88,7 @@ public class JH_e_Target : MonoBehaviour
         if (hit == true)
         {
 
-            Destroy(hideWall, guideWay.Count * 0.5f);
+            Destroy(hideWall, guideWay.Count * 0.1f);
         }
     }
 
@@ -97,31 +97,52 @@ public class JH_e_Target : MonoBehaviour
     void  WayGuide()
     {
         currentTime += Time.deltaTime;
-        for (int i = 0; i <= guideWay.Count; i++)
+        if (currentTime > 0.5f)
         {
+            guideWay[0].gameObject.SetActive(true);
 
-
-
-            if (currentTime > 0.5f)
+            if (currentTime > 1.5f)
             {
-                guideWay[i].gameObject.SetActive(true);
-                
-                if (i >= guideWay.Count)
+                guideWay[1].gameObject.SetActive(true);
+                if (currentTime > 2.5f)
                 {
-                    Destroy(this);
-                }
-
-                if (i >= guideWay.Count)
-                {
-                    //guideWay[i].gameObject.SetActive(false);
-                    //Destroy(guideWay[i], 0.1f);
-                    currentTime = 0;
-                    hit = false;
-
+                    guideWay[2].gameObject.SetActive(true);
+                    if(currentTime >= 3.5f)
+                    {
+                        currentTime = 0;
+                        Destroy(gameObject);
+                    }
                 }
             }
 
+           
+            //for (int i = 0; i <= guideWay.Count;i++)
+            //{
+
+
+
+            //if (currentTime > 0.5f)
+            //{
+            //    guideWay[].gameObject.SetActive(true);
+
+            //    if (i >= guideWay.Count)
+            //    {
+            //        Destroy(this.gameObject);
+            //    }
+
+            //    if (i >= guideWay.Count)
+            //    {
+            //        //guideWay[i].gameObject.SetActive(false);
+            //        //Destroy(guideWay[i], 0.1f);
+            //        currentTime = 0;
+            //        hit = false;
+
+            //    }
+           //}
+
         }
+
+        
         
 
     }

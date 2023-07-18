@@ -5,7 +5,7 @@ using UnityEngine;
 public class JH_break_Floor : MonoBehaviour
 {
 
-    public GameObject[] breakFloor;
+    public GameObject breakFloor;
 
     bool doitBreak;
 
@@ -21,24 +21,26 @@ public class JH_break_Floor : MonoBehaviour
 
         if (doitBreak == true)
         {
-            for(int i = 0; i < breakFloor.Length;)
-            {
-                breakFloor[i].SetActive(false);
-                if(i == breakFloor.Length)
-                {
-                    doitBreak = false;
-                    Destroy(this.gameObject);
-                }
-            }
-           
+            breakFloor.GetComponent<Rigidbody>().useGravity = true;
+            Destroy(breakFloor,1f);
+        
         }
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Rock")
+    //    {
+    //        doitBreak = true;
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Rock")
+        if (other.gameObject.tag == "Rock")
         {
+            print("dhkT");
             doitBreak = true;
         }
     }
