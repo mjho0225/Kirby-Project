@@ -17,7 +17,7 @@ public class PlayerAbsorb : MonoBehaviour
 
     bool isEmpty = true;
     //int layer;
-    float power = 20f;
+    float power = 40f;
     [SerializeField] public GameObject absorbItem;
     string RName;
     GameObject absorbTrigger;

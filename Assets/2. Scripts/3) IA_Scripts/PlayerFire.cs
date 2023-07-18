@@ -40,14 +40,19 @@ public class PlayerFire : MonoBehaviour
     Vector3 firePos02;
     public GameObject chargeEffect;
     public GameObject chergeEffect02;
+    public GameObject fire01Effect;
+   
+    
+    public GameObject flareGun;
+    public GameObject bubleGun;
+    public GameObject kirbyModel;
+    
+    
     GameObject particle;
     int particleCount;
     
 
-    public GameObject fire01Effect;
-    public GameObject flareGun;
-    public GameObject bubleGun;
-    public GameObject kirbyModel;
+
 
     public Animator anim;
 
@@ -67,6 +72,7 @@ public class PlayerFire : MonoBehaviour
         starImg.enabled = false;
         GetComponentInParent<PlayerController>().speed = 7f;
 
+
     }
 
     void GetInput()
@@ -83,7 +89,7 @@ public class PlayerFire : MonoBehaviour
     {
         GetInput();
         checkCar();
-
+        
         if (fireS)
         {
             if (isAbsorb)
@@ -224,10 +230,10 @@ public class PlayerFire : MonoBehaviour
     private void ChargeShot()
     {
         print("ChargeShot");
-
+        
 
         isCharge = true;
-        
+        anim.SetBool("isReadyFire", true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -254,7 +260,6 @@ public class PlayerFire : MonoBehaviour
                 //과녁 이펙트 에너미 가운데
                 lineRenderer.SetPosition(1, hit.collider.gameObject.transform.position);
                 img.enabled = false;
-
                 starImg.enabled = true;
                 starImg.transform.position = hit.collider.gameObject.transform.position;
 
@@ -301,7 +306,7 @@ public class PlayerFire : MonoBehaviour
         img.enabled = false;
         starImg.enabled = false;
         particleCount = 0;
-
+        flareGun.transform.rotation = Quaternion.Euler(0, 0, 0);
 
     }
     void Shot()
@@ -323,29 +328,24 @@ public class PlayerFire : MonoBehaviour
        
         transform.localScale = new Vector3(1f, 0.6f, 1f);
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 100);
-
     }
 
     void Shot2()
     {
+       
+        anim.SetBool("isReadyFire", false);
+        anim.SetTrigger("Fire");
         Instantiate(chergeEffect02, firePos.position, firePos.rotation);
         Destroy(particle);
         CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
-        anim.SetTrigger("Fire");
+        
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
         Destroy(particle, 2f);
         print("발사2");
-        //Vector3 dir = transform.position;
-        //dir.z +=  1;
-        //dir.x += 1;
         GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
+
         UpdateClear();
-        //currTime += Time.deltaTime;
-        //if (currTime > 1.5f)
-        //{
-        //    UpdateClear();
-        //}
-        //currTime = 0;
+        
 
     }
 
