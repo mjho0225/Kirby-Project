@@ -539,7 +539,7 @@ public class PlayerController : MonoBehaviour
     {
         //커비 position값 빼주기 ray값이 커비 오브젝트 가운데 있음.
         float PosDiffer = transform.position.y - (transform.lossyScale.y / 2);
-        print("belowPos" + PosDiffer);
+        //print("belowPos" + PosDiffer);
         Vector3 belowPos = transform.position;
         belowPos.y = PosDiffer;
         Ray ray = new Ray(belowPos, Vector3.down);
@@ -548,8 +548,8 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo))
         {
-            print("hitInfo" + hitInfo.transform.tag);
-            print("distance" + hitInfo.distance);
+            //print("hitInfo" + hitInfo.transform.tag);
+            //print("distance" + hitInfo.distance);
             if (hitInfo.transform.tag == "Ground")
             {
                 // 바닥이 있다. 현재 내 위치에서 바닥까지의 거리가 천장높이보다 크다면

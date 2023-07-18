@@ -6,10 +6,21 @@ public class BubbleMonster : MonoBehaviour
 {
 
     public GameObject bulletStar;
+    float currTime;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 5);
+       
+        
+    }
+
+    IEnumerator makeParticle()
+    {
+        Destroy(gameObject, 0.5f);
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(bulletStar, transform.position, Quaternion.identity);
+
+
     }
 
     // Update is called once per frame
@@ -25,12 +36,30 @@ public class BubbleMonster : MonoBehaviour
         {
             print("SS");
             Instantiate(bulletStar, collision.contacts[0].point, Quaternion.identity);
-            Destroy(gameObject,1);
+            Destroy(gameObject, 0.1f);
         }
         //Destroy(gameObject);
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionStay(Collision collision)
     {
-        //Destroy(gameObject);
+        currTime += Time.deltaTime;
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            if (currTime > 1f)
+            {
+                StartCoroutine(makeParticle());
+                currTime = 0;
+            }
+        }
+      
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+                currTime = 0;
+        }
     }
 }
