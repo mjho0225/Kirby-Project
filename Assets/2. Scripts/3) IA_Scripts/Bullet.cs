@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         }else if(collision.gameObject.layer == LayerMask.NameToLayer("Wall")){
             Destroy(gameObject);
         }
-        
-       
+        Destroy(gameObject);
+
     }
 }

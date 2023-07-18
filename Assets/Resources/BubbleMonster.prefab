@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4365307088058541668}
   - component: {fileID: 4365307088058541669}
   - component: {fileID: 4365307088058541658}
-  - component: {fileID: 4365307088058541670}
   - component: {fileID: 908102693}
   - component: {fileID: 908102692}
   m_Layer: 0
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4365307088058541659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2.138}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4365307088156717359}
@@ -101,19 +100,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &4365307088058541670
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4365307088058541659}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &908102693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -142,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6cb64416bef3a47a75134db74d74a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletStar: {fileID: 5097934897024632658, guid: 9369a1d6788674340a96688d1f84f0e5, type: 3}
 --- !u!1 &4365307088156717356
 GameObject:
   m_ObjectHideFlags: 0
