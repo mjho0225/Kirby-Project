@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class JH_break_Floor : MonoBehaviour
 {
+
+    public GameObject[] breakFloor;
+
+    bool doitBreak;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +18,28 @@ public class JH_break_Floor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (doitBreak == true)
+        {
+            for(int i = 0; i < breakFloor.Length;)
+            {
+                breakFloor[i].SetActive(false);
+                if(i == breakFloor.Length)
+                {
+                    doitBreak = false;
+                    Destroy(this.gameObject);
+                }
+            }
+           
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Rock")
+        {
+            doitBreak = true;
+        }
     }
 }

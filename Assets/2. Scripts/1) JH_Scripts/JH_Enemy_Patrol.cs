@@ -38,9 +38,12 @@ public class JH_Enemy_Patrol : MonoBehaviour
     float changeTime = 0;
     bool matChange = false;
 
+    public Material mat_Mush;
+
     // Start is called before the first frame update
     void Start()
     {
+        mat_Mush.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
@@ -108,6 +111,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
             //state = State.KnockBack;
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            mat_Mush.color = new Color(255 / 255, 0/ 255f, 255 / 255f);
             changeTime = 0;
             matChange = true;
 
@@ -132,6 +136,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
 
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
+            mat_Mush.color = new Color(255 / 255, 0 / 255f, 255 / 255f);
             changeTime = 0;
             matChange = true;
 
@@ -146,6 +151,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
         if (changeTime >= 0.2f && matChange == true)
         {
             transform.GetComponent<MeshRenderer>().material.color = Color.red;
+            mat_Mush.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
             if (changeTime > 1.5f)
             {
                 matChange = false;
@@ -176,5 +182,10 @@ public class JH_Enemy_Patrol : MonoBehaviour
 
             Destroy(this);
         }
+    }
+
+    private void OnDestroy()
+    {
+        mat_Mush.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
     }
 }

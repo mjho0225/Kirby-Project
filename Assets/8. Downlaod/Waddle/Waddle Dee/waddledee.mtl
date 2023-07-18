@@ -1,0 +1,37 @@
+# Material file for waddledee.obj
+
+newmtl wire_006135058
+	Ns 32
+	d 1
+	illum 2
+	Kd 1.0 1.0 1.0
+	Ks 0.35 0.35 0.35
+	Ka 0.0 0.0 0.0
+	map_Kd dee_col.01.png
+
+newmtl wire_214229166
+	Ns 32
+	d 1
+	illum 2
+	Kd 1.0 1.0 1.0
+	Ks 0.35 0.35 0.35
+	Ka 0.0 0.0 0.0
+	map_Kd deehat_col.01.png
+
+newmtl wire_028028177
+	Ns 32
+	d 1
+	illum 2
+	Kd 1.0 1.0 1.0
+	Ks 0.35 0.35 0.35
+	Ka 0.0 0.0 0.0
+	map_Kd tankcannoncol.01.png
+
+newmtl wire_255255000
+	Ns 32
+	d 1
+	illum 2
+	Kd 1.0 1.0 0.0
+	Ks 0.35 0.35 0.35
+	Ka 1.0 1.0 0.0
+
