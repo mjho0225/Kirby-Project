@@ -22,6 +22,7 @@ TagManager:
   - Food
   - bullet2
   - bubble
+  - Rock
   layers:
   - Default
   - TransparentFX
