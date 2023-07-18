@@ -28,6 +28,7 @@ public class JH_GameManager : MonoBehaviour
     public GameObject EndingVideo;
     public GameObject StartButton;
     public GameObject Subcam;
+    public GameObject backGroundCam;
     public GameObject Panel_COIN;
     public GameObject PlayerHP;
 
@@ -51,7 +52,7 @@ public class JH_GameManager : MonoBehaviour
     {
         instance = this;
 
-        
+        backGroundCam.SetActive(false);
         ButtonVideo.SetActive(false);
         EndingVideo.SetActive(false);
     }
@@ -122,6 +123,7 @@ public class JH_GameManager : MonoBehaviour
             if (startTime >= 10)
             {
                 Subcam.SetActive(false);
+                backGroundCam.SetActive(true);
                 ButtonVideo.SetActive(false);
                 //image_Fade.gameObject.SetActive(false);
                 playing = false;
