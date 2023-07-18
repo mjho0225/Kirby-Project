@@ -28,7 +28,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
     public int i = 0;
     #endregion
 
-    public float enemySpeed = 3f;  // 기획 팀에서 에너미 스피드 변경할 수 있도록 설정
+    public float enemySpeed = 2f;  // 기획 팀에서 에너미 스피드 변경할 수 있도록 설정
 
     public GameObject targetPlayer; // 플레이어가 가까워지면(범위 안에 들어오면)
     float targetDist; // 플레이어 거리

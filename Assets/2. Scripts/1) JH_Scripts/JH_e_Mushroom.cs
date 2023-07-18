@@ -109,7 +109,7 @@ public class JH_e_Mushroom : MonoBehaviour
 
             transform.rotation = Quaternion.LookRotation(playerPos);
             //transform.Translate(-playerPos * 0.5f * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPlayer.transform.position, 2f * Time.deltaTime);
         }
         else if (distPlayer > 7 && knockBack == false)
         {
