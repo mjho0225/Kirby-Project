@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 1064626401096820844}
   - component: {fileID: 3483045974131240042}
   - component: {fileID: -7770710770795853452}
+  - component: {fileID: 4125839956309751684}
   m_Layer: 0
   m_Name: Coin_Red
   m_TagString: Coin
@@ -188,6 +189,19 @@ MonoBehaviour:
   scoreCount: 0
   box: 0
   flowerAnim: 0
+--- !u!135 &4125839956309751684
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5354643841152948832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7481425322796008100
 GameObject:
   m_ObjectHideFlags: 0
