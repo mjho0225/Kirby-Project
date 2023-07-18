@@ -378,7 +378,7 @@ public class JH_Item : MonoBehaviour
             {
                 IAmBox();
                 Destroy(this.gameObject.transform.parent);
-
+                Destroy(this.gameObject);
             }
         }
 

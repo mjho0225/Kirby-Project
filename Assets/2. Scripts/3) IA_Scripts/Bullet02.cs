@@ -6,12 +6,15 @@ public class Bullet02 : MonoBehaviour
     int hitCount;
     public GameObject bulletStar;
     // Start is called before the first frame update
-    
+    GameObject starCharge;
+
+ 
     void Start()
     {
+        starCharge = transform.GetChild(1).gameObject;
+        starCharge.SetActive(true);
         Rigidbody bulletRb = GetComponent<Rigidbody>();
         bulletRb.velocity = transform.forward * 30;
-       
       
 
     }
@@ -19,6 +22,7 @@ public class Bullet02 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        starCharge.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f) * 50f * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)

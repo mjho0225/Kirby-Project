@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float jumpPower = 5f;
     public float speed = 7f;
-    float maxHeight = 4.5f; //현재 커비 위치에서 4.5배
+    float maxHeight = 4.8f; //현재 커비 위치에서 4.5배
     int jumpCnt;
     int maxJumpCnt = 20;
     bool isGrounded = false;
@@ -122,7 +122,19 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = true;
             //차징샷 이동 금지
-            if(!(GetComponentInChildren<PlayerFire>().isCharge)) Move();
+            if(attackState == AttackState.RANGER)
+            {
+                if (!(GetComponentInChildren<PlayerFire>().isCharge))
+                {
+                    Move();
+                }
+            }
+            else
+            {
+                Move();
+            }
+
+            //if(!(GetComponentInChildren<PlayerFire>().isCharge) || attackState == AttackState.ABSORB) Move();
 
 
         }
@@ -139,7 +151,16 @@ public class PlayerController : MonoBehaviour
         //print("rb.velocity" + rb.velocity.y);
         if (isJump && !isMaxHigh) checkedVelocity();
 
-        
+        if (jumpCnt >= maxJumpCnt)
+        {
+            CheckHeight();
+            disableJump();
+            return;
+        }
+        else
+        {
+            CheckHeight();
+        }
 
     }
     float kirbyHeight;
@@ -265,20 +286,11 @@ public class PlayerController : MonoBehaviour
             currTime += Time.deltaTime;
             isJump = true;
 
-            if (jumpCnt >= maxJumpCnt)
-            {
-                CheckHeight();
-                disableJump();
-                return;
-            }
-            else
-            {
-                CheckHeight();
-            }
+       
 
             if (jumpCnt < 1)
             {
-                jumpPower = 8;
+                jumpPower = 9;
                 rb.drag = 0;
                 print("구르기 애니메이션");
                 rb.velocity = new Vector3(0, jumpPower, 0);
@@ -306,7 +318,7 @@ public class PlayerController : MonoBehaviour
                 }
                 //느리게 가기 
                 jumpPower = 6;
-                rb.drag = 3;
+                rb.drag = 2.5f;
                 
                 print("날개 애니메이션");
                 anim.SetBool("isJump02", true);
@@ -327,7 +339,7 @@ public class PlayerController : MonoBehaviour
         jumpCnt = 0;
         isJump = false;
         isMaxHigh = false;
-        anim.SetBool("isJump02", false);
+        //anim.SetBool("isJump02", false);
 
     }
 
@@ -556,6 +568,12 @@ public class PlayerController : MonoBehaviour
 
 
 
+                }
+                print("hitInfo.distance" + hitInfo.distance);
+
+                if(hitInfo.distance < 2f)
+                {
+                    anim.SetBool("isJump02", false);
                 }
 
                 //if(hitInfo.distance > 3)
