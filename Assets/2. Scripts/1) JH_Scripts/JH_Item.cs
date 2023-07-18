@@ -377,7 +377,8 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Box )
             {
                 IAmBox();
-                Destroy(this.gameObject);
+                Destroy(this.gameObject.transform.parent);
+
             }
         }
 

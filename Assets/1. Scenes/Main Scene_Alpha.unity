@@ -881,9 +881,9 @@ GameObject:
   - component: {fileID: 23284878}
   - component: {fileID: 23284877}
   - component: {fileID: 23284876}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cylinder (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7808,9 +7808,9 @@ GameObject:
   - component: {fileID: 212674555}
   - component: {fileID: 212674554}
   - component: {fileID: 212674553}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cylinder (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25499,6 +25499,7 @@ MonoBehaviour:
   i: 0
   enemySpeed: 3
   targetPlayer: {fileID: 0}
+  mat_Mush: {fileID: 0}
 --- !u!65 &708437938
 BoxCollider:
   m_ObjectHideFlags: 0

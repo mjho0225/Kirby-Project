@@ -35,6 +35,7 @@ public class JH_e_Fox : MonoBehaviour
 
     void Start()
     {
+        mat_Fox.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
         
@@ -229,7 +230,7 @@ public class JH_e_Fox : MonoBehaviour
     {
         
         mySpawner.DestroyedFox(this);
-        
+        mat_Fox.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
     }
     
 

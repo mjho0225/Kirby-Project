@@ -23,10 +23,11 @@ public class JH_break_Floor : MonoBehaviour
         {
             for(int i = 0; i < breakFloor.Length;)
             {
-                
+                breakFloor[i].SetActive(false);
                 if(i == breakFloor.Length)
                 {
                     doitBreak = false;
+                    Destroy(this.gameObject);
                 }
             }
            
