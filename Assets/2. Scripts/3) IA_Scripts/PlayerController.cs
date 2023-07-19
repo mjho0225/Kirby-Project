@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     public GameObject carObj;
 
     public GameObject feetEffect;
-
+    AudioSource audioSource;
     enum PlayerState
     {
         BASIC,
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         tempDash = GameObject.Find("Temp");
         carObj.SetActive(false);
         print("anim"+ anim);
-
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     bool isAbsorbed;

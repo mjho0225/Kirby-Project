@@ -46,7 +46,7 @@ public class PlayerAbsorb : MonoBehaviour
         flaregun.SetActive(false);
         absorbTrigger = GameObject.Find("AbsorbTrigger");
         rb = GetComponentInParent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void Reset()
@@ -121,7 +121,8 @@ public class PlayerAbsorb : MonoBehaviour
 
     void makeParticle()
     {
-       
+        audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Absorb") as AudioClip;
+        audioSource.Play();
         for (int i = 0; i < absorbParticle.Length; i++)
         {
             GameObject go = Instantiate(absorbParticle[i], effectPos.position, effectPos.rotation);
@@ -150,6 +151,7 @@ public class PlayerAbsorb : MonoBehaviour
 
     void DestroyParticle()
     {
+        audioSource.Stop();
         isParticling = false;
         for (int i = 0; i < particles.Count; i++)
         {
@@ -173,17 +175,19 @@ public class PlayerAbsorb : MonoBehaviour
         layerMask = ~layerMask;
         //print(layerMask);
 
-        audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Absorb") as AudioClip;
+      
 
         if (Input.GetButton("Fire1"))
         {
-            audioSource.Play();
+            
+          
 
             currTime += Time.deltaTime;
 
             if (currTime > 0.5f)
-                {
-                   if (!(isParticling)) makeParticle();
+            {
+                
+                if (!(isParticling)) makeParticle();
 
                    if (Physics.SphereCast(ray.origin, 2f, ray.direction, out hitInfo, 15f, layerMask, QueryTriggerInteraction.UseGlobal))
                     {
@@ -212,7 +216,7 @@ public class PlayerAbsorb : MonoBehaviour
                         
                         int layer = (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("BubleGun"));
                         Vector3 posZY = transform.position;
-                    //스피어 앞방향
+                        //스피어 앞방향
                         posZY += transform.forward * 2;
                         //posZY.z += 2;
                         posZY.y += 1;
@@ -354,7 +358,7 @@ public class PlayerAbsorb : MonoBehaviour
 
                 if (absorbItemTag == "e_ranger")
                 {
-                    TimelineManager.instance.timeLines[0].Play();
+                    //TimelineManager.instance.timeLines[0].Play();
                     GetComponentInParent<PlayerController>().speed = maxSpeed;
                     getRanger = true;
                     state = PlayerAbsorb.AbsorbState.Ready;
