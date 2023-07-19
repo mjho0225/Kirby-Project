@@ -1199,13 +1199,21 @@ PrefabInstance:
       propertyPath: starImg
       value: 
       objectReference: {fileID: 4427283746000171461}
+    - target: {fileID: 4077034839072849284, guid: c3eaecfd2604dd44dbbfd1e1cd5d6dd5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0063
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077034839072849284, guid: c3eaecfd2604dd44dbbfd1e1cd5d6dd5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 7703635284670968528, guid: c3eaecfd2604dd44dbbfd1e1cd5d6dd5, type: 3}
       propertyPath: m_Name
       value: PlayerPivot
       objectReference: {fileID: 0}
     - target: {fileID: 7703635284670968543, guid: c3eaecfd2604dd44dbbfd1e1cd5d6dd5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7703635284670968543, guid: c3eaecfd2604dd44dbbfd1e1cd5d6dd5, type: 3}
       propertyPath: m_LocalPosition.x

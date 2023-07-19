@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4696448171353479672}
   - component: {fileID: 1339133056}
   - component: {fileID: 1339133057}
+  - component: {fileID: -4931701117487639076}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: bullet
@@ -5127,3 +5128,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!135 &-4931701117487639076
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512722531728419270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

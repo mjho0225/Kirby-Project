@@ -308,7 +308,7 @@ public class PlayerFire : MonoBehaviour
         img.enabled = false;
         starImg.enabled = false;
         particleCount = 0;
-        flareGun.transform.rotation = Quaternion.Euler(0, 0, 0);
+        flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
     void Shot()
@@ -330,6 +330,7 @@ public class PlayerFire : MonoBehaviour
        
         transform.localScale = new Vector3(1f, 0.6f, 1f);
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 100);
+        flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     void Shot2()
@@ -345,7 +346,7 @@ public class PlayerFire : MonoBehaviour
         Destroy(particle, 2f);
         print("น฿ป็2");
         GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
-
+        flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
         UpdateClear();
         
 
