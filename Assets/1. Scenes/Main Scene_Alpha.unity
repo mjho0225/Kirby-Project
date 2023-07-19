@@ -38433,8 +38433,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940597848}
-  m_LocalRotation: {x: -0, y: 0.9848078, z: -0.17364818, w: 0}
-  m_LocalPosition: {x: 42.32473, y: -5.6524715, z: 271.95737}
+  m_LocalRotation: {x: 0.2164396, y: -0, z: -0, w: 0.976296}
+  m_LocalPosition: {x: -14.576044, y: -17.552769, z: -60.02517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59907,7 +59907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1474370282
 Transform:
   m_ObjectHideFlags: 0
@@ -65729,6 +65729,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7213738195651027300, guid: f57190434471f664295ea1656e576d4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8023030827594169310, guid: f57190434471f664295ea1656e576d4f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -68772,7 +68776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1668984184
 Transform:
   m_ObjectHideFlags: 0
@@ -72401,7 +72405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1733305572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88773,6 +88777,7 @@ MonoBehaviour:
   feetEffect: {fileID: 983941585715213782, guid: 59c26170254f52d4b801e7bdb97dfc45, type: 3}
   attackState: 0
   anim: {fileID: 6650332440618135}
+  kirbyCar: {fileID: 1733305571}
   checkPoint: {fileID: 894704051}
 --- !u!114 &424559414875928548
 MonoBehaviour:
