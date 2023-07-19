@@ -38441,6 +38441,7 @@ GameObject:
   - component: {fileID: 940597852}
   - component: {fileID: 940597851}
   - component: {fileID: 940597850}
+  - component: {fileID: 940597853}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -38549,6 +38550,27 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &940597853
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940597848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &947955355
 GameObject:
   m_ObjectHideFlags: 0
@@ -60715,20 +60737,20 @@ PlayableDirector:
   - key: {fileID: -7439882657754826682, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
     value: {fileID: 0}
   - key: {fileID: -8518202420482520626, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
-    value: {fileID: 1668984187}
+    value: {fileID: 0}
   - key: {fileID: 5438770717228159751, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
-    value: {fileID: 1687016676}
+    value: {fileID: 0}
   - key: {fileID: -2229590321680354232, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
-    value: {fileID: 908385944}
+    value: {fileID: 0}
   - key: {fileID: 8737264000639491217, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
-    value: {fileID: 908385948}
+    value: {fileID: 0}
   - key: {fileID: 4168099153642523916, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
     value: {fileID: 0}
   - key: {fileID: -5595337503563526367, guid: 9b76a4b94ce3a3c47ae92a9bff080510, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
-    - 789ba51cae5afcc43b7b695b7716eb1e: {fileID: 930979485482413939}
+    - 789ba51cae5afcc43b7b695b7716eb1e: {fileID: 0}
 --- !u!1 &1481706978
 GameObject:
   m_ObjectHideFlags: 0
@@ -86633,11 +86655,11 @@ PlayableDirector:
   - key: {fileID: 8737264000639491217, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 908385948}
   - key: {fileID: 0}
-    value: {fileID: 908385944}
+    value: {fileID: 0}
   - key: {fileID: -2229590321680354232, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 908385944}
   - key: {fileID: 4168099153642523916, guid: b165d476870970544855d3bd296d6876, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 8559711381814396346}
   - key: {fileID: 0}
     value: {fileID: 0}
   - key: {fileID: -5595337503563526367, guid: b165d476870970544855d3bd296d6876, type: 2}
@@ -86648,7 +86670,7 @@ PlayableDirector:
     value: {fileID: 6650332440618135}
   m_ExposedReferences:
     m_References:
-    - 553782992ef3a45418dd37fbb0b6ac88: {fileID: 910914750}
+    - 553782992ef3a45418dd37fbb0b6ac88: {fileID: 0}
     - 10a4448e44355804fa2313761806d813: {fileID: 0}
     - 2ac639c275b6f7944b8b94feac24ffea: {fileID: 0}
     - 305f43ed959b08f4b954b49c2fba848d: {fileID: 0}
