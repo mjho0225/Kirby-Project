@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject absorbObj;
     public GameObject rangerObj;
-    public GameObject carObj;
 
     public GameObject feetEffect;
     AudioSource audioSource;
@@ -58,21 +57,22 @@ public class PlayerController : MonoBehaviour
     //public GameObject gun;
     PlayerFire playerFire;
     public Animator anim;
+
+    private void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
     void Start()
     {
         playerHP = GetComponent<PlayerHP>();
         rb = GetComponent<Rigidbody>();
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
-        carObj.SetActive(false);
         print("anim"+ anim);
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
     }
 
     bool isAbsorbed;
-
-
 
     public void ChangeRanger()
     {
@@ -114,10 +114,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInput();
+
         if (isLadder)
         {
-            rb.useGravity = false;
-            MoveUp();
+                rb.useGravity = false;
+                MoveUp();
+            
+            if (space)
+            {
+                Vector3 pos = transform.position;
+                pos.z -= 1;
+                rb.AddForce(pos * 5, ForceMode.Impulse);
+                isLadder = false;
+            }
         }
         else
         {
@@ -384,27 +393,6 @@ public class PlayerController : MonoBehaviour
             isLadder = true;
             JH_Rock_Spawn.instance.area1Start = true;
         }
-
-        //if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
-        //{w
-        //    print("other.gameObject.layer");
-            
-        //    if (hitCount < 1)
-        //    {
-        //        rangerObj.SetActive(false);
-        //        absorbObj.SetActive(false);
-               
-        //        Destroy(other.gameObject);
-
-        //        Vector3 pos = carObj.transform.position;
-        //        pos.y += 5;
-        //        carObj.transform.position = pos;
-        //        //GameObject go = Instantiate(obj, posZ, Quaternion.identity);
-        //        carObj.SetActive(true);
-        //        hitCount++;
-        //    }
-
-        //}
 
     }
 
