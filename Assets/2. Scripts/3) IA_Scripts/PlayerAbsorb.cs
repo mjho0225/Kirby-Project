@@ -47,6 +47,7 @@ public class PlayerAbsorb : MonoBehaviour
         absorbTrigger = GameObject.Find("AbsorbTrigger");
         rb = GetComponentInParent<Rigidbody>();
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     public void Reset()
@@ -122,6 +123,7 @@ public class PlayerAbsorb : MonoBehaviour
     void makeParticle()
     {
         audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Absorb") as AudioClip;
+ 
         audioSource.Play();
         for (int i = 0; i < absorbParticle.Length; i++)
         {
@@ -157,9 +159,13 @@ public class PlayerAbsorb : MonoBehaviour
         {
             //print("particles[i]" + particles[i]);
             Destroy(particles[i], 0.5f);
-           
+
         }
-        particles.RemoveRange(0, 3);
+        if (particles.Count > 1)
+        {
+            particles.RemoveRange(0, 3);
+        }
+         
     }
     private void UpdateReady()
     {
@@ -358,7 +364,7 @@ public class PlayerAbsorb : MonoBehaviour
 
                 if (absorbItemTag == "e_ranger")
                 {
-                    //TimelineManager.instance.timeLines[0].Play();
+                    TimelineManager.instance.timeLines[0].Play();
                     GetComponentInParent<PlayerController>().speed = maxSpeed;
                     getRanger = true;
                     state = PlayerAbsorb.AbsorbState.Ready;

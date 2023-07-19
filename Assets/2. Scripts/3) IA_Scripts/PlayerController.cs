@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         carObj.SetActive(false);
         print("anim"+ anim);
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     bool isAbsorbed;
@@ -306,17 +307,27 @@ public class PlayerController : MonoBehaviour
                 jumpCnt++;
 
                 anim.SetTrigger("Jump");
-                
+                audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_JumpVoice") as AudioClip;
+         
+                audioSource.Play();
+         
+                audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Jumping") as AudioClip;
+                audioSource.Play();
+              
                 //TIMELINE 구르기 애니메이션 만들기
                 //if (isMaxHigh)
                 //{
                 //    anim.SetTrigger("Jump");
                 //    isMaxHigh = false;
                 //}
-                
+
             }
             else if (jumpCnt >= 1)
             {
+                audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Fly") as AudioClip;
+             
+                audioSource.Play();
+                
                 Physics.gravity = new Vector3(0, -9.81f, 0);
                 isMaxHigh = false;
                 //&& !(GetComponentInChildren<PlayerAbsorb>().statec == PlayerAbsorb.AbsorbState.Absorbed)
