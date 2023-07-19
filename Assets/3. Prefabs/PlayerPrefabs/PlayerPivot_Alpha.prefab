@@ -1714,7 +1714,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4942496111233525503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 1.09}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0.902}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2199,6 +2199,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   particles: []
+  pivot: {fileID: 0}
 --- !u!135 &8559711382403535456
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3783,7 +3784,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7703635284670968528}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3957,6 +3958,7 @@ MonoBehaviour:
   feetEffect: {fileID: 983941585715213782, guid: 59c26170254f52d4b801e7bdb97dfc45, type: 3}
   attackState: 0
   anim: {fileID: 6650331692757683}
+  checkPoint: {fileID: 0}
 --- !u!114 &424559415473447360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5097,11 +5099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4785687772510304977, guid: 2286e0e782d9f694297fc5e9c12885fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0042
+      value: -0.0063
       objectReference: {fileID: 0}
     - target: {fileID: 4785687772510304977, guid: 2286e0e782d9f694297fc5e9c12885fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4785687772510304977, guid: 2286e0e782d9f694297fc5e9c12885fb, type: 3}
       propertyPath: m_LocalRotation.w

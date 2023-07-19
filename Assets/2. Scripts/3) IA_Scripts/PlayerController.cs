@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
 
         if (h != 0 || v != 0 && (!isJump))
         {
-            print("test");
+           
             anim.SetBool("isWalk", true);
             if (!isMaking)
             {
@@ -298,10 +298,11 @@ public class PlayerController : MonoBehaviour
 
             if (jumpCnt < 1)
             {
-                jumpPower = 9;
+                jumpPower = 14 ;
                 rb.drag = 0;
                 print("구르기 애니메이션");
                 rb.velocity = new Vector3(0, jumpPower, 0);
+                Physics.gravity = new Vector3(0, -25f, 0);
                 jumpCnt++;
 
                 anim.SetTrigger("Jump");
@@ -316,6 +317,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (jumpCnt >= 1)
             {
+                Physics.gravity = new Vector3(0, -9.81f, 0);
                 isMaxHigh = false;
                 //&& !(GetComponentInChildren<PlayerAbsorb>().statec == PlayerAbsorb.AbsorbState.Absorbed)
                 if (Input.GetButtonDown("Fire1"))
@@ -347,6 +349,7 @@ public class PlayerController : MonoBehaviour
         jumpCnt = 0;
         isJump = false;
         isMaxHigh = false;
+        Physics.gravity = new Vector3(0, -10f, 0);
         //anim.SetBool("isJump02", false);
 
     }
@@ -574,8 +577,8 @@ public class PlayerController : MonoBehaviour
                     Vector3 pos = transform.position;
                     //최대 높이 + 바뀌는 땅의 높이 y값
                     pos.y = maxHeight + hitInfo.transform.position.y;
-                    transform.position = pos;
-
+                    //transform.position = pos;
+                    transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 1f);
                     kirbyHeight = hitInfo.distance;
 
 

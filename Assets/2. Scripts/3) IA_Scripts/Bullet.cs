@@ -35,4 +35,12 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Instantiate(bulletStar, other.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
 }

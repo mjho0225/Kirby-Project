@@ -92,14 +92,20 @@ public class PlayerAbsorb : MonoBehaviour
             }
         }
 
+        //if(isParticling)
+        //particleMove();
+        particleMove();
+
+
+
 
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, 2f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.white;
+    //    Gizmos.DrawWireSphere(transform.position, 2f);
+    //}
 
     [SerializeField] private LayerMask layerMask;
     
@@ -112,16 +118,29 @@ public class PlayerAbsorb : MonoBehaviour
 
     void makeParticle()
     {
-        isParticling = true;
+       
         for (int i = 0; i < absorbParticle.Length; i++)
         {
             GameObject go = Instantiate(absorbParticle[i], effectPos.position, effectPos.rotation);
             go.GetComponent<ParticleSystem>().Play();
 
             particles.Add(go);
+            isParticling = true;
             //particles[i] = go.GetComponent<ParticleSystem>();
-
             //print(particles[i]);
+        }
+
+    }
+
+    void particleMove()
+    {
+        if (isParticling)
+        {
+            for (int i = 0; i < particles.Count; i++)
+            {
+                particles[i].transform.parent = transform;
+
+            }
         }
 
     }
@@ -131,9 +150,11 @@ public class PlayerAbsorb : MonoBehaviour
         isParticling = false;
         for (int i = 0; i < particles.Count; i++)
         {
-            print("particles[i]" + particles[i]);
+            //print("particles[i]" + particles[i]);
             Destroy(particles[i], 0.5f);
+           
         }
+        particles.RemoveRange(0, 3);
     }
     private void UpdateReady()
     {
@@ -158,9 +179,9 @@ public class PlayerAbsorb : MonoBehaviour
            
             if (currTime > 0.5f)
                 {
-                if (!(isParticling)) makeParticle();
-                
-                   if(Physics.SphereCast(ray.origin, 2f, ray.direction, out hitInfo, 15f, layerMask, QueryTriggerInteraction.UseGlobal))
+                   if (!(isParticling)) makeParticle();
+
+                   if (Physics.SphereCast(ray.origin, 2f, ray.direction, out hitInfo, 15f, layerMask, QueryTriggerInteraction.UseGlobal))
                     {
                     GetComponentInParent<PlayerController>().speed = minSpeed;
                     print("absorbItem(*((" + hitInfo.collider.gameObject.layer);
@@ -187,8 +208,9 @@ public class PlayerAbsorb : MonoBehaviour
                         
                         int layer = (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("BubleGun"));
                         Vector3 posZY = transform.position;
-                        //스피어 앞방향
-                        posZY.z += 2;
+                    //스피어 앞방향
+                        posZY += transform.forward * 2;
+                        //posZY.z += 2;
                         posZY.y += 1;
                         Collider[] cols = Physics.OverlapSphere(posZY, 1.5f, layer);
                         for (int i = 0; i < cols.Length; i++)
@@ -227,11 +249,7 @@ public class PlayerAbsorb : MonoBehaviour
         {
             print("흡입멈춤");
             currTime = 0f;
-            //DestroyParticle();
-            //for (int i = 0; i < absorbParticle.Length; i++)
-            //{
-            //    particles[i].GetComponent<ParticleSystem>().Stop();
-            //}
+       
             DestroyParticle();
         }
     }
@@ -243,7 +261,7 @@ public class PlayerAbsorb : MonoBehaviour
     {
         Vector3 posZ = transform.position;
         //스피어 앞방향
-        posZ.z += 1.5f;
+        posZ += transform.forward * 1.5f;
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(posZ, 1.5f);
     }
@@ -252,7 +270,7 @@ public class PlayerAbsorb : MonoBehaviour
     {
         GetComponentInParent<PlayerController>().speed = minSpeed;
 
-        DestroyParticle();
+        
         //콜라이더 바꾸기
         OnAbsorbCollider();
         //거리가 5f이내면 강제로 흡입완료 아닐 경우 흡입 대기로 돌아간다.
@@ -276,64 +294,13 @@ public class PlayerAbsorb : MonoBehaviour
         }
     }
 
+    public GameObject pivot;
     private void UpdateAbsorbed()
     {
         OffAbsorbCollider();
         transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         rb.isKinematic = false;
-        //먹는 애니메이션 진행 후
-        //switch (absorbItemTag)
-        //{
-        //case "e_ranger":
-        //    RName = "Moving_Ranger_B";
-        //    break;
-        //case "e_fox":
-        //    RName = "MonsterFox_B";
-        //    break;
-        //case "e_mush":
-        //    RName = "Mush_B";
-        //    break;
-        //case "e_ghost":
-        //    RName = "GhostPos_B";
-        //    break;
-        //case "e_bomb":
-        //    RName = "Mons_Bomb_B";
-        //    break;
-        //case "e_bird":
-        //    RName = ""; //새 몬스터는 아직 미정
-        //    break;
-        //case "e_gosum":
-        //    RName = "Gosum_B";
-        //    break;
-        //default:
-        //    //공격기 없는 기본 에너미들
-        //    break;
-        //case "e_ranger":
-        //    RName = "Moving_Ranger";
-        //    break;
-        //case "e_fox":
-        //    RName = "MonsterFox";
-        //    break;
-        //case "e_mush":
-        //    RName = "Mush";
-        //    break;
-        //case "e_ghost":
-        //    RName = "GhostPos";
-        //    break;
-        //case "e_bomb":
-        //    RName = "Mons_Bomb";
-        //    break;
-        //case "e_bird":
-        //    RName = ""; //새 몬스터는 아직 미정
-        //    break;
-        //case "e_gosum":
-        //    RName = "Gosum";
-        //    break;
-        //default:
-        //    //공격기 없는 기본 에너미들
-        //    break;
-
-        //}
+     
 
         if (Input.GetButtonDown("Fire1") && !(getRanger))
         {
@@ -341,10 +308,12 @@ public class PlayerAbsorb : MonoBehaviour
             print(absorbItemTag + ": 먹은 에너미 발사");
             //GameObject obj = Resources.Load<GameObject>(RName);
             GameObject obj = Resources.Load<GameObject>("BubbleMonster");
-            Vector3 posZ = transform.position;
-            posZ.z += 1;
-
+            // P = P0 + direction
+            Vector3 posZ = transform.parent.gameObject.transform.position;
+            posZ += transform.forward;
+           // posZ.z += 1;
             GameObject go = Instantiate(obj, posZ, Quaternion.identity);
+            go.transform.forward = transform.forward;
             Rigidbody rb = go.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * power, ForceMode.Impulse);
             transform.localScale = new Vector3(1f, 1f, 1f);
@@ -381,10 +350,11 @@ public class PlayerAbsorb : MonoBehaviour
                 print("destroy" + absorbItemTag);
                 Destroy(other.gameObject);
                 state = PlayerAbsorb.AbsorbState.Absorbed;
+                DestroyParticle();
 
                 if (absorbItemTag == "e_ranger")
                 {
-                    TimelineManager.instance.timeLines[0].Play();
+                    //sTimelineManager.instance.timeLines[0].Play();
                     GetComponentInParent<PlayerController>().speed = maxSpeed;
                     getRanger = true;
                     state = PlayerAbsorb.AbsorbState.Ready;
