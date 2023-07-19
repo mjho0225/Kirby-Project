@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject gun;
     PlayerFire playerFire;
     public Animator anim;
+    public GameObject kirbyCar;
 
     private void Awake()
     {
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        kirbyCar.SetActive(false);
         playerHP = GetComponent<PlayerHP>();
         rb = GetComponent<Rigidbody>();
         state = PlayerState.BASIC;

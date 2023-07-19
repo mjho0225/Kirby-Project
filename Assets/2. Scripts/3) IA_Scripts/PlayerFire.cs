@@ -50,9 +50,6 @@ public class PlayerFire : MonoBehaviour
     
     GameObject particle;
     int particleCount;
-    
-
-
 
     public Animator anim;
 
@@ -61,6 +58,7 @@ public class PlayerFire : MonoBehaviour
     
     void Start()
     {
+   
         OffAbsorbCollider();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
@@ -178,9 +176,14 @@ public class PlayerFire : MonoBehaviour
             {
                 isAbsorb = false;
                 Destroy(cols[i].gameObject);
-                
-                //자동차 프리팹 setActive;
 
+                //자동차 프리팹 setActive;
+                //==============================================================================================
+                transform.parent.gameObject.GetComponent<PlayerController>().kirbyCar.SetActive(true);
+                transform.parent.gameObject.GetComponent<PlayerController>().kirbyCar.transform.position = transform.position;
+                transform.parent.gameObject.GetComponent<PlayerController>().kirbyCar.transform.parent = null;
+
+                //==============================================================================================
                 StartCoroutine(disableKirbyModel());
             }
            
