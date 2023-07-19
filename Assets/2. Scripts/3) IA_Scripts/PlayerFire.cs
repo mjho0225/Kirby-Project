@@ -46,6 +46,7 @@ public class PlayerFire : MonoBehaviour
     public GameObject flareGun;
     public GameObject bubleGun;
     public GameObject kirbyModel;
+    public GameObject kirbyCar;
     
     
     GameObject particle;
@@ -175,14 +176,14 @@ public class PlayerFire : MonoBehaviour
             if(dist < 2f)
             {
                 isAbsorb = false;
-                Destroy(cols[i].gameObject);
+                //Destroy(cols[0].gameObject);
 
                 //자동차 프리팹 setActive;
                 //==============================================================================================
-                transform.parent.gameObject.GetComponent<PlayerController>().kirbyCar.SetActive(true);
-                transform.parent.gameObject.GetComponent<PlayerController>().kirbyCar.transform.position = transform.position;
-                transform.parent.gameObject.GetComponent<PlayerController>().kirbyCar.transform.parent = null;
-
+                // 퍼블릭으로 커비 자동차를 켠다.
+                kirbyCar.SetActive(true);
+                // 커비 자동차의 위치를 자식의 위치에 존재한다.
+                kirbyCar.transform.position = transform.parent.GetChild(0).transform.position;
                 //==============================================================================================
                 StartCoroutine(disableKirbyModel());
             }
