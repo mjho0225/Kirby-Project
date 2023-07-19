@@ -86621,7 +86621,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -706273398448724759, guid: b165d476870970544855d3bd296d6876, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 6650332440618135}
   - key: {fileID: 327790206275776761, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 0}
   - key: {fileID: -7439882657754826682, guid: b165d476870970544855d3bd296d6876, type: 2}
@@ -86644,6 +86644,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 5438770717228159751, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 1687016676}
+  - key: {fileID: -1321319766092144801, guid: b165d476870970544855d3bd296d6876, type: 2}
+    value: {fileID: 6650332440618135}
   m_ExposedReferences:
     m_References:
     - 553782992ef3a45418dd37fbb0b6ac88: {fileID: 910914750}
@@ -94656,6 +94658,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   particles: []
+  pivot: {fileID: 0}
 --- !u!114 &8559711381814396346
 MonoBehaviour:
   m_ObjectHideFlags: 0
