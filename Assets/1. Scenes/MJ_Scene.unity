@@ -11114,6 +11114,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 5438770717228159751, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 1687016676}
+  - key: {fileID: -897513056395845033, guid: b165d476870970544855d3bd296d6876, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 553782992ef3a45418dd37fbb0b6ac88: {fileID: 910914750}
@@ -14066,6 +14068,7 @@ MonoBehaviour:
   feetEffect: {fileID: 983941585715213782, guid: 59c26170254f52d4b801e7bdb97dfc45, type: 3}
   attackState: 0
   anim: {fileID: 1960183031821720672}
+  checkPoint: {fileID: 0}
 --- !u!114 &4427283746749770549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28604,6 +28607,7 @@ MonoBehaviour:
   EndingVideo: {fileID: 9148139812344195071}
   StartButton: {fileID: 4433102447485675669}
   Subcam: {fileID: 147793966}
+  backGroundCam: {fileID: 0}
   Panel_COIN: {fileID: 6849970208990502427}
   PlayerHP: {fileID: 1501829221}
   changePlayer: 0
