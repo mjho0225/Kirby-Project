@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerAbsorb : MonoBehaviour
 {
+   
+
     float minSpeed = 3f;
     float maxSpeed = 7f;
     Transform playerPos;
@@ -35,8 +37,8 @@ public class PlayerAbsorb : MonoBehaviour
     }
 
     public AbsorbState state = AbsorbState.Ready;
-    
 
+    AudioSource audioSource;
     bool getRanger = false;
     float currTime2;
     void Start()
@@ -44,6 +46,7 @@ public class PlayerAbsorb : MonoBehaviour
         flaregun.SetActive(false);
         absorbTrigger = GameObject.Find("AbsorbTrigger");
         rb = GetComponentInParent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Reset()
@@ -170,13 +173,14 @@ public class PlayerAbsorb : MonoBehaviour
         layerMask = ~layerMask;
         //print(layerMask);
 
-
+        audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Absorb") as AudioClip;
 
         if (Input.GetButton("Fire1"))
         {
+            audioSource.Play();
+
             currTime += Time.deltaTime;
 
-           
             if (currTime > 0.5f)
                 {
                    if (!(isParticling)) makeParticle();
@@ -243,19 +247,15 @@ public class PlayerAbsorb : MonoBehaviour
                 }
         }
         
-       
 
         if (Input.GetButtonUp("Fire1"))
         {
             print("»Ì¿‘∏ÿ√„");
             currTime = 0f;
-       
+            audioSource.Stop();
             DestroyParticle();
         }
     }
-
-
-    
 
     void OnDrawGizmosSelected()
     {
@@ -354,7 +354,7 @@ public class PlayerAbsorb : MonoBehaviour
 
                 if (absorbItemTag == "e_ranger")
                 {
-                    //sTimelineManager.instance.timeLines[0].Play();
+                    TimelineManager.instance.timeLines[0].Play();
                     GetComponentInParent<PlayerController>().speed = maxSpeed;
                     getRanger = true;
                     state = PlayerAbsorb.AbsorbState.Ready;
