@@ -122,13 +122,13 @@ public class PlayerController : MonoBehaviour
                 rb.useGravity = false;
                 MoveUp();
             
-            if (space)
-            {
-                Vector3 pos = transform.position;
-                pos.z -= 1;
-                rb.AddForce(pos * 5, ForceMode.Impulse);
-                isLadder = false;
-            }
+            //if (space)
+            //{
+            //    Vector3 pos = transform.position;
+            //    pos.z -= 1;
+            //    rb.AddForce(pos * 5, ForceMode.Impulse);
+            //    isLadder = false;
+            //}
         }
         else
         {

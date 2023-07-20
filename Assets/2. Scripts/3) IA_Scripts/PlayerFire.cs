@@ -137,9 +137,9 @@ public class PlayerFire : MonoBehaviour
     {
         Vector3 posZ = transform.position;
         //스피어 앞방향
-        posZ.z += 3f;
+        posZ += transform.forward * 4;
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(posZ, 3f);
+        Gizmos.DrawSphere(posZ, 4.5f);
     }
     Collider[] cols;
     void checkCar()
@@ -148,9 +148,10 @@ public class PlayerFire : MonoBehaviour
         int layer = 1 << LayerMask.NameToLayer("Car");
         Vector3 posZY = transform.position;
         //스피어 앞방향
-        posZY.z += 3;
+        posZY += transform.forward * 4;
+        //posZY.z += 10;
         posZY.y += 1;
-        cols = Physics.OverlapSphere(posZY, 4f, layer);
+        cols = Physics.OverlapSphere(posZY, 5f, layer);
         print("cols" + cols);
         if (cols.Length > 0)
         {
@@ -201,7 +202,7 @@ public class PlayerFire : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        print(collision);
+        print("collision" + collision);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             isAbsorb = false;
