@@ -115,6 +115,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (playerHP.HP < 1)
+        {
+            Die();
+        }
+
         GetInput();
 
         if (isLadder)
