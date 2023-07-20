@@ -15450,13 +15450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7d9ed11a9e51442a8a78e54cd3bd5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPos1: {fileID: 0}
-  respawnPos2: {fileID: 0}
-  respawnPos3: {fileID: 0}
-  respawnPos4: {fileID: 0}
-  respawnPos5: {fileID: 0}
-  respawnPos6: {fileID: 0}
-  respawnPos7: {fileID: 0}
   playerKirby: {fileID: 0}
   StartVideo: {fileID: 604099062}
   ButtonVideo: {fileID: 2123905622}
@@ -19211,18 +19204,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 940597852}
-          m_TargetAssemblyTypeName: UnityEngine.Camera, UnityEngine
-          m_MethodName: set_cullingMask
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   m_OnObjectExit:
     m_Action: 3
     m_Target: {fileID: 1474370281}
@@ -19662,30 +19643,6 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
           m_CallState: 2
   m_OnObjectExit:
     m_Action: 3
@@ -26737,30 +26694,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1587793863}
-          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
-          m_MethodName: OnMainCamera_VFX_Car_Player_Layer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 31
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1587793863}
-          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
-          m_MethodName: OnBackgroundCamera_VFX_Car_Player_Layer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
   m_OnObjectExit:
     m_Action: 0
     m_Target: {fileID: 1353909111}
@@ -29446,7 +29379,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147490807
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -54915,7 +54848,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 536871936
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -99621,11 +99554,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
+          m_MethodName: ChangingOnCameraLayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 648634273}
           m_TargetAssemblyTypeName: TimeSignal, Assembly-CSharp
           m_MethodName: StartTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
+          m_MethodName: ChangedOffCameraLayer
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
