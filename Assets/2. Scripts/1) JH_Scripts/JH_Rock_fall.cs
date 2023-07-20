@@ -100,6 +100,10 @@ public class JH_Rock_fall : MonoBehaviour
             Instantiate(fall, fallPos, Quaternion.identity);
             this.fallen = true;
         }
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerHP.instance.HP -= 5;
+        }
     }
 
 }
