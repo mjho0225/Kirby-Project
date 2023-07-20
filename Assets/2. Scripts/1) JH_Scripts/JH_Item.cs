@@ -10,6 +10,8 @@ public class JH_Item : MonoBehaviour
     public GameObject coin_Green;
     public GameObject coin_Red;
 
+    AudioSource coin_SFX;
+
     public enum WHO
     {
         item_Coin,
@@ -49,8 +51,9 @@ public class JH_Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        coin_SFX = GetComponent<AudioSource>();
         me = this.gameObject.tag;
-
+        
     }
 
     // Update is called once per frame
@@ -291,6 +294,7 @@ public class JH_Item : MonoBehaviour
             if (this.gameObject.name.Contains("Coin_Yellow"))
             {
                 scoreCount = CountScore.score1;
+                
             }
             if (this.gameObject.name.Contains("Coin_Green"))
             {
@@ -339,7 +343,7 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Coin)
             {
                 IAmCoin();
-
+                coin_SFX.PlayOneShot(coin_SFX.clip);
                 //µ¿Àü È¹µæ ¾Ö´Ï¸ÞÀÌ¼Ç
                 //Destroy(gameObject);
             }
