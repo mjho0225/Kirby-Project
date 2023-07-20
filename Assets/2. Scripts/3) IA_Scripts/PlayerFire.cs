@@ -195,7 +195,7 @@ public class PlayerFire : MonoBehaviour
     IEnumerator disableKirbyModel() {
         //자동타 타임라인
         TimelineManager.instance.timeLines[1].Play();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.01f);
         gameObject.SetActive(false);
         kirbyModel.SetActive(false);
     }

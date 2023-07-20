@@ -24922,31 +24922,7 @@ MonoBehaviour:
     m_Mode: 0
     m_Event:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1687016672}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 940597852}
-          m_TargetAssemblyTypeName: UnityEngine.Camera, UnityEngine
-          m_MethodName: set_cullingMask
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   m_OnObjectExit:
     m_Action: 3
     m_Target: {fileID: 1474370281}
@@ -25353,8 +25329,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.99999994, z: 0.99999994}
-  m_Center: {x: 0.00000047683716, y: 0.18, z: 0.18}
+  m_Size: {x: 1.0000002, y: 1, z: 0.99999994}
+  m_Center: {x: 0.00000047683716, y: 0, z: 0.13}
 --- !u!1 &650061330
 GameObject:
   m_ObjectHideFlags: 0
@@ -25383,7 +25359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650061330}
   m_LocalRotation: {x: 0.65828973, y: 0.25783747, z: -0.25792754, w: 0.6585195}
-  m_LocalPosition: {x: 38.85, y: -7.85, z: 265.13}
+  m_LocalPosition: {x: 35.72, y: -7.85, z: 265.13}
   m_LocalScale: {x: 20.107376, y: 0.72820103, z: 9.850688}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25404,7 +25380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1073742848
+    m_Bits: 1073741824
   m_WithTag: Player
   m_WithoutTag: 
   m_SkipFirst: 0
@@ -25474,19 +25450,7 @@ MonoBehaviour:
     m_Mode: 0
     m_Event:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7703635284991665396}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!65 &650061333
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35213,43 +35177,7 @@ MonoBehaviour:
     m_Mode: 0
     m_Event:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1687016672}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1587793863}
-          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
-          m_MethodName: OnMainCamera_VFX_Car_Player_Layer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 31
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1587793863}
-          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
-          m_MethodName: OnBackgroundCamera_VFX_Car_Player_Layer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+        m_Calls: []
   m_OnObjectExit:
     m_Action: 0
     m_Target: {fileID: 1353909111}
@@ -38204,7 +38132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940597848}
   m_LocalRotation: {x: 0.2164396, y: -0, z: -0, w: 0.976296}
-  m_LocalPosition: {x: -14.576044, y: -17.955761, z: -65.64161}
+  m_LocalPosition: {x: -14.576044, y: -17.552769, z: -60.02517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38285,7 +38213,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147490807
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -38815,7 +38743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: 0.9659258, z: -0.2588191, w: 0}
-  m_LocalPosition: {x: 54.531414, y: 27.319998, z: 352.52}
+  m_LocalPosition: {x: 54.53141, y: 30.02451, z: 352.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54563,6 +54491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster_Mush (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2782368576870250097, guid: 80fd1b4ea6dcd79478ebce510dfefa16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80fd1b4ea6dcd79478ebce510dfefa16, type: 3}
 --- !u!4 &1380818227 stripped
@@ -59604,7 +59536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474370281}
   m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: -14.576044, y: -17.955761, z: -65.64161}
+  m_LocalPosition: {x: -14.576044, y: -17.552769, z: -60.02517}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60312,13 +60244,15 @@ PlayableDirector:
   - key: {fileID: 8737264000639491217, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
     value: {fileID: 908385948}
   - key: {fileID: 4168099153642523916, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
-    value: {fileID: 8559711381814396346}
+    value: {fileID: 8706827993009065112}
   - key: {fileID: -5595337503563526367, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
     value: {fileID: 0}
   - key: {fileID: -1321319766092144801, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
     value: {fileID: 6650332440618135}
   - key: {fileID: 8645148304390328482, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
     value: {fileID: 7213738196247402547}
+  - key: {fileID: -7841819051168065238, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
+    value: {fileID: 1733305571}
   m_ExposedReferences:
     m_References:
     - 789ba51cae5afcc43b7b695b7716eb1e: {fileID: 930979485482413939}
@@ -69694,7 +69628,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 536871936
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -70410,7 +70344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 2008676063}
-  m_PathPosition: 0.1952757
+  m_PathPosition: 0.3967795
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0.27, z: -6}
   m_XDamping: 0
@@ -71971,7 +71905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1733305572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -74616,6 +74550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster_Mush (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2782368576870250097, guid: 80fd1b4ea6dcd79478ebce510dfefa16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80fd1b4ea6dcd79478ebce510dfefa16, type: 3}
 --- !u!4 &1803672604 stripped
@@ -76464,7 +76402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859455194}
   m_LocalRotation: {x: 0, y: 0.9659258, z: -0.2588191, w: 0}
-  m_LocalPosition: {x: 54.531414, y: 27.319998, z: 352.52}
+  m_LocalPosition: {x: 54.53141, y: 30.02451, z: 352.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94611,7 +94549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7703635284991665396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.65}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95391,11 +95329,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
+          m_MethodName: ChangingOnCameraLayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 648634273}
           m_TargetAssemblyTypeName: TimeSignal, Assembly-CSharp
           m_MethodName: StartTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
+          m_MethodName: ChangedOffCameraLayer
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -100393,6 +100355,7 @@ GameObject:
   - component: {fileID: 3227782427514961837}
   - component: {fileID: 3227782427514961817}
   - component: {fileID: 8706827993009065111}
+  - component: {fileID: 8706827993009065112}
   m_Layer: 10
   m_Name: Player_Ranger
   m_TagString: Player
@@ -100421,6 +100384,75 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8706827993009065112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706827993009065110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: cfe3441fcec7a2f43bef50e79862a7b5, type: 2}
+    - {fileID: 11400000, guid: 2a1c5135e78e4a4438584a1e4f5e80b4, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 648634273}
+          m_TargetAssemblyTypeName: TimeSignal, Assembly-CSharp
+          m_MethodName: PauseTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
+          m_MethodName: ChangingOnCameraLayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 648634273}
+          m_TargetAssemblyTypeName: TimeSignal, Assembly-CSharp
+          m_MethodName: StartTime
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
+          m_MethodName: ChangedOffCameraLayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &8706827993062381901
 Transform:
   m_ObjectHideFlags: 0
