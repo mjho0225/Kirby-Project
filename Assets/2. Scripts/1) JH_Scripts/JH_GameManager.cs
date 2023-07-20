@@ -127,6 +127,17 @@ public class JH_GameManager : MonoBehaviour
             }
         }
         
+
+        if(LastWaii.instance.lastWaii == true)
+        {
+            Time.timeScale = 0;
+            BGM.Stop();
+            backGroundCam.SetActive(false);
+            Panel_COIN.SetActive(false);
+            PlayerHP.SetActive(false);
+            Subcam.SetActive(true);
+            EndingVideo.SetActive(true);
+        }
     }
 
 
