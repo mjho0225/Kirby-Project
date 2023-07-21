@@ -28440,7 +28440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910914751}
   m_Layer: 0
-  m_Name: ---------- [ Camera ]
+  m_Name: ================== [ Camera ]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33628,7 +33628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069333520}
   m_Layer: 0
-  m_Name: ---------- [ Etc ]
+  m_Name: ================== [ Etc ]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38612,7 +38612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253884448}
   m_Layer: 0
-  m_Name: ---------- [ Enviornment ]
+  m_Name: ================== [ Enviornment ]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55596,7 +55596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1705860026}
   m_Layer: 0
-  m_Name: ---------- [ UI ]
+  m_Name: ================== [ UI ]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65557,7 +65557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2058759890}
   m_Layer: 0
-  m_Name: ---------- [ Actor ]
+  m_Name: ================== [ Actor ]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68730,7 +68730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2134806996}
   m_Layer: 0
-  m_Name: ---------- [ Manager ]
+  m_Name: ================== [ Manager ]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95796,7 +95796,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!1 &5370758595553546352
 GameObject:
   m_ObjectHideFlags: 0
