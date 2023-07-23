@@ -44,10 +44,12 @@ public class CameraLayerManager : MonoBehaviour
         // 카메라의 뷰포트 값을 좌표 값으로 만든다..
         Vector3 cameraWorldPosition = Camera.main.ViewportToWorldPoint(cameraViewCenterPosition);
 
-
+      
         // 플레이어 위치는 카메라 좌우의 중앙에 있고, 플레이어는 자기 자신의 y,z 축에 있다.
         player.transform.position = new Vector3(cameraWorldPosition.x, player.transform.position.y, player.transform.position.z);
 
+        //플레이어의 앞 쪽 방향으로 만다.
+        player.transform.rotation = Quaternion.LookRotation(transform.forward);
     }
 
 }
