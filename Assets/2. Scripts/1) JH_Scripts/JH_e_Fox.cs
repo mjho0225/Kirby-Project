@@ -17,6 +17,9 @@ public class JH_e_Fox : MonoBehaviour
     Vector3 playerPos;
     // Start is called before the first frame update
 
+    AudioSource damge_SFX;
+    public ParticleSystem damage_FX;
+
     public Material mat_Fox;
     
     float changeTime = 0; 
@@ -35,6 +38,7 @@ public class JH_e_Fox : MonoBehaviour
 
     void Start()
     {
+        damge_SFX = GetComponent<AudioSource>();
         mat_Fox.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
@@ -171,6 +175,8 @@ public class JH_e_Fox : MonoBehaviour
         {
             //HP°¨¼Ò
             enemyHP -= 20;
+            damge_SFX.PlayOneShot(damge_SFX.clip);
+            Instantiate(damage_FX, transform.position, Quaternion.identity);
             if (enemyHP <= 0)
             {
                 state = State.Die;
