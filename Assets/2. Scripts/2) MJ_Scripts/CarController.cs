@@ -33,7 +33,7 @@ public class CarController : MonoBehaviour
     public Rigidbody mainRigidbody;
     public Transform bodyTransform;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float forwardAccel = 8f, maxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
+    public float forwardAccel = 15f, dashMaxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
     private float speedInput, hAxis, vAxis;
     private bool isGrounded, autoDashing;
@@ -45,8 +45,6 @@ public class CarController : MonoBehaviour
     public ParticleSystem[] NormalParticle;
     // 파티클 배열
     public float maxEmission = 50;
-    // 최대 효과. 비율
-    private float emissionRate;
     private float rotationVelocity;
     public float rotationTime = 0.3f;
 
@@ -76,7 +74,7 @@ public class CarController : MonoBehaviour
             forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
             AudioManager.instance.PlaySound("Booster");
-            foreach(ParticleSystem ps in NormalParticle)
+            foreach (ParticleSystem ps in NormalParticle)
             {
                 ps.Play();
             }
@@ -86,7 +84,7 @@ public class CarController : MonoBehaviour
         {
             // 자동 오토 정지
             autoDashing = false;
-            forwardAccel = 7f;
+            forwardAccel = 15f;
             // 일반 상태로 변경한다.
             carState = CarState.Move;
             // 대쉬 파티클을 실행하지 않는다.
@@ -113,14 +111,13 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //EmissionNormalMoveParticle();
         FreezeRotation();
     }
 
     private void AutoDash()
     {
         // 만약 대쉬를 했고, 최대 제한 속도 크기 보다 작을 때 힘을 준다.
-        if (autoDashing && mainRigidbody.velocity.magnitude < maxSpeed)
+        if (autoDashing && mainRigidbody.velocity.magnitude < dashMaxSpeed)
         {
             mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 500f);
         }
@@ -134,8 +131,6 @@ public class CarController : MonoBehaviour
 
     private void MoveNormal()
     {
-        // 처음 비율을 초기화 한다.
-        emissionRate = 0;
         // 속력의 절댓 값이 0보다 크면 속력 만큼 앞으로 힘을 주고 싶다. (일반 속도를 제어하고 싶다)
         if (Mathf.Abs(speedInput) > 0 && !autoDashing && mainRigidbody.velocity.magnitude < normalMaxSpeed)
         {
@@ -154,19 +149,6 @@ public class CarController : MonoBehaviour
 
     }
 
-    private void EmissionNormalMoveParticle()
-    {
-
-        // 파티클에 각각 접근하여
-        foreach (ParticleSystem part in NormalParticle)
-        {
-
-            var emissionModule = part.emission;
-            // 모듈을 시간을 생성한다.
-            emissionModule.rateOverTime = emissionRate;
-
-        }
-    }
 
     private void MoveRotation()
     {
@@ -201,7 +183,6 @@ public class CarController : MonoBehaviour
 
     private void MoveCameraDir()
     {
-        // 왼쪽 방향일 때 왼쪽으로, 앞, 뒤 방향키는 좌우로 간다.
         Vector3 dir = Vector3.right * hAxis + Vector3.forward * vAxis;
         // 플레이어의 움직임 방향을 월드 기준으로 한다.
         dir = Camera.main.transform.TransformDirection(dir);
