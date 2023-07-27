@@ -115,6 +115,7 @@ public class JH_Item : MonoBehaviour
     {
 
         JH_GameManager.instance.SavePanel.SetActive(true);
+        JH_GameManager.instance.playerCarRigid.isKinematic = true;
         Time.timeScale = 0;
         JH_GameManager.instance.sceneTime = 0;
         JH_GameManager.instance.savePanel_On = true;

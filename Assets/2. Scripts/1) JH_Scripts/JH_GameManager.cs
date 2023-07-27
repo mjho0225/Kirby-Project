@@ -12,6 +12,8 @@ public class JH_GameManager : MonoBehaviour
     public static JH_GameManager instance;
 
     public GameObject playerKirby;
+    public Rigidbody playerCarRigid;
+
     //public GameObject playerCar;
 
     AudioSource BGM;
@@ -50,6 +52,7 @@ public class JH_GameManager : MonoBehaviour
         EndingVideo.SetActive(false);
 
         BGM = GetComponent<AudioSource>();
+
     }
 
     void Start()
@@ -148,6 +151,8 @@ public class JH_GameManager : MonoBehaviour
         if(sceneTime > 3 )
         {
             SavePanel.SetActive(false);
+            //자동차 커비의 물리충돌 가능하게 하기
+            playerCarRigid.isKinematic = false;
             Time.timeScale = 1;
             sceneTime = 0;
             savePanel_On = false;

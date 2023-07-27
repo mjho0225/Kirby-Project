@@ -5,6 +5,7 @@ using UnityEngine;
 public class JH_Rock_fall : MonoBehaviour
 {
     public ParticleSystem fall;
+    
     public bool fallen = false;
 
     //Rigidbody rb;
@@ -19,6 +20,7 @@ public class JH_Rock_fall : MonoBehaviour
     void Start()
     {
         listCount = patrolPos.Count; // ÆÐÆ®·Ñ ¸®½ºÆ®ÀÇ °³¼ö ÆÄ¾Ç
+        
         //rb = GetComponent<Rigidbody>();
     }
 
@@ -94,10 +96,11 @@ public class JH_Rock_fall : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground" && this.fallen == false)
         {
-            print("³«ÇÏ");
+            //print("³«ÇÏ");
             Vector3 fallPos = transform.position;
             fallPos = new Vector3(fallPos.x, fallPos.y - 2.2f, fallPos.z);
             Instantiate(fall, fallPos, Quaternion.identity);
+            
             this.fallen = true;
         }
         if (other.gameObject.tag == "Player")

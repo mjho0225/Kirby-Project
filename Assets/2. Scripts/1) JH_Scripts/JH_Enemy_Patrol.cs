@@ -22,6 +22,9 @@ public class JH_Enemy_Patrol : MonoBehaviour
     public bool knockBack = false;
     Rigidbody rb;
 
+    AudioSource damge_SFX;
+    public ParticleSystem damage_FX;
+
     #region 리스트 관련
     public List<Transform> patrolPos; // 패트롤 위치가 몇개이냐에 따라 쉽게 늘릴수 있도록 퍼블릭으로
     int listCount; // 패트롤 리스트의 개수 파악
@@ -47,7 +50,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
-        
+        damge_SFX = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -128,6 +131,9 @@ public class JH_Enemy_Patrol : MonoBehaviour
         {
             //HP감소
             enemyHP -= 20;
+            damge_SFX.PlayOneShot(damge_SFX.clip);
+            Instantiate(damage_FX, transform.position, Quaternion.identity);
+
             if (enemyHP <= 0)
             {
                 Destroy(this.gameObject);
