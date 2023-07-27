@@ -17,8 +17,10 @@ public class JH_e_Fox : MonoBehaviour
     Vector3 playerPos;
     // Start is called before the first frame update
 
-    AudioSource damge_SFX;
+    AudioSource audioS;
     public ParticleSystem damage_FX;
+    public AudioClip death_SFX;
+    public AudioClip damage_SFX;
 
     public Material mat_Fox;
     
@@ -38,7 +40,8 @@ public class JH_e_Fox : MonoBehaviour
 
     void Start()
     {
-        damge_SFX = GetComponent<AudioSource>();
+        
+        audioS = GetComponent<AudioSource>();
         mat_Fox.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
@@ -68,7 +71,10 @@ public class JH_e_Fox : MonoBehaviour
 
         if(enemyHP <= 0)
         {
-            Destroy(this.gameObject);
+            audioS.clip = death_SFX;
+            audioS.PlayOneShot(audioS.clip,3f);
+
+            Destroy(this.gameObject,0.12f);
         }
     }
 
@@ -164,7 +170,8 @@ public class JH_e_Fox : MonoBehaviour
             mat_Fox.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             changeTime = 0;
             matChange = true;
-            damge_SFX.PlayOneShot(damge_SFX.clip);
+            audioS.clip = damage_SFX;
+            audioS.PlayOneShot(audioS.clip);
 
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
@@ -175,15 +182,24 @@ public class JH_e_Fox : MonoBehaviour
         {
             //HP°¨¼Ò
             enemyHP -= 20;
-            damge_SFX.PlayOneShot(damge_SFX.clip);
             Instantiate(damage_FX, transform.position, Quaternion.identity);
+            if(enemyHP >= 20)
+            {
+                audioS.clip = damage_SFX;
+                audioS.PlayOneShot(audioS.clip, 0.8f);
+            }
             if (enemyHP <= 0)
             {
+                //audioS.clip = death_SFX;
+                //audioS.PlayOneShot(audioS.clip, 3f);
                 state = State.Die;
                 Instantiate(coin_Yellow, transform.position, Quaternion.identity);
                 JH_i_Coin_rot.instance.monsDrop = true;
                 JH_ScoreManager.instance.COIN_SCORE++;
-                Destroy(this.gameObject);
+
+                
+
+                Destroy(this.gameObject,0.2f);
                 
             }
 
