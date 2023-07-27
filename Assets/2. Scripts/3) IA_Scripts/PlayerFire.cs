@@ -178,26 +178,13 @@ public class PlayerFire : MonoBehaviour
             {
                 isAbsorb = false;
                 //Destroy(cols[0].gameObject);
-
-                //자동차 프리팹 setActive;
-                //==============================================================================================
-                // 퍼블릭으로 커비 자동차를 켠다.
-                kirbyCar.SetActive(true);
                 // 커비 자동차의 위치를 자식의 위치에 존재한다.
                 kirbyCar.transform.position = transform.parent.GetChild(0).transform.position;
-                //==============================================================================================
-                StartCoroutine(disableKirbyModel());
+
+                TimelineManager.instance.timeLines[1].Play();
             }
            
         }
-    }
-
-    IEnumerator disableKirbyModel() {
-        //자동타 타임라인
-        TimelineManager.instance.timeLines[1].Play();
-        yield return new WaitForSeconds(0.2f);
-        gameObject.SetActive(false);
-        kirbyModel.SetActive(false);
     }
 
     private void OnCollisionStay(Collision collision)

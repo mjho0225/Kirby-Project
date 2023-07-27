@@ -136,9 +136,6 @@ public class CarController : MonoBehaviour
         {
             // 앞 방향으로 힘을 주고싶다.
             mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
-            // 최대 배출을 생성한다.
-            //emissionRate = maxEmission;
-            // 마찰 지정
             mainRigidbody.drag = dragOnGround;
         }
         // 만약 대쉬를 했다면 대쉬상태로 전이한다.
