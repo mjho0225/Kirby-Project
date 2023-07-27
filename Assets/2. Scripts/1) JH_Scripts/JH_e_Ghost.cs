@@ -25,6 +25,11 @@ public class JH_e_Ghost : MonoBehaviour
     Vector3 playerPos;
     // Start is called before the first frame update
 
+    AudioSource audioS;
+    public ParticleSystem damage_FX;
+    public AudioClip death_SFX;
+    public AudioClip damage_SFX;
+
 
     float changeTime = 0; // 변신 초 계산
     bool matChange = false;
@@ -48,6 +53,7 @@ public class JH_e_Ghost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioS = GetComponent<AudioSource>();
         targetPlayer = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
 
@@ -85,7 +91,10 @@ public class JH_e_Ghost : MonoBehaviour
 
         if (enemyHP <= 0)
         {
-            Destroy(this.gameObject);
+            audioS.clip = death_SFX;
+            audioS.PlayOneShot(audioS.clip, 3f);
+
+            Destroy(this.gameObject, 0.13f);
         }
     }
 
@@ -199,6 +208,15 @@ public class JH_e_Ghost : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
+            enemyHP -= 20;
+            Instantiate(damage_FX, transform.position, Quaternion.identity);
+            if (enemyHP >= 20)
+            {
+                audioS.clip = damage_SFX;
+                audioS.PlayOneShot(audioS.clip, 0.8f);
+            }
+
+
             state = State.KnockBack;
             knockBack = true;
             ghostRot.transform.GetComponent<MeshRenderer>().material.color = Color.white;

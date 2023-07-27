@@ -164,6 +164,8 @@ MonoBehaviour:
   mySpawner: {fileID: 0}
   targetPlayer: {fileID: 0}
   damage_FX: {fileID: 1130085966478490497, guid: d38677fb27b5420489bc850821ebcd0c, type: 3}
+  death_SFX: {fileID: 8300000, guid: 64e4727d9022540408ae6296bf002c5a, type: 3}
+  damage_SFX: {fileID: 8300000, guid: 4328dd0b9f7376a488e9401306e2bf1f, type: 3}
   mat_Fox: {fileID: 2100000, guid: 0871efd4aa082b94ba1d013e4e09df68, type: 2}
   state: 0
   knockBack: 0

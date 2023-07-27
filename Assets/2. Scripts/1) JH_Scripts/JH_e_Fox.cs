@@ -182,10 +182,11 @@ public class JH_e_Fox : MonoBehaviour
         {
             //HP°¨¼Ò
             enemyHP -= 20;
+            audioS.clip = damage_SFX;
             Instantiate(damage_FX, transform.position, Quaternion.identity);
             if(enemyHP >= 20)
             {
-                audioS.clip = damage_SFX;
+                
                 audioS.PlayOneShot(audioS.clip, 0.8f);
             }
             if (enemyHP <= 0)

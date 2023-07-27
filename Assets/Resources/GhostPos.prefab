@@ -217,6 +217,9 @@ MonoBehaviour:
   - {fileID: 0}
   ghostRot: {fileID: 2363963493158937479}
   targetPlayer: {fileID: 0}
+  damage_FX: {fileID: 1130085966478490497, guid: d38677fb27b5420489bc850821ebcd0c, type: 3}
+  death_SFX: {fileID: 8300000, guid: 708a578060e7b394c83283208ade78d6, type: 3}
+  damage_SFX: {fileID: 8300000, guid: 9a5e60857749c394198ef08dc5877d56, type: 3}
   i: 0
   state: 0
   knockBack: 0

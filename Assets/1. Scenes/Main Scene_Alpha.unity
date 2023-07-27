@@ -60858,6 +60858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster_Mush
       objectReference: {fileID: 0}
+    - target: {fileID: 8638597909917994282, guid: 80fd1b4ea6dcd79478ebce510dfefa16, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80fd1b4ea6dcd79478ebce510dfefa16, type: 3}
 --- !u!4 &1480489386 stripped
