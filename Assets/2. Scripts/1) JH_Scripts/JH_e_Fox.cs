@@ -164,8 +164,8 @@ public class JH_e_Fox : MonoBehaviour
             mat_Fox.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             changeTime = 0;
             matChange = true;
+            damge_SFX.PlayOneShot(damge_SFX.clip);
 
-            
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
 

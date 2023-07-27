@@ -172,7 +172,7 @@ public class JH_e_Gosum : MonoBehaviour
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeColor = 0;
             matChange = true;
-
+            damge_SFX.PlayOneShot(damge_SFX.clip);
             matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
@@ -184,6 +184,7 @@ public class JH_e_Gosum : MonoBehaviour
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeTime = 0;
             matChange = true;
+            damge_SFX.PlayOneShot(damge_SFX.clip);
             matGosum.color = new Color(255 / 255, 0 / 255f, 0 / 255f);
         }
 

@@ -117,7 +117,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
             mat_Mush.color = new Color(255 / 255, 0/ 255f, 255 / 255f);
             changeTime = 0;
             matChange = true;
-
+            damge_SFX.PlayOneShot(damge_SFX.clip);
 
             rb.AddForce(-dirPlayer * 10f * Time.deltaTime, ForceMode.Impulse);
         }
@@ -125,6 +125,7 @@ public class JH_Enemy_Patrol : MonoBehaviour
         if (collision.gameObject.tag == "bubble" || collision.gameObject.tag == "bullet2")
         {
             enemyHP -= 100;
+            damge_SFX.PlayOneShot(damge_SFX.clip);
         }
 
         if (collision.gameObject.tag == "Player")
