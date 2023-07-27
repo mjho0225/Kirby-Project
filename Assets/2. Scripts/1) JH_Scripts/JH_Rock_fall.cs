@@ -13,6 +13,10 @@ public class JH_Rock_fall : MonoBehaviour
     int listCount; // 패트롤 리스트의 개수 파악
     public int i = 0;
 
+    bool playerHit;
+    bool delay;
+    float hitdelay;
+
     public float rockSpeed;
     float fallSpeed = 20f;
 
@@ -84,19 +88,31 @@ public class JH_Rock_fall : MonoBehaviour
             }
         }
 
-
-
+        if(playerHit == true)
+        {
+            hitdelay += Time.deltaTime;
+            PlayerHP.instance.HP -= 3;
+            playerHit = false;
+            
+        }
+        if (hitdelay > 2f)
+        {
+            delay = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // 플레이어 HP감소
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && delay == false)
         {
-            PlayerHP.instance.HP -= 5;
+            playerHit = true;
+            delay = true;
+            //PlayerHP.instance.HP -= 5;
         }
+        hitdelay = 0;
 
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -110,10 +126,14 @@ public class JH_Rock_fall : MonoBehaviour
             
             this.fallen = true;
         }
-        if (other.gameObject.tag == "Player")
+
+        if (other.gameObject.tag == "Player" && delay == false)
         {
-            PlayerHP.instance.HP -= 5;
+            playerHit = true;
+            delay = true;
+            //PlayerHP.instance.HP -= 5;
         }
+        hitdelay = 0;
     }
 
 }
