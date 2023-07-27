@@ -28,6 +28,8 @@ public class JH_e_Gosum : MonoBehaviour
     Rigidbody rb;
     public bool knockBack = false;
 
+    AudioSource damge_SFX;
+    public ParticleSystem damage_FX;
 
     public Material matGosum;
 
@@ -35,6 +37,8 @@ public class JH_e_Gosum : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damge_SFX = GetComponent<AudioSource>();
+
         matGosum.color = new Color(255 / 255, 255 / 255f, 255 / 255f);
         agent = GetComponent<NavMeshAgent>();
 
@@ -137,6 +141,8 @@ public class JH_e_Gosum : MonoBehaviour
         if(collision.transform.tag == "Player" && currentChage == false)
         {
             enemyHP -= 20;
+            damge_SFX.PlayOneShot(damge_SFX.clip);
+            Instantiate(damage_FX, transform.position, Quaternion.identity);
             if (enemyHP <= 0)
             {
                 Instantiate(coin_Green, transform.position, Quaternion.identity);

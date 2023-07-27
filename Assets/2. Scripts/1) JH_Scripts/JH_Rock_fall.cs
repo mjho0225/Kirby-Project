@@ -13,12 +13,13 @@ public class JH_Rock_fall : MonoBehaviour
     int listCount; // 패트롤 리스트의 개수 파악
     public int i = 0;
 
-    float rockSpeed = 4.5f;
+    public float rockSpeed;
     float fallSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
     {
+        rockSpeed = 4.5f;
         listCount = patrolPos.Count; // 패트롤 리스트의 개수 파악
         
         //rb = GetComponent<Rigidbody>();
@@ -29,9 +30,14 @@ public class JH_Rock_fall : MonoBehaviour
     {
         //rb.velocity = -Vector3.forward * 100f * Time.deltaTime;
         //rb.AddForce(transform.forward * 100 * Time.deltaTime, ForceMode.Acceleration) ;
+        if (JH_Rock_Spawn.instance.bigRock == true)
+        {
+            print("속도 변경");
+            rockSpeed = 20f;
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, rockSpeed * Time.deltaTime);
+        }
 
-
-        if (i <= listCount)
+        if (i <= listCount && JH_Rock_Spawn.instance.bigRock == false)
         {
             //// 리스트(패트롤 위치)로 이동할때 회전하여 정면을 바라보게 하고싶다.
             transform.LookAt(patrolPos[i]);
@@ -43,9 +49,10 @@ public class JH_Rock_fall : MonoBehaviour
             if (i >= 2)
             {
                 rockSpeed = 4.5f;
+                
 
             }
-
+            
 
             if (i > 12 && i <= 13)
             {

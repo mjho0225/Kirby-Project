@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class JH_SpawnStart : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //private void OnCollisionEnter(Collision collision)
@@ -44,6 +45,7 @@ public class JH_SpawnStart : MonoBehaviour
                 JH_Rock_Spawn.instance.bigRock = true;
                 JH_Rock_Spawn.instance.area1Start = false;
                 JH_Rock_Spawn.instance.currentTime4 = 0;
+
             }
             if (this.gameObject.name.Contains("Area4Rock"))
             {
