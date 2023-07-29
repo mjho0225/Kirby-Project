@@ -121,6 +121,11 @@ public class PlayerController : MonoBehaviour
             Die();
         }
 
+        if (transform.localPosition.y < -10)
+        {
+            Die();
+        }
+
         GetInput();
 
         if (isLadder)
