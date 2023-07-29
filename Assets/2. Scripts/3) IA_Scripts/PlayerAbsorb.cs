@@ -361,12 +361,12 @@ public class PlayerAbsorb : MonoBehaviour
 
                 if (absorbItemTag == "e_ranger")
                 {
-                    TimelineManager.instance.timeLines[0].Play();
+                   
                     GetComponentInParent<PlayerController>().speed = maxSpeed;
                     getRanger = true;
                     state = PlayerAbsorb.AbsorbState.Ready;
                     flaregun.SetActive(true);
-
+                    TimelineManager.instance.timeLines[0].Play();
                 }
             }
         }
