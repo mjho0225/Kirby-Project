@@ -50,6 +50,11 @@ public class CarController : MonoBehaviour
     private readonly string JUMP_NAME = "Jump";
     private readonly string HORIZONTAL_AXIS_NAME = "Horizontal", VERTICAL_AXIS_NAME = "Vertical";
 
+    void Start()
+    {
+        AudioManager.instance.PlaySound("Idle");
+    }
+
     private void Update()
     {
         InitInput();
@@ -58,6 +63,7 @@ public class CarController : MonoBehaviour
         MoveRotation();
         MoveDash();
 
+        // 방향키를 움직였다면 1을 재생한다.
         switch (carState)
         {
             case CarState.Move: MoveNormal(); break;
@@ -82,7 +88,7 @@ public class CarController : MonoBehaviour
             // 자동 오토 실행
             autoDashing = true;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
-            AudioManager.instance.PlaySound("Booster");
+            AudioManager.instance.PlayOneShotSound("Booster");
             foreach (ParticleSystem ps in NormalParticle)
             {
                 ps.Play();
@@ -109,7 +115,7 @@ public class CarController : MonoBehaviour
         if (jumpButtonDown && isGrounded)
         {
             mainRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            AudioManager.instance.PlaySound(JUMP_NAME);
+            AudioManager.instance.PlayOneShotSound(JUMP_NAME);
             isGrounded = false;
         }
         mainRigidbody.AddForce(Vector3.up * -gravity * 25);
@@ -146,13 +152,13 @@ public class CarController : MonoBehaviour
             // 앞 방향으로 힘을 주고싶다.
             mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
             mainRigidbody.drag = dragOnGround;
+
         }
         // 만약 대쉬를 했다면 대쉬상태로 전이한다.
         else if (autoDashing)
         {
             carState = CarState.Dash;
         }
-
     }
 
 

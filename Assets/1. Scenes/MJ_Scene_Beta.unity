@@ -18614,17 +18614,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: Booster
+    clip: {fileID: 8300000, guid: e36b3ce1bb26eac478b584885356a471, type: 3}
+    volume: 0.2
+    pitch: 1.15
+    loop: 0
+    source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: eb6eaa60d1ab0634f95711d7ca4fa56b, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Booster
-    clip: {fileID: 8300000, guid: e36b3ce1bb26eac478b584885356a471, type: 3}
-    volume: 0.2
-    pitch: 1.15
-    loop: 0
+  - name: Idle
+    clip: {fileID: 8300000, guid: 75895583fb86aa64d911cd0a3f9d4dc7, type: 3}
+    volume: 3
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &495705724
 Transform:
@@ -72042,7 +72048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carState: 0
-  forwardAccel: 12
+  forwardAccel: 15
   dashMaxSpeed: 25
   normalMaxSpeed: 15
   gravity: 40

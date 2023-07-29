@@ -39,6 +39,20 @@ public class AudioManager : MonoBehaviour
     }
 
     // 플레이어가 직접 넣은 문자열에 반응하여 소리를 플레이 한다.
+    public void PlayOneShotSound(string name)
+    {
+        // 배열안에 들어간 소리 이름과 적은 이름이 같다면 플레이 한다.
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        // 사운드가 없을때 없다고 말하기
+        if (s == null)
+        {
+            Debug.LogWarning("사운드가 없습니다.");
+            return;
+        }
+        // 소리를 플레이한다.
+        s.source.PlayOneShot(s.source.clip);
+    }
+
     public void PlaySound(string name)
     {
         // 배열안에 들어간 소리 이름과 적은 이름이 같다면 플레이 한다.
