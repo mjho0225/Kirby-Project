@@ -137,12 +137,18 @@ public class PlayerFire : MonoBehaviour
         if (!(isCharge) && fire2D)
         {
             Vector3 posZ = transform.position;
-            posZ.z += 2;
+            //스피어 앞방향
+            posZ.y += 2.2f;
+            posZ += transform.forward * 2;
             GameObject go = Instantiate(bubleGun, posZ, Quaternion.identity);
             Rigidbody rb = go.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 6f, ForceMode.Impulse);
+            rb.AddForce(posZ * 4f, ForceMode.Acceleration);
+            //Vector3 pos = transform.position;
+            //pos = transform.forward * 5;
+            //go.transform.position = Vector3.Lerp(transform.position, pos, 1f);
 
             GetComponentInParent<PlayerController>().ChangeAbsorb();
+            flareGun.SetActive(false);
         }
 
 
