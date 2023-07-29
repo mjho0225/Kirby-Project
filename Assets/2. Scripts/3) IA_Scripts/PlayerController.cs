@@ -213,14 +213,19 @@ public class PlayerController : MonoBehaviour
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
-        if (GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
+        if(attackState == AttackState.ABSORB)
         {
-            return;
+            if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed))
+            {
+                space = Input.GetButtonDown("Jump");
+            }
+           
         }
         else
         {
             space = Input.GetButtonDown("Jump");
         }
+       
       
         if (space) state = PlayerState.BASIC;
         shift = Input.GetKey(KeyCode.LeftShift);

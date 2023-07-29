@@ -84,7 +84,7 @@ public class PlayerFire : MonoBehaviour
 
     bool isAbsorb = false;
 
-
+    Coroutine runningCoroutine = null;
     void Update()
     {
         GetInput();
@@ -116,7 +116,11 @@ public class PlayerFire : MonoBehaviour
         {
             audioSource.Stop();
             Destroy(particle, 1f);
-            Shot();
+            if (runningCoroutine == null)
+            {
+                runningCoroutine = StartCoroutine(ShotWating());
+            }
+           
 
         }
         if (fireU && isCharge && !isAbsorb)
@@ -125,6 +129,7 @@ public class PlayerFire : MonoBehaviour
             //SoundPlay("SFX_Charging_Complete");
             Destroy(particle, 1f);
             Shot2();
+           
             //UpdateClear();
         }
 
@@ -333,26 +338,58 @@ Collider[] cols;
         flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
+    //void Shot()
+    //{
+    //    SoundPlay("SFX_ChargingShot");
+    //    CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
+    //    //anim.SetBool("isFire", true);
+    //    anim.SetTrigger("Fire");
+    //    Instantiate(fire01Effect, firePos.position, firePos.rotation);
+
+    //    Destroy(particle, 1f);
+    //    print("발사");
+
+    //    GameObject bullet = Instantiate(bulletFactory, firePos.position, firePos.rotation);
+
+    //    Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+    //    bulletRb.velocity = firePos.forward * 50;
+    //    currTime = 0;
+
+    //    transform.localScale = new Vector3(1f, 0.6f, 1f);
+    //    transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 100);
+    //    flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
+    //}
+
+    IEnumerator ShotWating()
+    {
+       
+        Shot();
+        yield return new WaitForSeconds(0.5f);
+        runningCoroutine = null;
+    }
     void Shot()
     {
+       
         SoundPlay("SFX_ChargingShot");
         CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
         //anim.SetBool("isFire", true);
+ 
         anim.SetTrigger("Fire");
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
-       
+
         Destroy(particle, 1f);
         print("발사");
-     
+
         GameObject bullet = Instantiate(bulletFactory, firePos.position, firePos.rotation);
-        
+
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = firePos.forward * 50;
         currTime = 0;
-       
+
         transform.localScale = new Vector3(1f, 0.6f, 1f);
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 100);
         flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
+      
     }
 
     void Shot2()
@@ -364,14 +401,14 @@ Collider[] cols;
         Instantiate(chergeEffect02, firePos.position, firePos.rotation);
         Destroy(particle);
         CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
-        
+
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
         Destroy(particle, 2f);
         print("발사2");
         GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
         flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
         UpdateClear();
-        
+
 
     }
 
