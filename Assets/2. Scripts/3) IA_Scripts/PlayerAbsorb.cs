@@ -357,8 +357,7 @@ public class PlayerAbsorb : MonoBehaviour
                 Destroy(other.gameObject);
                 state = PlayerAbsorb.AbsorbState.Absorbed;
                 DestroyParticle();
-           
-
+      
 
                 if (absorbItemTag == "e_ranger")
                 {

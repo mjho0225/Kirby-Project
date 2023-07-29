@@ -427,14 +427,8 @@ public class PlayerController : MonoBehaviour
         //onTriggerEnter Layer Absorb로 처리에서 인식 불가 문제로 콜라이더로 변경
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
+          
 
-            //박치기 = 서로피격
-            print("damage 함수처리");
-            Vector3 dir = transform.position - collision.gameObject.transform.position;
-            //넉백일 경우와 아닐경우 분리
-            //흡수할 경우 넉백이 일어나면 안됨
-            rb.AddForce(dir * (300f * Time.deltaTime), ForceMode.Impulse);
             //본인도 데미지
             if (attackState == AttackState.ABSORB)
             {
@@ -442,6 +436,17 @@ public class PlayerController : MonoBehaviour
                 {
                     OnDamage();
                 }
+            }
+            else
+            {
+                SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
+
+                //박치기 = 서로피격
+                print("damage 함수처리");
+                Vector3 dir = transform.position - collision.gameObject.transform.position;
+                //넉백일 경우와 아닐경우 분리
+                //흡수할 경우 넉백이 일어나면 안됨
+                rb.AddForce(dir * (300f * Time.deltaTime), ForceMode.Impulse);
             }
             
         }

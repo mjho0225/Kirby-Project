@@ -316,16 +316,16 @@ Collider[] cols;
 
 
             Vector3 pointTolook = ray.GetPoint(200f);
-            //flareGun.transform.LookAt(new Vector3(-(pointTolook.x), transform.position.y, -(pointTolook.z)));
-            flareGun.transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
-            //flareGun.transform.Rotate(Input.mousePosition);
+         
+            //flareGun.transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
+            transform.parent.gameObject.transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
         }
 
 
     }
     public void UpdateClear()
     {
-        audioSource.Stop();
+      
         print("Clear");
         print("ÆøÅº¹ß»ç ÀÓ½Ã");
         currTime = 0;
@@ -395,7 +395,7 @@ Collider[] cols;
     void Shot2()
     {
         audioSource.Stop();
-        SoundPlay("SFX_ChargingShot");
+       
         anim.SetBool("isReadyFire", false);
         anim.SetTrigger("Fire");
         Instantiate(chergeEffect02, firePos.position, firePos.rotation);
@@ -407,6 +407,7 @@ Collider[] cols;
         print("¹ß»ç2");
         GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
         flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        SoundPlay("SFX_ChargingShot");
         UpdateClear();
 
 
