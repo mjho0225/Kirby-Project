@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     bool isMaking = false;
     IEnumerator makeFeetEffect()
     {
-            
+                SoundPlay("Audio/Player/SFX_Kirby_FootSound_1");    
                 isMaking = true;
             
                 Vector3 posLeft = transform.position;
@@ -311,6 +311,11 @@ public class PlayerController : MonoBehaviour
         //중력이 없는 상태에서 멈추기
     }
 
+    public void SoundPlay(string str)
+    {
+        audioSource.clip = Resources.Load(str) as AudioClip;
+        audioSource.Play();
+    }
 
     void Jump()
     {
@@ -332,12 +337,7 @@ public class PlayerController : MonoBehaviour
                 jumpCnt++;
 
                 anim.SetTrigger("Jump");
-                audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_JumpVoice") as AudioClip;
-         
-                audioSource.Play();
-         
-                audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Jumping") as AudioClip;
-                audioSource.Play();
+                SoundPlay("Audio/Player/SFX_Kirby_Jumping");
               
                 //TIMELINE 구르기 애니메이션 만들기
                 //if (isMaxHigh)
@@ -349,9 +349,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (jumpCnt >= 1)
             {
-                audioSource.clip = Resources.Load("Audio/Player/SFX_Kirby_Fly") as AudioClip;
-             
-                audioSource.Play();
+                SoundPlay("Audio/Player/SFX_Kirby_Fly");
                 
                 Physics.gravity = new Vector3(0, -9.81f, 0);
                 isMaxHigh = false;
@@ -424,7 +422,7 @@ public class PlayerController : MonoBehaviour
         //onTriggerEnter Layer Absorb로 처리에서 인식 불가 문제로 콜라이더로 변경
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            print("eTrigger%%%%%%%%%%%");
+            SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
 
             //박치기 = 서로피격
             print("damage 함수처리");

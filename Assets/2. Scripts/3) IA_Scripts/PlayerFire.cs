@@ -84,6 +84,7 @@ public class PlayerFire : MonoBehaviour
 
     bool isAbsorb = false;
 
+
     void Update()
     {
         GetInput();
@@ -97,22 +98,31 @@ public class PlayerFire : MonoBehaviour
             }
             else
             {
+              
                 currTime += Time.deltaTime;
                 if (currTime > chargeWaitTime)
                 {
+                    //SoundPlay("SFX_Charge");
+                    //audioSource.Stop();
+                    //audioSource.clip = Resources.Load("Audio/Player/SFX_Charge2") as AudioClip;
+                    //audioSource.Play();
                     ChargeShot();
                 }
             }
 
         }
+       
         if (fireD && !isCharge && !isAbsorb)
         {
+            audioSource.Stop();
             Destroy(particle, 1f);
             Shot();
 
         }
         if (fireU && isCharge && !isAbsorb)
         {
+            audioSource.Stop();
+            //SoundPlay("SFX_Charging_Complete");
             Destroy(particle, 1f);
             Shot2();
             //UpdateClear();
@@ -132,16 +142,31 @@ public class PlayerFire : MonoBehaviour
 
 
     }
-
-    void OnDrawGizmosSelected()
+    AudioSource audioSource;
+    private void Awake()
     {
-        Vector3 posZ = transform.position;
-        //스피어 앞방향
-        posZ += transform.forward * 4;
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(posZ, 4.5f);
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
-    Collider[] cols;
+    void SoundPlay(string str)
+    {
+        
+        audioSource.clip = Resources.Load("Audio/Player/"+str) as AudioClip;
+        audioSource.Play();
+    }
+
+
+
+
+//void OnDrawGizmosSelected()
+//{
+//    Vector3 posZ = transform.position;
+//    //스피어 앞방향
+//    posZ += transform.forward * 4;
+//    Gizmos.color = Color.green;
+//    Gizmos.DrawSphere(posZ, 4.5f);
+//}
+Collider[] cols;
     void checkCar()
     {
 
@@ -212,20 +237,23 @@ public class PlayerFire : MonoBehaviour
         mesh_child.enabled = false;
     }
 
-    void StartLockOn()
-    {
 
+    IEnumerator PlayChargeSound()
+    {
+        SoundPlay("SFX_Charge");
+        yield return new WaitForSeconds(0.8f);
+        audioSource.Stop();
+        SoundPlay("SFX_Charge2");
     }
 
-    private void ResetLockOn()
-    {
-
-    }
     private void ChargeShot()
     {
         print("ChargeShot");
-        
 
+        if (!isCharge)
+        {
+            StartCoroutine(PlayChargeSound());
+        }
         isCharge = true;
         anim.SetBool("isReadyFire", true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -292,10 +320,12 @@ public class PlayerFire : MonoBehaviour
     }
     public void UpdateClear()
     {
+        audioSource.Stop();
         print("Clear");
         print("폭탄발사 임시");
         currTime = 0;
         lineRenderer.enabled = false;
+        StopAllCoroutines();
         isCharge = false;
         img.enabled = false;
         starImg.enabled = false;
@@ -305,7 +335,7 @@ public class PlayerFire : MonoBehaviour
     }
     void Shot()
     {
-      
+        SoundPlay("SFX_ChargingShot");
         CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, 0.5f);
         //anim.SetBool("isFire", true);
         anim.SetTrigger("Fire");
@@ -327,7 +357,8 @@ public class PlayerFire : MonoBehaviour
 
     void Shot2()
     {
-       
+        audioSource.Stop();
+        SoundPlay("SFX_ChargingShot");
         anim.SetBool("isReadyFire", false);
         anim.SetTrigger("Fire");
         Instantiate(chergeEffect02, firePos.position, firePos.rotation);
