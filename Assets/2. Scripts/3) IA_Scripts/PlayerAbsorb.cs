@@ -28,7 +28,6 @@ public class PlayerAbsorb : MonoBehaviour
     public Transform effectPos;
     public GameObject flaregun;
     public GameObject[] absorbParticle;
-
     public enum AbsorbState
     {
         Ready,
@@ -185,9 +184,6 @@ public class PlayerAbsorb : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            
-          
-
             currTime += Time.deltaTime;
 
             if (currTime > 0.5f)
@@ -267,14 +263,14 @@ public class PlayerAbsorb : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Vector3 posZ = transform.position;
-        //스피어 앞방향
-        posZ += transform.forward * 1.5f;
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(posZ, 1.5f);
-    }
+    //void OnDrawGizmosSelected()
+    //{
+    //    Vector3 posZ = transform.position;
+    //    //스피어 앞방향
+    //    posZ += transform.forward * 1.5f;
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(posZ, 1.5f);
+    //}
 
     private void UpdateAbsorbing()
     {
@@ -308,7 +304,7 @@ public class PlayerAbsorb : MonoBehaviour
     private void UpdateAbsorbed()
     {
         OffAbsorbCollider();
-        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        transform.parent.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         rb.isKinematic = false;
      
 
@@ -326,7 +322,7 @@ public class PlayerAbsorb : MonoBehaviour
             go.transform.forward = transform.forward;
             Rigidbody rb = go.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * power, ForceMode.Impulse);
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.parent.localScale = new Vector3(1f, 1f, 1f);
             //아이템 비우기
             Reset();
 
@@ -361,6 +357,8 @@ public class PlayerAbsorb : MonoBehaviour
                 Destroy(other.gameObject);
                 state = PlayerAbsorb.AbsorbState.Absorbed;
                 DestroyParticle();
+           
+
 
                 if (absorbItemTag == "e_ranger")
                 {

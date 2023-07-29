@@ -213,7 +213,15 @@ public class PlayerController : MonoBehaviour
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
-        space = Input.GetButtonDown("Jump");
+        if (GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
+        {
+            return;
+        }
+        else
+        {
+            space = Input.GetButtonDown("Jump");
+        }
+      
         if (space) state = PlayerState.BASIC;
         shift = Input.GetKey(KeyCode.LeftShift);
         if (shift) state = PlayerState.GUARD;
@@ -347,7 +355,7 @@ public class PlayerController : MonoBehaviour
                 
                 Physics.gravity = new Vector3(0, -9.81f, 0);
                 isMaxHigh = false;
-                //&& !(GetComponentInChildren<PlayerAbsorb>().statec == PlayerAbsorb.AbsorbState.Absorbed)
+                //&& !(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbed)
                 if (Input.GetButtonDown("Fire1"))
                 {
                     //점프 중간에 마우스 좌클릭한다면
