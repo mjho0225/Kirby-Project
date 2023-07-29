@@ -25361,7 +25361,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d484b44271fa6e418aa768ef08ed337, type: 2}
+  - {fileID: 2100000, guid: 8c18f99f4f517414ab72a78f087c54a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72018,7 +72018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1733305572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -72797,6 +72797,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1733305571}
   checkPoint: {fileID: 1902486409}
+  carMaterial: {fileID: 2100000, guid: a2022b01b2b850c48af2b4f569e9d690, type: 2}
+  colorChangedTime: 0
   maxFallPosition: 8
 --- !u!65 &1751159363
 BoxCollider:
