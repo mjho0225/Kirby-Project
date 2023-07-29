@@ -28,25 +28,27 @@ public class CarController : MonoBehaviour
         Dash,
     }
     public CarState carState;
-
-    // 리지드 바디가 필요
-    public Rigidbody mainRigidbody;
-    public Transform bodyTransform;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
     public float forwardAccel = 15f, dashMaxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
 
     private float speedInput, hAxis, vAxis;
     private bool isGrounded, autoDashing;
+    private bool dashKeyDown, dashKeyUp;
+    private bool jumpButtonDown;
 
+    // 리지드 바디가 필요
+    public Rigidbody mainRigidbody;
+    public Transform bodyTransform;
+    // 파티클을 생성하고 싶다.
+    public ParticleSystem[] NormalParticle;
     // 방향으로 가고싶다.
     Vector3 carMoveVector;
 
-    // 파티클을 생성하고 싶다.
-    public ParticleSystem[] NormalParticle;
-    // 파티클 배열
-    public float maxEmission = 50;
     private float rotationVelocity;
     public float rotationTime = 0.3f;
+
+    private readonly string JUMP_NAME = "Jump";
+    private readonly string HORIZONTAL_AXIS_NAME = "Horizontal", VERTICAL_AXIS_NAME = "Vertical";
 
     private void Update()
     {
@@ -63,15 +65,22 @@ public class CarController : MonoBehaviour
             default: break;
         }
     }
+    private void InitInput()
+    {
+        hAxis = Input.GetAxis(HORIZONTAL_AXIS_NAME);
+        vAxis = Input.GetAxis(VERTICAL_AXIS_NAME);
+        dashKeyDown = Input.GetKeyDown(KeyCode.LeftShift);
+        dashKeyUp = Input.GetKeyUp(KeyCode.LeftShift);
+        jumpButtonDown = Input.GetButtonDown(JUMP_NAME);
+    }
 
     private void MoveDash()
     {
         // 만약에 앞으로 가는 벡터가 zero 일 때 앞으로 가는 방향에 힘을 준다.
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (dashKeyDown)
         {
             // 자동 오토 실행
             autoDashing = true;
-            forwardAccel = 12f;
             CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
             AudioManager.instance.PlaySound("Booster");
             foreach (ParticleSystem ps in NormalParticle)
@@ -80,11 +89,10 @@ public class CarController : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (dashKeyUp)
         {
             // 자동 오토 정지
             autoDashing = false;
-            forwardAccel = 15f;
             // 일반 상태로 변경한다.
             carState = CarState.Move;
             // 대쉬 파티클을 실행하지 않는다.
@@ -95,12 +103,13 @@ public class CarController : MonoBehaviour
         }
     }
 
+
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (jumpButtonDown && isGrounded)
         {
             mainRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            AudioManager.instance.PlaySound("Jump");
+            AudioManager.instance.PlaySound(JUMP_NAME);
             isGrounded = false;
         }
         mainRigidbody.AddForce(Vector3.up * -gravity * 25);
@@ -172,11 +181,7 @@ public class CarController : MonoBehaviour
 
     }
 
-    private void InitInput()
-    {
-        hAxis = Input.GetAxis("Horizontal");
-        vAxis = Input.GetAxis("Vertical");
-    }
+
 
     private void MoveCameraDir()
     {
