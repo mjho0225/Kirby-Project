@@ -127,14 +127,15 @@ public class PlayerController : MonoBehaviour
         {
                 rb.useGravity = false;
                 MoveUp();
-            
-            //if (space)
-            //{
-            //    Vector3 pos = transform.position;
-            //    pos.z -= 1;
-            //    rb.AddForce(pos * 5, ForceMode.Impulse);
-            //    isLadder = false;
-            //}
+
+            if (space)
+            {
+                rb.useGravity = true;
+                isLadder = false;
+                Vector3 pos = transform.position;
+                pos = transform.forward * -1.5f;
+                rb.AddForce(pos * (120f * Time.deltaTime), ForceMode.Impulse);
+            }
         }
         else
         {
@@ -152,41 +153,35 @@ public class PlayerController : MonoBehaviour
                 Move();
             }
 
-            //if(!(GetComponentInChildren<PlayerFire>().isCharge) || attackState == AttackState.ABSORB) Move();
-
-
-        }
-
-        if (state == PlayerState.BASIC)
-        {
-            Jump();
-        }
-        else if (state == PlayerState.GUARD)
-        {
-            Guard();
-        }
-
-        //print("rb.velocity" + rb.velocity.y);
-        if (isJump && !isMaxHigh) checkedVelocity();
-
-        if (isJump)
-        {
-            if(jumpCnt >= maxJumpCnt)
+            if (state == PlayerState.BASIC)
             {
-                CheckHeight();
-                disableJump();
-                return;
+                Jump();
             }
-            else
+            else if (state == PlayerState.GUARD)
             {
-                CheckHeight();
+                Guard();
             }
-           
+
+            if (isJump && !isMaxHigh) checkedVelocity();
+
+            if (isJump)
+            {
+                if (jumpCnt >= maxJumpCnt)
+                {
+                    CheckHeight();
+                    disableJump();
+                    return;
+                }
+                else
+                {
+                    CheckHeight();
+                }
+
+            }
+
         }
-        //else
-        //{
-        //    CheckHeight();
-        //}
+
+       
 
     }
     float kirbyHeight;
@@ -294,10 +289,10 @@ public class PlayerController : MonoBehaviour
 
         if (upKey)
         {
-
+            SoundPlay("Audio/Player/SFX_Kirby_FootSound_1");
             Vector3 dir = transform.position;
             //dir = Camera.main.transform.TransformDirection(dir);
-            dir.y += 0.05f;
+            dir.y += 0.09f;
             print("dir.y" + dir.y);
             transform.position = Vector3.Lerp(transform.position, dir, 1f);
 
@@ -305,9 +300,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (downKey)
         {
+            SoundPlay("Audio/Player/SFX_Kirby_FootSound_1");
             Vector3 dir = transform.position;
             //dir = Camera.main.transform.TransformDirection(dir);
-            dir.y -= 0.01f;
+            dir.y -= 0.09f;
             print("dir.y" + dir.y);
             transform.position = Vector3.Lerp(transform.position, dir, 1f);
             //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
@@ -330,8 +326,6 @@ public class PlayerController : MonoBehaviour
             currTime += Time.deltaTime;
             isJump = true;
 
-       
-
             if (jumpCnt < 1)
             {
                 jumpPower = 14 ;
@@ -343,14 +337,6 @@ public class PlayerController : MonoBehaviour
 
                 anim.SetTrigger("Jump");
                 SoundPlay("Audio/Player/SFX_Kirby_Jumping");
-              
-                //TIMELINE 구르기 애니메이션 만들기
-                //if (isMaxHigh)
-                //{
-                //    anim.SetTrigger("Jump");
-                //    isMaxHigh = false;
-                //}
-
             }
             else if (jumpCnt >= 1)
             {
@@ -405,6 +391,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
             isGrounded = true;
             jumpCnt = 0;
+          
         }
         else if (other.tag == "ladder")
         {
