@@ -431,7 +431,7 @@ public class PlayerController : MonoBehaviour
             //본인도 데미지
             if (attackState == AttackState.ABSORB)
             {
-                if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
+                if (GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Ready)
                 {
 
                     SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
@@ -440,15 +440,15 @@ public class PlayerController : MonoBehaviour
                     Vector3 dir = transform.position - collision.gameObject.transform.position;
                     //넉백일 경우와 아닐경우 분리
                     //흡수할 경우 넉백이 일어나면 안됨
-                    rb.AddForce(dir * (200f * Time.deltaTime), ForceMode.Impulse);
-                    StartCoroutine(DamageEffect());
+                    rb.AddForce(dir * (150f * Time.deltaTime), ForceMode.Impulse);
+                   
                     OnDamage();
                 }
             }
             else
             {
                 SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
-                StartCoroutine(DamageEffect());
+                
             }
             
         }
@@ -463,6 +463,11 @@ public class PlayerController : MonoBehaviour
     bool IsDamaged = false;
     IEnumerator DamageEffect()
     {
+        if (!isGuard || isDash || !IsDamaged)
+        {
+            playerHP.HP -= damage;
+        }
+        yield return new WaitForSeconds(0.01f);
         IsDamaged = true;
         print(li);
         //for (int i = 0; i < li.Length; i++)
@@ -508,8 +513,8 @@ public class PlayerController : MonoBehaviour
 
         //임시로 두번 맞으면 죽음
         //대쉬 상태일 때도 무적!!
-        
-        if (!isGuard || isDash || !IsDamaged) playerHP.HP -= damage;
+        StartCoroutine(DamageEffect());
+      
         if (playerHP.HP < 1)
         {
             Die();
