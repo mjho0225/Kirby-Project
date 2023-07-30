@@ -73,7 +73,11 @@ public class PlayerController : MonoBehaviour
         tempDash = GameObject.Find("Temp");
         print("anim"+ anim);
         kirby_model = transform.Find("kirbyModel").gameObject.transform.Find("Body").gameObject;
+        kirby_model_l = transform.Find("kirbyModel").gameObject.transform.Find("ArmLeft").gameObject;
+        kirby_model_r = transform.Find("kirbyModel").gameObject.transform.Find("ArmRight").gameObject;
         li = kirby_model.GetComponent<SkinnedMeshRenderer>();
+        li_l = kirby_model_l.GetComponent<SkinnedMeshRenderer>();
+        li_r = kirby_model_r.GetComponent<SkinnedMeshRenderer>();
         origin = li.material.color;
     }
 
@@ -450,6 +454,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     GameObject kirby_model;
+    GameObject kirby_model_l;
+    GameObject kirby_model_r;
+    SkinnedMeshRenderer li_l;
+    SkinnedMeshRenderer li_r;
     Color origin;
     SkinnedMeshRenderer li;
     bool IsDamaged = false;
@@ -467,11 +475,15 @@ public class PlayerController : MonoBehaviour
         while (count < 4)
         {
             li.material.color = new Color(1f, 1f, 1f, 0.3f);
+            li_l.material.color = new Color(1f, 1f, 1f, 0.3f);
+            li_r.material.color = new Color(1f, 1f, 1f, 0.3f);
             //Color co = li.material.color;
             //co.a = 0.5f;
             //li.material.color = co;
             yield return new WaitForSeconds(0.1f);
             li.material.color = origin;
+            li_l.material.color = origin;
+            li_r.material.color = origin;
             yield return new WaitForSeconds(0.1f);
             count++;
         }
