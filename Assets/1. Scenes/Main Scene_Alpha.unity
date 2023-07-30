@@ -18632,6 +18632,12 @@ MonoBehaviour:
     pitch: 1.15
     loop: 0
     source: {fileID: 0}
+  - name: Idle
+    clip: {fileID: 8300000, guid: 75895583fb86aa64d911cd0a3f9d4dc7, type: 3}
+    volume: 1
+    pitch: 1.15
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &495705724
 Transform:
   m_ObjectHideFlags: 0
@@ -72659,7 +72665,7 @@ MonoBehaviour:
   dashMaxSpeed: 25
   normalMaxSpeed: 15
   gravity: 40
-  jumpPower: 1000
+  jumpPower: 1200
   dragOnGround: 3.5
   mainRigidbody: {fileID: 1733305572}
   bodyTransform: {fileID: 649690445}
