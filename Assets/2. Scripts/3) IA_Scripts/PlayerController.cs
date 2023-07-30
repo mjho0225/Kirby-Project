@@ -72,6 +72,9 @@ public class PlayerController : MonoBehaviour
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
         print("anim"+ anim);
+        kirby_model = transform.Find("kirbyModel").gameObject.transform.Find("Body").gameObject;
+        li = kirby_model.GetComponent<SkinnedMeshRenderer>();
+        origin = li.material.color;
     }
 
     bool isAbsorbed;
@@ -426,22 +429,54 @@ public class PlayerController : MonoBehaviour
             {
                 if (!(GetComponentInChildren<PlayerAbsorb>().state == PlayerAbsorb.AbsorbState.Absorbing))
                 {
+
+                    SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
+                    //박치기 = 서로피격
+                    print("damage 함수처리");
+                    Vector3 dir = transform.position - collision.gameObject.transform.position;
+                    //넉백일 경우와 아닐경우 분리
+                    //흡수할 경우 넉백이 일어나면 안됨
+                    rb.AddForce(dir * (200f * Time.deltaTime), ForceMode.Impulse);
+                    StartCoroutine(DamageEffect());
                     OnDamage();
                 }
             }
             else
             {
                 SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
-
-                //박치기 = 서로피격
-                print("damage 함수처리");
-                Vector3 dir = transform.position - collision.gameObject.transform.position;
-                //넉백일 경우와 아닐경우 분리
-                //흡수할 경우 넉백이 일어나면 안됨
-                rb.AddForce(dir * (300f * Time.deltaTime), ForceMode.Impulse);
+                StartCoroutine(DamageEffect());
             }
             
         }
+    }
+    GameObject kirby_model;
+    Color origin;
+    SkinnedMeshRenderer li;
+    bool IsDamaged = false;
+    IEnumerator DamageEffect()
+    {
+        IsDamaged = true;
+        print(li);
+        //for (int i = 0; i < li.Length; i++)
+        //{
+        //    print(li);
+        //    li[i].material.color = new Color(1f, 1f, 1f, 0);
+        //}
+
+        int count = 0;
+        while (count < 4)
+        {
+            li.material.color = new Color(1f, 1f, 1f, 0.3f);
+            //Color co = li.material.color;
+            //co.a = 0.5f;
+            //li.material.color = co;
+            yield return new WaitForSeconds(0.1f);
+            li.material.color = origin;
+            yield return new WaitForSeconds(0.1f);
+            count++;
+        }
+        yield return new WaitForSeconds(0.01f);
+        IsDamaged = true;
     }
 
     //위치가 필요함
@@ -458,9 +493,11 @@ public class PlayerController : MonoBehaviour
     //공격받는 스크립트 따로 만들게 되면 위치 옮기기
     public void OnDamage()
     {
+
         //임시로 두번 맞으면 죽음
         //대쉬 상태일 때도 무적!!
-        if (!isGuard || isDash) playerHP.HP -= damage;
+        
+        if (!isGuard || isDash || !IsDamaged) playerHP.HP -= damage;
         if (playerHP.HP < 1)
         {
             Die();
