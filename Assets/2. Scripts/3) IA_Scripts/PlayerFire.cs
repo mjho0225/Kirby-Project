@@ -370,7 +370,7 @@ Collider[] cols;
     {
        
         Shot();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         runningCoroutine = null;
     }
     void Shot()

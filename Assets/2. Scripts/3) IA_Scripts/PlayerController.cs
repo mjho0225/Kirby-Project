@@ -599,7 +599,7 @@ public class PlayerController : MonoBehaviour
 
 
                 }
-                print("hitInfo.distance" + hitInfo.distance);
+                //print("hitInfo.distance" + hitInfo.distance);
 
                 if(hitInfo.distance < 2f)
                 {
