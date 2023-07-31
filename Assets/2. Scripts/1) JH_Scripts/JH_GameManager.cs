@@ -197,7 +197,7 @@ public class JH_GameManager : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        print("버튼클릭");
+        //print("버튼클릭");
         StartVideo.SetActive(false);
         ButtonVideo.SetActive(true);
         Time.timeScale = 1;

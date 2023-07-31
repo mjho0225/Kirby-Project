@@ -85,7 +85,7 @@ public class PlayerAbsorb : MonoBehaviour
 
         if (getRanger)
         {
-            print(currTime2);
+            //print(currTime2);
             currTime2 += Time.deltaTime;
             if (currTime2 > 1f)
             {
@@ -194,13 +194,13 @@ public class PlayerAbsorb : MonoBehaviour
                    if (Physics.SphereCast(ray.origin, 2f, ray.direction, out hitInfo, 15f, layerMask, QueryTriggerInteraction.UseGlobal))
                     {
                     GetComponentInParent<PlayerController>().speed = minSpeed;
-                    print("absorbItem(*((" + hitInfo.collider.gameObject.layer);
-                    print("hitInfo(*((" + hitInfo);
+                    //print("absorbItem(*((" + hitInfo.collider.gameObject.layer);
+                    //print("hitInfo(*((" + hitInfo);
 
                     if (hitInfo.collider.gameObject.layer == 8)
                     {
                         absorbItem = hitInfo.collider.gameObject.transform.parent.gameObject;
-                        print("absorbItem" + absorbItem);
+                        //print("absorbItem" + absorbItem);
                         absorbItemTag = absorbItem.tag;
                         state = AbsorbState.Absorbing;
 
@@ -208,7 +208,7 @@ public class PlayerAbsorb : MonoBehaviour
                     else if (hitInfo.collider.gameObject.layer == 6 || hitInfo.collider.gameObject.layer == 9)
                     {
                         absorbItem = hitInfo.collider.gameObject;
-                        print("absorbItem" + absorbItem);
+                        //print("absorbItem" + absorbItem);
                         absorbItemTag = absorbItem.tag;
                         state = AbsorbState.Absorbing;
                        
@@ -225,7 +225,7 @@ public class PlayerAbsorb : MonoBehaviour
                         Collider[] cols = Physics.OverlapSphere(posZY, 1.5f, layer);
                         for (int i = 0; i < cols.Length; i++)
                             {
-                                print("cols" + cols[i]);
+                                //print("cols" + cols[i]);
                                 float dist = Vector3.Distance(transform.position, cols[i].gameObject.transform.position);
                                 min = dist;
                                 gb = cols[i].gameObject;
@@ -239,7 +239,7 @@ public class PlayerAbsorb : MonoBehaviour
                         if (min != 0)
                         {
                             absorbItem = gb;
-                            print("absorbItem" + absorbItem);
+                            //print("absorbItem" + absorbItem);
                             absorbItemTag = absorbItem.tag;
                             state = AbsorbState.Absorbing;
                          }
@@ -256,7 +256,7 @@ public class PlayerAbsorb : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1"))
         {
-            print("»Ì¿‘∏ÿ√„");
+            //print("»Ì¿‘∏ÿ√„");
             currTime = 0f;
             audioSource.Stop();
             DestroyParticle();
@@ -311,7 +311,7 @@ public class PlayerAbsorb : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && !(getRanger))
         {
             GetComponentInParent<PlayerController>().speed = maxSpeed;
-            print(absorbItemTag + ": ∏‘¿∫ ø°≥ πÃ πﬂªÁ");
+            //print(absorbItemTag + ": ∏‘¿∫ ø°≥ πÃ πﬂªÁ");
             //GameObject obj = Resources.Load<GameObject>(RName);
             GameObject obj = Resources.Load<GameObject>("BubbleMonster");
             // P = P0 + direction
@@ -342,18 +342,18 @@ public class PlayerAbsorb : MonoBehaviour
             }
         }
 
-        print("other check" + other.gameObject);
-        print("layer check" + absorbItemTag);
+        //print("other check" + other.gameObject);
+        //print("layer check" + absorbItemTag);
 
         if (other.gameObject == absorbItem)
         {
 
             float distance = Vector3.Distance(absorbItem.transform.position, transform.position);
-            print(distance);
+            //print(distance);
             //∫ØΩ≈ æ÷¥œ∏ﬁ¿Ãº« Ω√∞£ √º≈© « ø‰
             if (distance < 3f)
             {
-                print("destroy" + absorbItemTag);
+                //print("destroy" + absorbItemTag);
                 Destroy(other.gameObject);
                 state = PlayerAbsorb.AbsorbState.Absorbed;
                 DestroyParticle();

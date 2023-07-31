@@ -152,7 +152,7 @@ public class JH_e_Gosum : MonoBehaviour
 
             }
 
-            print("충돌");
+            //print("충돌");
             knockBack = true;
             transform.GetComponent<MeshRenderer>().material.color = Color.white;
             changeColor = 0;

@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         state = PlayerState.BASIC;
         tempDash = GameObject.Find("Temp");
-        print("anim"+ anim);
+        //print("anim"+ anim);
         kirby_model = transform.Find("kirbyModel").gameObject.transform.Find("Body").gameObject;
         kirby_model_l = transform.Find("kirbyModel").gameObject.transform.Find("ArmLeft").gameObject;
         kirby_model_r = transform.Find("kirbyModel").gameObject.transform.Find("ArmRight").gameObject;
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     {
         attackState = AttackState.RANGER;
 
-        print(rangerObj);
+        //print(rangerObj);
         //Destroy(absorbObj); 
         //GameObject obj = Resources.Load<GameObject>("Player_Ranger");
         //Instantiate(obj, transform.position, transform.rotation);
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
     bool isMaking = false;
     IEnumerator makeFeetEffect()
     {
-                SoundPlay("Audio/Player/SFX_Kirby_FootSound_1");    
+                    
                 isMaking = true;
             
                 Vector3 posLeft = transform.position;
@@ -109,13 +109,17 @@ public class PlayerController : MonoBehaviour
                 posLeft.x = transform.position.x - 0.5f;
                 GameObject left = Instantiate(feetEffect);
                 left.transform.position = posLeft;
-                yield return new WaitForSeconds(0.5f);
+
+                SoundPlay("Audio/Player/SFX_Kirby_FootSound_2_Fix");
+                
+                yield return new WaitForSeconds(0.4f);
                 Vector3 posRight = transform.position;
                 posRight.y = transform.position.y - (transform.lossyScale.y / 2) + 0.2f; //pos 값 체크
                 posRight.x = transform.position.x + 0.5f;
                 GameObject right = Instantiate(feetEffect);
                 right.transform.position = posRight;
-                yield return new WaitForSeconds(0.1f);
+                SoundPlay("Audio/Player/SFX_Kirby_FootSound_2_Fix");
+                yield return new WaitForSeconds(0.4f);
                 isMaking = false;
            
     }
@@ -293,7 +297,7 @@ public class PlayerController : MonoBehaviour
     void MoveUp()
     {
 
-        print("MoveUP");
+        //print("MoveUP");
 
         bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
         bool upKeyU = Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W);
@@ -305,7 +309,7 @@ public class PlayerController : MonoBehaviour
             Vector3 dir = transform.position;
             //dir = Camera.main.transform.TransformDirection(dir);
             dir.y += 0.09f;
-            print("dir.y" + dir.y);
+            //print("dir.y" + dir.y);
             transform.position = Vector3.Lerp(transform.position, dir, 1f);
 
             //transform.position += velocity * Time.deltaTime;
@@ -316,7 +320,7 @@ public class PlayerController : MonoBehaviour
             Vector3 dir = transform.position;
             //dir = Camera.main.transform.TransformDirection(dir);
             dir.y -= 0.09f;
-            print("dir.y" + dir.y);
+            //print("dir.y" + dir.y);
             transform.position = Vector3.Lerp(transform.position, dir, 1f);
             //transform.position = Vector3.Lerp(transform.position, -dir, 0.5f);
         }
@@ -328,6 +332,7 @@ public class PlayerController : MonoBehaviour
     {
         audioSource.clip = Resources.Load(str) as AudioClip;
         audioSource.Play();
+        audioSource.volume = 0.2f;
     }
 
     void Jump()
@@ -342,7 +347,7 @@ public class PlayerController : MonoBehaviour
             {
                 jumpPower = 14 ;
                 rb.drag = 0;
-                print("구르기 애니메이션");
+                //print("구르기 애니메이션");
                 rb.velocity = new Vector3(0, jumpPower, 0);
                 Physics.gravity = new Vector3(0, -25f, 0);
                 jumpCnt++;
@@ -367,7 +372,7 @@ public class PlayerController : MonoBehaviour
                 jumpPower = 6;
                 rb.drag = 2.5f;
                 
-                print("날개 애니메이션");
+                //print("날개 애니메이션");
                 anim.SetBool("isJump02", true);
                 transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
                 //점프 높이 커비의 4~5배
@@ -394,7 +399,7 @@ public class PlayerController : MonoBehaviour
     int hitCount;
     private void OnTriggerEnter(Collider other)
     {
-        print("other.gameObject.layer"+ other);
+        //print("other.gameObject.layer"+ other);
         if (other.tag == "Ground")
         {
             anim.SetBool("isJump02", false);
@@ -407,7 +412,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.tag == "ladder")
         {
-            print("사다리");
+            //print("사다리");
             isLadder = true;
             JH_Rock_Spawn.instance.area1Start = true;
         }
@@ -436,7 +441,7 @@ public class PlayerController : MonoBehaviour
 
                     SoundPlay("Audio/Player/SFX_Kirby_DamagedV");
                     //박치기 = 서로피격
-                    print("damage 함수처리");
+                    //print("damage 함수처리");
                     Vector3 dir = transform.position - collision.gameObject.transform.position;
                     //넉백일 경우와 아닐경우 분리
                     //흡수할 경우 넉백이 일어나면 안됨
@@ -469,7 +474,7 @@ public class PlayerController : MonoBehaviour
         }
         yield return new WaitForSeconds(0.01f);
         IsDamaged = true;
-        print(li);
+        //print(li);
         //for (int i = 0; i < li.Length; i++)
         //{
         //    print(li);
@@ -500,7 +505,7 @@ public class PlayerController : MonoBehaviour
     public GameObject checkPoint;
     void Die()
     {
-        print("DIE");
+        //print("DIE");
         //나의 위치를 체크포인트 위치로 하고싶다.
         transform.position = checkPoint.transform.position;
         //
@@ -523,7 +528,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateRanger()
     {
-        print("ranger상태");
+        //print("ranger상태");
 
     }
 
@@ -590,7 +595,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Dumble()
     {
         isDumble = true;
-        print("덤블링");
+        //print("덤블링");
         jumpPower = 2;
         if (isGrounded)
         {
@@ -605,7 +610,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Dash()
     {
-        print("대쉬");
+        //print("대쉬");
         rb.AddForce(transform.forward * 7, ForceMode.Impulse);
         isDash = false;
         dashCount++;
@@ -640,7 +645,7 @@ public class PlayerController : MonoBehaviour
                 if (maxHeight < hitInfo.distance)
                 {
                     rb.velocity = Vector3.zero;
-                    print("maxHeight: " + maxHeight);
+                    //print("maxHeight: " + maxHeight);
                     //isGrounded = false;
                     // 천장에 닿았다
                     Vector3 pos = transform.position;
@@ -670,7 +675,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             // 부딪힌 것이 없다. 허공
-            print("허공");
+            //print("허공");
         }
 
     }

@@ -188,7 +188,7 @@ Collider[] cols;
         //posZY.z += 10;
         posZY.y += 1;
         cols = Physics.OverlapSphere(posZY, 5f, layer);
-        print("cols" + cols);
+        //print("cols" + cols);
         if (cols.Length > 0)
         {
             isAbsorb = true;
@@ -200,7 +200,7 @@ Collider[] cols;
         //car mesh 합치기, Layer 중복 상위 오브젝트에만 CarLayer처리 + rigidbody
         for (int i = 0; i < cols.Length; i++)
         {
-            print("cols" + cols[i]);
+            //print("cols" + cols[i]);
             float dist = Vector3.Distance(transform.position, cols[i].gameObject.transform.position);
             Vector3 dir = transform.position;
             if (dist < 8f)
@@ -225,7 +225,7 @@ Collider[] cols;
 
     private void OnCollisionStay(Collision collision)
     {
-        print("collision" + collision);
+        //print("collision" + collision);
         if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             isAbsorb = false;
@@ -259,7 +259,7 @@ Collider[] cols;
 
     private void ChargeShot()
     {
-        print("ChargeShot");
+        //print("ChargeShot");
 
         if (!isCharge)
         {
@@ -275,10 +275,10 @@ Collider[] cols;
 
         int layerMask = (1 << LayerMask.NameToLayer("Wall"));
         layerMask = ~layerMask;
-        print(layerMask);
+        //print(layerMask);
         if (Physics.Raycast(ray, out hit, 200f, layerMask))
         {
-            print("hitInfo" + hit.point);
+            //print("hitInfo" + hit.point);
             Vector3 v3Pos = ray.GetPoint(hit.distance);
 
             Transform playerPos = transform;
@@ -332,8 +332,8 @@ Collider[] cols;
     public void UpdateClear()
     {
       
-        print("Clear");
-        print("폭탄발사 임시");
+        //print("Clear");
+        //print("폭탄발사 임시");
         currTime = 0;
         lineRenderer.enabled = false;
         StopAllCoroutines();
@@ -384,7 +384,7 @@ Collider[] cols;
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
 
         Destroy(particle, 1f);
-        print("발사");
+        //print("발사");
 
         GameObject bullet = Instantiate(bulletFactory, firePos.position, firePos.rotation);
 
@@ -410,7 +410,7 @@ Collider[] cols;
 
         Instantiate(fire01Effect, firePos.position, firePos.rotation);
         Destroy(particle, 2f);
-        print("발사2");
+        //print("발사2");
         GameObject bullet02 = Instantiate(bulletFactory02, firePos.position, Quaternion.LookRotation(firePos02 - transform.position));
         flareGun.transform.localRotation = Quaternion.Euler(0, 0, 0);
         SoundPlay("SFX_ChargingShot");

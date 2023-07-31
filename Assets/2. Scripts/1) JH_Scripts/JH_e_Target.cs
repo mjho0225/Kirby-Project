@@ -11,6 +11,8 @@ public class JH_e_Target : MonoBehaviour
     public bool hit = false;
     float guideTime = 0;
 
+    AudioSource hiddenWall_SFX;
+
     enum TargetStage
     {
         targetS1,
@@ -22,7 +24,7 @@ public class JH_e_Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        hiddenWall_SFX = GetComponent<AudioSource>();
         for (int i = 0; i < guideWay.Count; i++)
         {
             guideWay[i].gameObject.SetActive(false);
@@ -87,7 +89,7 @@ public class JH_e_Target : MonoBehaviour
     {
         if (hit == true)
         {
-
+            
             Destroy(hideWall, guideWay.Count * 0.1f);
         }
     }
@@ -109,8 +111,10 @@ public class JH_e_Target : MonoBehaviour
                     guideWay[2].gameObject.SetActive(true);
                     if(currentTime >= 3.5f)
                     {
+                        hiddenWall_SFX.PlayOneShot(hiddenWall_SFX.clip);
                         currentTime = 0;
-                        Destroy(gameObject);
+                        
+                        Destroy(gameObject,0.2f);
                     }
                 }
             }

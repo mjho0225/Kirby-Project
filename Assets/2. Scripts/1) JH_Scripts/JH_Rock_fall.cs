@@ -36,7 +36,7 @@ public class JH_Rock_fall : MonoBehaviour
         //rb.AddForce(transform.forward * 100 * Time.deltaTime, ForceMode.Acceleration) ;
         if (JH_Rock_Spawn.instance.bigRock == true)
         {
-            print("속도 변경");
+            //print("속도 변경");
             rockSpeed = 20f;
             transform.position = Vector3.MoveTowards(gameObject.transform.position, patrolPos[i].transform.position, rockSpeed * Time.deltaTime);
         }
