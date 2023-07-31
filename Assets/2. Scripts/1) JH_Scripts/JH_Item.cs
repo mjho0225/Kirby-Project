@@ -11,6 +11,8 @@ public class JH_Item : MonoBehaviour
     public GameObject coin_Red;
 
     AudioSource coin_SFX;
+    AudioSource box_SFX;
+    AudioSource food_SFX;
 
     public enum WHO
     {
@@ -51,7 +53,7 @@ public class JH_Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coin_SFX = GetComponent<AudioSource>();
+        
         me = this.gameObject.tag;
         
     }
@@ -123,7 +125,7 @@ public class JH_Item : MonoBehaviour
 
     private void IAmFood()
     {
-
+        food_SFX = GetComponent<AudioSource>();
 
         // 플레이어 HP 회복
         PlayerHP.instance.HP += 2;
@@ -133,7 +135,7 @@ public class JH_Item : MonoBehaviour
 
     private void IAmCoin()
     {
-
+        coin_SFX = GetComponent<AudioSource>();
 
         if (scoreCount == CountScore.score1)
         {
@@ -151,6 +153,8 @@ public class JH_Item : MonoBehaviour
 
     private void IAmBox()
     {
+        box_SFX = GetComponent<AudioSource>();
+
         if(box == Box.Wood1)
         {
             // 1점 짜리 코인 드랍
@@ -287,6 +291,7 @@ public class JH_Item : MonoBehaviour
         if (me == "Food")
         {
             iAm = WHO.item_Food;
+
         }
 
         if (me == "Coin")
@@ -359,6 +364,7 @@ public class JH_Item : MonoBehaviour
                 IAmFood();
                 this.gameObject.transform.Translate(Vector3.up * 10 * Time.deltaTime) ;
                 this.gameObject.GetComponent<Collider>().enabled = false;
+                food_SFX.PlayOneShot(food_SFX.clip);
                 Destroy(gameObject,1);
             }
 
@@ -382,8 +388,9 @@ public class JH_Item : MonoBehaviour
             if (iAm == WHO.item_Box )
             {
                 IAmBox();
+                box_SFX.PlayOneShot(box_SFX.clip);
                 //Destroy(this.gameObject.transform.parent);
-                Destroy(this.gameObject);
+                Destroy(this.gameObject,0.17f);
             }
         }
 
