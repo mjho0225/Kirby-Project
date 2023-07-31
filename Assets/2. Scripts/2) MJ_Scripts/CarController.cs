@@ -29,8 +29,9 @@ public class CarController : MonoBehaviour
     }
     public CarState carState;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float forwardAccel = 15f, dashMaxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, jumpPower = 100f, dragOnGround = 3f;
+    public float  dashMaxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, dragOnGround = 3f;
 
+    private float forwardAccel = 15f, jumpPower = 1000f;
     private float speedInput, hAxis, vAxis;
     private bool isGrounded, autoDashing;
     private bool dashKeyDown, dashKeyUp;
@@ -118,7 +119,7 @@ public class CarController : MonoBehaviour
             AudioManager.instance.PlayOneShotSound(JUMP_NAME);
             isGrounded = false;
         }
-        mainRigidbody.AddForce(Vector3.up * -gravity * 25);
+        mainRigidbody.AddForce(Vector3.up * -gravity * Time.deltaTime * 2500);
         // 드래그를 최소화
         mainRigidbody.drag = 0.1f;
     }
@@ -134,7 +135,7 @@ public class CarController : MonoBehaviour
         // 만약 대쉬를 했고, 최대 제한 속도 크기 보다 작을 때 힘을 준다.
         if (autoDashing && mainRigidbody.velocity.magnitude < dashMaxSpeed)
         {
-            mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 500f);
+            mainRigidbody.AddForce(bodyTransform.forward * forwardAccel * 40000f * Time.deltaTime);
         }
     }
 
@@ -150,7 +151,7 @@ public class CarController : MonoBehaviour
         if (Mathf.Abs(speedInput) > 0 && !autoDashing && mainRigidbody.velocity.magnitude < normalMaxSpeed)
         {
             // 앞 방향으로 힘을 주고싶다.
-            mainRigidbody.AddForce(carMoveVector.normalized * speedInput);
+            mainRigidbody.AddForce(carMoveVector.normalized * speedInput * Time.deltaTime * 100);
             mainRigidbody.drag = dragOnGround;
 
         }

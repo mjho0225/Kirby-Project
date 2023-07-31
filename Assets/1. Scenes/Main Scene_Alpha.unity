@@ -28251,7 +28251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &718021518
 Transform:
   m_ObjectHideFlags: 0
@@ -39032,7 +39032,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 10
+  near clip plane: 1
   far clip plane: 1000
   field of view: 50
   orthographic: 0
@@ -68612,7 +68612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1667279868
 Transform:
   m_ObjectHideFlags: 0
@@ -72631,7 +72631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1733305572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -72665,7 +72665,7 @@ MonoBehaviour:
   dashMaxSpeed: 25
   normalMaxSpeed: 15
   gravity: 40
-  jumpPower: 1200
+  jumpPower: 1000
   dragOnGround: 3.5
   mainRigidbody: {fileID: 1733305572}
   bodyTransform: {fileID: 649690445}
@@ -94553,7 +94553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7703635284991665403
 Transform:
   m_ObjectHideFlags: 0
