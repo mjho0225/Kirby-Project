@@ -10,7 +10,7 @@ public class PlayerPivotCheckManager : MonoBehaviour
     private Ray ray;
     // 물리기반은 FixedUpdate에서 사용한다.(update에서 사용하면 프레임 드랍이 나타남)
     // 업데이트 문에다가 레이를 쏴서 만야
-    
+
     public void UpdatePoint()
     {
         ray = new Ray(playerPivot.transform.position, -playerPivot.transform.up);

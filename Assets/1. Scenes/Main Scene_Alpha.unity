@@ -63945,12 +63945,6 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -706273398448724759, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
     value: {fileID: 6650332440618135}
-  - key: {fileID: -1740086602915052591, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 327790206275776761, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -7439882657754826682, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
-    value: {fileID: 0}
   - key: {fileID: -8518202420482520626, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
     value: {fileID: 1668984187}
   - key: {fileID: 5438770717228159751, guid: 2c2c4423013f12c409bd2417dadea59c, type: 2}
@@ -76100,6 +76094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carState: 0
+  forwardAccel: 15
+  jumpPower: 1000
   dashMaxSpeed: 25
   normalMaxSpeed: 15
   gravity: 40
@@ -91217,12 +91213,6 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -706273398448724759, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 6650332440618135}
-  - key: {fileID: 327790206275776761, guid: b165d476870970544855d3bd296d6876, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -7439882657754826682, guid: b165d476870970544855d3bd296d6876, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -1740086602915052591, guid: b165d476870970544855d3bd296d6876, type: 2}
-    value: {fileID: 0}
   - key: {fileID: -8518202420482520626, guid: b165d476870970544855d3bd296d6876, type: 2}
     value: {fileID: 1474370285}
   - key: {fileID: 8737264000639491217, guid: b165d476870970544855d3bd296d6876, type: 2}
@@ -104825,6 +104815,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1587793863}
           m_TargetAssemblyTypeName: CameraLayerManager, Assembly-CSharp
           m_MethodName: ChangedOffCameraLayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1587793863}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: SetViewCenterPosition
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

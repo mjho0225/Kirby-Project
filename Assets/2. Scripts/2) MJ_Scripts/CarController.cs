@@ -29,13 +29,11 @@ public class CarController : MonoBehaviour
     }
     public CarState carState;
     // 앞으로 가는힘, 뒤로 가는 힘, 최대 속력 돌아가는 속력, 중력의 힘
-    public float  dashMaxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, dragOnGround = 3f;
+    public float forwardAccel = 15f, jumpPower = 1000f, dashMaxSpeed = 25f, normalMaxSpeed = 15f, gravity = 9.81f, dragOnGround = 3f;
 
-    private float forwardAccel = 15f, jumpPower = 1000f;
     private float speedInput, hAxis, vAxis;
     private bool isGrounded, autoDashing;
-    private bool dashKeyDown, dashKeyUp;
-    private bool jumpButtonDown;
+    private bool jumpButtonDown, dashKeyDown, dashKeyUp;
 
     // 리지드 바디가 필요
     public Rigidbody mainRigidbody;
@@ -207,7 +205,6 @@ public class CarController : MonoBehaviour
         {
             isGrounded = true;
         }
-        // 커비가 땅에 닿았고, 점프를 했다면 이펙트를 넣는다.
     }
 
 }
